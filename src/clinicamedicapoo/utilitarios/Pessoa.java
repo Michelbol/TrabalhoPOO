@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author miche
  */
-public class Pessoa {
+public abstract class Pessoa {
     protected String nome;
     protected String sobrenome;
     protected String cpf;
