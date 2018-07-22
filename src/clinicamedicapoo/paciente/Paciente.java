@@ -6,20 +6,60 @@
 package clinicamedicapoo.paciente;
 
 import clinicamedicapoo.utilitarios.Pessoa;
+import clinicamedicapoo.utilitarios.Sexo;
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
 
 /**
  *
  * @author miche
  */
-public class Paciente extends Pessoa {
+@Entity
+public class Paciente extends Pessoa implements Serializable {
+    
+    @Embedded
+    @Column(nullable = false)
     private TipoConvenio tipoconvenio;
+    
+    @Column(nullable = true)
     private boolean isFumante;
+    
+    @Column(nullable = true)
     private boolean isAlcolatra;
+    
+    @Column(nullable = true)
     private boolean isColesterol;
+    
+    @Column(nullable = true)
     private boolean isDiabetico;
-    private String doencasCardiacas;
+    
+    @Column(nullable = true)
+    private boolean doencasCardiacas;
+    
+    @Column(nullable = true, length = 1000)
     private String cirurgias;
+    
+    @Column(nullable = true, length = 1000)
     private String alergias;
+
+    public Paciente( String nome, String sobrenome, String cpf, String rg, Sexo sexo, String dataNascimento, String rua, String numero, String bairro, String cep, String telefone_residencial, String telefone_celular, String email) {
+        super( nome, sobrenome, cpf, rg, sexo, dataNascimento, rua, numero, bairro, cep, telefone_residencial, telefone_celular, email);
+    }
+
+    public Paciente(TipoConvenio tipoconvenio, boolean isFumante, boolean isAlcolatra, boolean isColesterol, boolean isDiabetico, boolean doencasCardiacas, String cirurgias, String alergias, String nome, String sobrenome, String cpf, String rg, Sexo sexo, String dataNascimento, String rua, String numero, String bairro, String cep, String telefone_residencial, String telefone_celular, String email) {
+        super(nome, sobrenome, cpf, rg, sexo, dataNascimento, rua, numero, bairro, cep, telefone_residencial, telefone_celular, email);
+        this.tipoconvenio = tipoconvenio;
+        this.isFumante = isFumante;
+        this.isAlcolatra = isAlcolatra;
+        this.isColesterol = isColesterol;
+        this.isDiabetico = isDiabetico;
+        this.doencasCardiacas = doencasCardiacas;
+        this.cirurgias = cirurgias;
+        this.alergias = alergias;
+    }    
 
     public TipoConvenio getTipoconvenio() {
         return tipoconvenio;
@@ -61,11 +101,11 @@ public class Paciente extends Pessoa {
         this.isDiabetico = isDiabetico;
     }
 
-    public String getDoencasCardiacas() {
+    public boolean getDoencasCardiacas() {
         return doencasCardiacas;
     }
 
-    public void setDoencasCardiacas(String doencasCardiacas) {
+    public void setDoencasCardiacas(boolean doencasCardiacas) {
         this.doencasCardiacas = doencasCardiacas;
     }
 

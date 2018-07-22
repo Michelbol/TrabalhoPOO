@@ -7,19 +7,57 @@ package clinicamedicapoo.prontuario;
 
 import clinicamedicapoo.medico.Medico;
 import clinicamedicapoo.paciente.Paciente;
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author miche
  */
-public class Prontuario {
+@Entity
+@Table(name = "Prontuario")
+public class Prontuario implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id; 
+    
+    @OneToOne(fetch = FetchType.EAGER)
+//    @Column(nullable = false)
     private Paciente paciente;
+    
+    @OneToOne(fetch = FetchType.EAGER)
+//    @Column(nullable = false)
     private Medico medico;
+    
+    @Column(nullable = false, length = 1000)
     private String sintomas;
+    
+    @Column(nullable = false, length = 1000)
     private String diagnostico;
+    
+    @Column(nullable = false, length = 1000)
     private String prescricao;
-    private Date data;
+    
+    @Column(nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataProntuario;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Paciente getPaciente() {
         return paciente;
@@ -61,12 +99,12 @@ public class Prontuario {
         this.prescricao = prescricao;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataProntuario() {
+        return dataProntuario;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataProntuario(Date dataProntuario) {
+        this.dataProntuario = dataProntuario;
     }
     
     

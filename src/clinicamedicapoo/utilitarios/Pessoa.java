@@ -5,25 +5,93 @@
  */
 package clinicamedicapoo.utilitarios;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author miche
  */
-public abstract class Pessoa {
+@Entity
+@Table(name="Pessoa")
+public abstract class Pessoa implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id_pessoa; 
+    
+    @Column(nullable = false, length = 100)
     protected String nome;
+    
+    @Column(nullable = false, length = 100)
     protected String sobrenome;
+    
+    @Column(nullable = false, length = 14)
     protected String cpf;
+    
+    @Column(nullable = true, length = 20)
     protected String rg;
+    
+    @Embedded
+    @Column(nullable = false)
+    protected Sexo sexo;
+    
+    @Column(nullable = true)
+    @Temporal(javax.persistence.TemporalType.DATE)
     protected Date dataNascimento;
+    
+    @Column(nullable = true, length = 100)
     protected String rua;
+    
+    @Column(nullable = true, length = 20)
     protected String numero;
+    
+    @Column(nullable = true, length = 100)
     protected String bairro;
+    
+    @Column(nullable = true, length = 10)
     protected String cep;
+    
+    @Column(nullable = true, length = 20)
     protected String telefone_residencial;
+    
+    @Column(nullable = true, length = 20)
     protected String telefone_celular;
+    
+    @Column(nullable = true, length = 30)
     protected String email;
+
+    public Pessoa(String nome, String sobrenome, String cpf, String rg, Sexo sexo, String dataNascimento, String rua, String numero, String bairro, String cep, String telefone_residencial, String telefone_celular, String email) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.sexo = sexo;
+        this.setDataNascimento(dataNascimento);
+        this.rua = rua;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cep = cep;
+        this.telefone_residencial = telefone_residencial;
+        this.telefone_celular = telefone_celular;
+        this.email = email;
+    }
+
+    public Integer getId_pessoa() {
+        return id_pessoa;
+    }
+
+    public void setId_pessoa(Integer id_pessoa) {
+        this.id_pessoa = id_pessoa;
+    }
 
     public String getNome() {
         return nome;
@@ -57,12 +125,33 @@ public abstract class Pessoa {
         this.rg = rg;
     }
 
-    public Date getDataNascimento() {
-        return dataNascimento;
+    public String getDataNascimento() {
+        String data = null;        
+        String[] datahora = null;
+        SimpleDateFormat formatDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm");        
+        if(this.dataNascimento != null ){
+            data = formatDateTime.format(this.dataNascimento);
+            datahora = data.split(" ");
+        }
+        return datahora[0] + " " + datahora[1];
     }
 
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setDataNascimento(String dataNascimento) {
+        if(!(dataNascimento.length() > 0)){
+            this.dataNascimento = null;
+        }
+        String[] g = dataNascimento.split("/");
+        int dia = Integer.parseInt(g[0]);
+        int mes = Integer.parseInt(g[1]) - 1;
+        int ano = Integer.parseInt(g[2]);
+        if (ano > 99) {
+            ano = ano - 1900;
+        }
+        if (ano < 50) {
+            ano = ano + 2000;
+        }
+        Date dt = new Date(ano, mes, dia);
+        this.dataNascimento = dt;
     }
 
     public String getRua() {
@@ -119,6 +208,14 @@ public abstract class Pessoa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
     }
 
     @Override
