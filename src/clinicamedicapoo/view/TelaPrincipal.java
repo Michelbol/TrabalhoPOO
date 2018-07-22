@@ -5,12 +5,14 @@
  */
 package clinicamedicapoo.view;
 
+import clinicamedicapoo.paciente.PacienteConsultaView;
+
 /**
  *
  * @author miche
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    PacienteConsultaView paciente_consulta = new PacienteConsultaView();
     /**
      * Creates new form TelaPrincipal
      */
@@ -39,6 +41,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton1.setText("Consultas");
 
         jButton2.setText("Paciente");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Medico");
 
@@ -89,6 +96,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        paciente_consulta.setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments

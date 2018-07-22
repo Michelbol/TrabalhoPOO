@@ -17,8 +17,8 @@ public class PacienteConsultaView extends javax.swing.JFrame {
     public PacienteConsultaView() {
         initComponents();
     }
-    PacienteController pc = new PacienteController();
-    public PacienteTableModel paciente = new PacienteTableModel(pc.getPaciente("%%"));
+
+    public PacienteTableModel paciente = new PacienteTableModel(PacienteController.getPaciente("%%"));
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,11 +40,6 @@ public class PacienteConsultaView extends javax.swing.JFrame {
         setTitle("Consulta Pacientes");
 
         jtable_consulta_paciente.setModel(paciente);
-        jtable_consulta_paciente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtable_consulta_pacienteKeyReleased(evt);
-            }
-        });
         jScrollPane1.setViewportView(jtable_consulta_paciente);
 
         jbutton_adicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/add.png"))); // NOI18N
@@ -108,12 +103,8 @@ public class PacienteConsultaView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtable_consulta_pacienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtable_consulta_pacienteKeyReleased
-        
-    }//GEN-LAST:event_jtable_consulta_pacienteKeyReleased
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        paciente = new PacienteTableModel(pc.getPaciente(jtext_filtro_nome.getText()));
+        paciente = new PacienteTableModel(PacienteController.getPaciente(jtext_filtro_nome.getText()));
         jtable_consulta_paciente.setModel(paciente);
     }//GEN-LAST:event_jButton1MouseClicked
 

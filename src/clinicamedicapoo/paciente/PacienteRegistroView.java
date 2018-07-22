@@ -18,10 +18,9 @@ public class PacienteRegistroView extends javax.swing.JFrame {
      */
     public PacienteRegistroView() {
         initComponents();
-    }
-    PacienteController pc = new PacienteController();
+    }    
     public void recuperarTela(){
-        pc.inserirPaciente(TipoConvenio.valueOf(jCombo_tipo_convenio.getSelectedItem().toString()),
+        PacienteController.inserirPaciente(TipoConvenio.valueOf(jCombo_tipo_convenio.getSelectedItem().toString()),
                 jCheckBox_isFumante.isSelected(),
                 jCheckBox_isAlcolatra.isSelected(),
                 jCheckBox_isColesterol.isSelected(),
