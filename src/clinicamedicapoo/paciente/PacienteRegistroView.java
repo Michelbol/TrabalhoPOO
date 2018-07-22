@@ -5,6 +5,8 @@
  */
 package clinicamedicapoo.paciente;
 
+import clinicamedicapoo.secretaria.Secretaria;
+import clinicamedicapoo.usuario.UsuarioController;
 import clinicamedicapoo.utilitarios.Sexo;
 
 /**
@@ -18,7 +20,35 @@ public class PacienteRegistroView extends javax.swing.JFrame {
      */
     public PacienteRegistroView() {
         initComponents();
+        if(UsuarioController.usuarioLogado != null && UsuarioController.usuarioLogado.getMedico() != null){
+            ativarDadosAdicionais();
+        }else{
+            desativarDadosAdicionais();
+        }
     }    
+    
+    public void ativarDadosAdicionais(){
+        jPanel_dados_Adicionais.setEnabled(true);
+        jCheckBox_isFumante.setEnabled(true);
+        jCheckBox_isAlcolatra.setEnabled(true);
+        jCheckBox_isColesterol.setEnabled(true);
+        jCheckBox_isDiabetico.setEnabled(true);
+        jCheckBox_isDoencasCardiacas.setEnabled(true);
+        jText_cirurgias.setEnabled(true);
+        jText_alergias.setEnabled(true);
+    }
+    
+    public void desativarDadosAdicionais(){
+        jPanel_dados_Adicionais.setEnabled(true);
+        jCheckBox_isFumante.setEnabled(true);
+        jCheckBox_isAlcolatra.setEnabled(true);
+        jCheckBox_isColesterol.setEnabled(true);
+        jCheckBox_isDiabetico.setEnabled(true);
+        jCheckBox_isDoencasCardiacas.setEnabled(true);
+        jText_cirurgias.setEnabled(true);
+        jText_alergias.setEnabled(true);
+    }
+    
     public void recuperarTela(){
         PacienteController.inserirPaciente(TipoConvenio.valueOf(jCombo_tipo_convenio.getSelectedItem().toString()),
                 jCheckBox_isFumante.isSelected(),
@@ -41,6 +71,56 @@ public class PacienteRegistroView extends javax.swing.JFrame {
                 jText_telefone_Residencial.getText(),
                 jText_telefone_celular.getText(),
                 jText_email.getText());
+        this.limparTela();
+        this.setVisible(false);
+    }
+    
+    public void limparTela(){
+        jCombo_tipo_convenio.setSelectedIndex(0);
+        jCheckBox_isFumante.setSelected(false);
+        jCheckBox_isAlcolatra.setSelected(false);
+        jCheckBox_isColesterol.setSelected(false);
+        jCheckBox_isDiabetico.setSelected(false);
+        jCheckBox_isDoencasCardiacas.setSelected(false);
+        jText_cirurgias.setText("");
+        jText_alergias.setText("");
+        jText_nome.setText("");
+        jText_sobrenome.setText("");
+        jText_cpf.setText("");
+        jText_rg.setText("");
+        jCombo_sexo.setSelectedIndex(0);
+        jText_dt_nascimento.setText("");
+        Jtext_rua.setText("");
+        jText_nro.setText("");
+        jText_bairro.setText("");
+        jText_cep.setText("");
+        jText_telefone_Residencial.setText("");
+        jText_telefone_celular.setText("");
+        jText_email.setText("");
+    }
+    
+    public void preencherTela(Paciente p){
+        jCombo_tipo_convenio.setSelectedIndex((p.getTipoconvenio() == TipoConvenio.Particular ? 0 : 1));
+        jCheckBox_isFumante.setSelected(p.isIsFumante());
+        jCheckBox_isAlcolatra.setSelected(p.isIsAlcolatra());
+        jCheckBox_isColesterol.setSelected(p.isIsColesterol());
+        jCheckBox_isDiabetico.setSelected(p.isIsDiabetico());
+        jCheckBox_isDoencasCardiacas.setSelected(p.getDoencasCardiacas());
+        jText_cirurgias.setText(p.getCirurgias());
+        jText_alergias.setText(p.getAlergias());
+        jText_nome.setText(p.getNome());
+        jText_sobrenome.setText(p.getSobrenome());
+        jText_cpf.setText(p.getCpf());
+        jText_rg.setText(p.getRg());
+        jCombo_sexo.setSelectedIndex(p.getSexo() == Sexo.Masculino ? 0 : 1);
+        jText_dt_nascimento.setText(p.getDataNascimento());
+        Jtext_rua.setText(p.getRua());
+        jText_nro.setText(p.getNumero());
+        jText_bairro.setText(p.getBairro());
+        jText_cep.setText(p.getCep());
+        jText_telefone_Residencial.setText(p.getTelefone_residencial());
+        jText_telefone_celular.setText(p.getTelefone_celular());
+        jText_email.setText(p.getEmail());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,7 +188,7 @@ public class PacienteRegistroView extends javax.swing.JFrame {
 
         jLabel_sexo.setText("Sexo:");
 
-        jCombo_sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Maculino", "Feminino" }));
+        jCombo_sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino" }));
 
         jLabel_dt_nascimento.setText("Data Nascimento:");
 
