@@ -46,11 +46,14 @@ public class Paciente extends Pessoa implements Serializable {
     @Column(nullable = true, length = 1000)
     private String alergias;
 
-    public Paciente( String nome, String sobrenome, String cpf, String rg, Sexo sexo, String dataNascimento, String rua, String numero, String bairro, String cep, String telefone_residencial, String telefone_celular, String email) {
-        super( nome, sobrenome, cpf, rg, sexo, dataNascimento, rua, numero, bairro, cep, telefone_residencial, telefone_celular, email);
-    }
+    @Column(nullable = false)
+    private boolean ativo;
 
-    public Paciente(TipoConvenio tipoconvenio, boolean isFumante, boolean isAlcolatra, boolean isColesterol, boolean isDiabetico, boolean doencasCardiacas, String cirurgias, String alergias, String nome, String sobrenome, String cpf, String rg, Sexo sexo, String dataNascimento, String rua, String numero, String bairro, String cep, String telefone_residencial, String telefone_celular, String email) {
+    public Paciente(String nome, String sobrenome, String cpf, String rg, Sexo sexo, String dataNascimento, String rua, String numero, String bairro, String cep, String telefone_residencial, String telefone_celular, String email) {
+        super(nome, sobrenome, cpf, rg, sexo, dataNascimento, rua, numero, bairro, cep, telefone_residencial, telefone_celular, email);
+    }
+    
+    public Paciente(TipoConvenio tipoconvenio, boolean isFumante, boolean isAlcolatra, boolean isColesterol, boolean isDiabetico, boolean doencasCardiacas, String cirurgias, String alergias, boolean ativo, String nome, String sobrenome, String cpf, String rg, Sexo sexo, String dataNascimento, String rua, String numero, String bairro, String cep, String telefone_residencial, String telefone_celular, String email) {
         super(nome, sobrenome, cpf, rg, sexo, dataNascimento, rua, numero, bairro, cep, telefone_residencial, telefone_celular, email);
         this.tipoconvenio = tipoconvenio;
         this.isFumante = isFumante;
@@ -60,7 +63,8 @@ public class Paciente extends Pessoa implements Serializable {
         this.doencasCardiacas = doencasCardiacas;
         this.cirurgias = cirurgias;
         this.alergias = alergias;
-    }    
+        this.ativo = ativo;
+    }
 
     public TipoConvenio getTipoconvenio() {
         return tipoconvenio;
@@ -124,6 +128,14 @@ public class Paciente extends Pessoa implements Serializable {
 
     public void setAlergias(String alergias) {
         this.alergias = alergias;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     @Override

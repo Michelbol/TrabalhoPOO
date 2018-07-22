@@ -5,20 +5,22 @@
  */
 package clinicamedicapoo.paciente;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author miche
  */
 public class PacienteConsultaView extends javax.swing.JFrame {
     PacienteRegistroView paciente_registro = new PacienteRegistroView();
+    public PacienteTableModel paciente = new PacienteTableModel(PacienteController.getPaciente("%%"));;
     /**
      * Creates new form PacienteView
      */
     public PacienteConsultaView() {
         initComponents();
     }
-
-    public PacienteTableModel paciente = new PacienteTableModel(PacienteController.getPaciente("%%"));
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,6 +40,11 @@ public class PacienteConsultaView extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setTitle("Consulta Pacientes");
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jtable_consulta_paciente.setModel(paciente);
         jScrollPane1.setViewportView(jtable_consulta_paciente);
@@ -52,6 +59,11 @@ public class PacienteConsultaView extends javax.swing.JFrame {
 
         jbutton_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/pencil.png"))); // NOI18N
         jbutton_editar.setText("Editar");
+        jbutton_editar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbutton_editarMouseClicked(evt);
+            }
+        });
 
         jbutton_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/cross.png"))); // NOI18N
         jbutton_excluir.setText("Excluir");
@@ -113,6 +125,24 @@ public class PacienteConsultaView extends javax.swing.JFrame {
             paciente_registro.setVisible(true);
         }
     }//GEN-LAST:event_jbutton_adicionarMouseClicked
+
+    private void jbutton_editarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_editarMouseClicked
+        int linhaselecionada = jtable_consulta_paciente.getSelectedRow();
+        if(linhaselecionada == -1){
+            JOptionPane.showMessageDialog(null, "Selecione um registro");
+            return;
+        }
+        Paciente p = PacienteController.findPaciente(Integer.parseInt(jtable_consulta_paciente.getValueAt(linhaselecionada, 0).toString()));
+        if(p != null){
+            paciente_registro.setVisible(true);
+            paciente_registro.preencherTela(p);
+        }
+    }//GEN-LAST:event_jbutton_editarMouseClicked
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+       paciente = new PacienteTableModel(PacienteController.getPaciente(jtext_filtro_nome.getText()));
+        jtable_consulta_paciente.setModel(paciente);
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments

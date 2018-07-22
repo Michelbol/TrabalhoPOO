@@ -42,6 +42,7 @@ public class PacienteController {
             boolean doencasCardiacas,
             String cirurgias,
             String alergias,
+            boolean ativo,
             String nome,
             String sobrenome,
             String cpf,
@@ -64,6 +65,7 @@ public class PacienteController {
             doencasCardiacas,
             cirurgias,
             alergias,
+            ativo,
             nome,
             sobrenome,
             cpf,
@@ -87,20 +89,20 @@ public class PacienteController {
         }
     }
     
-    public static void inserirMedico(Medico c){        
+    public static Paciente findPaciente(int id){
+        Paciente paciente = null;
         try{
-           manager.getTransaction().begin();
-           manager.persist(c);
-           manager.getTransaction().commit();
+            paciente = manager.find(Paciente.class, id);
         }
         catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
         }
-    } 
+        return paciente;
+    }
     
     public static void povoarPaciente(){
-        inserirPaciente(TipoConvenio.Particular, false, false, false, false, true, "", "", "Michel", "Bolzon", "078.161.349-32", "97796033", Sexo.Masculino, "11/10/1995", "Rua ivinhema", "25", "Parque Avenida", "87025-490", "(44) 3028-2888", "(44) 99824-3108", "Michel.bolzon123@gmail.com");
-        inserirPaciente(TipoConvenio.PlanoDeSaude, false, true, false, true,false, "", "", "Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/08/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com");
-        inserirMedico(new Medico("Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/03/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com"));
+        inserirPaciente(TipoConvenio.Particular, false, false, false, false, true, "", "", true,"Michel", "Bolzon", "078.161.349-32", "97796033", Sexo.Masculino, "11/10/1995", "Rua ivinhema", "25", "Parque Avenida", "87025-490", "(44) 3028-2888", "(44) 99824-3108", "Michel.bolzon123@gmail.com");
+        inserirPaciente(TipoConvenio.PlanoDeSaude, false, true, false, true,false, "", "", true, "Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/08/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com");
+//        inserirMedico(new Medico("Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/03/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com"));
     }
 }

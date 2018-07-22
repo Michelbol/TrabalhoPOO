@@ -128,12 +128,12 @@ public abstract class Pessoa implements Serializable {
     public String getDataNascimento() {
         String data = null;        
         String[] datahora = null;
-        SimpleDateFormat formatDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm");        
+        SimpleDateFormat formatDateTime = new SimpleDateFormat("dd/MM/yyyy");        
         if(this.dataNascimento != null ){
             data = formatDateTime.format(this.dataNascimento);
             datahora = data.split(" ");
         }
-        return datahora[0] + " " + datahora[1];
+        return datahora[0];
     }
 
     public void setDataNascimento(String dataNascimento) {
