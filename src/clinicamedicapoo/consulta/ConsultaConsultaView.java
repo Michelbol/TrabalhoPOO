@@ -10,13 +10,23 @@ package clinicamedicapoo.consulta;
  * @author miche
  */
 public class ConsultaConsultaView extends javax.swing.JFrame {
-    public ConsultaTableModel consulta = new ConsultaTableModel();
+    private ConsultaTableModel consulta_table_model;
     /**
      * Creates new form ConsultaConsultaView
      */
-    public ConsultaConsultaView() {
+    public ConsultaConsultaView(ConsultaTableModel consulta_table_model) {
+        this.consulta_table_model = consulta_table_model;
         initComponents();
     }
+
+    public ConsultaTableModel getConsulta_table_model() {
+        return consulta_table_model;
+    }
+
+    public void setConsulta_table_model(ConsultaTableModel consulta_table_model) {
+        this.consulta_table_model = consulta_table_model;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,17 +49,7 @@ public class ConsultaConsultaView extends javax.swing.JFrame {
 
         setTitle("Consultas");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        jTable1.setModel(consulta_table_model);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel_data_hora_inicial.setText("Data/Hora Inicial:");
@@ -149,40 +149,6 @@ public class ConsultaConsultaView extends javax.swing.JFrame {
 //        jtable_consulta_paciente.setModel(paciente);
     }//GEN-LAST:event_jbutton_excluirActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConsultaConsultaView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField jFormattedTextField3;
