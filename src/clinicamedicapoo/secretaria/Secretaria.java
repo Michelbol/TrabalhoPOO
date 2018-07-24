@@ -55,4 +55,9 @@ public class Secretaria extends Pessoa {
         Paciente paciente = new Paciente();
         return paciente.getPaciente(filtro_nome);
     }
+    
+    public Paciente buscarPaciente(Integer id){
+        Paciente paciente = new Paciente();
+        return paciente.findPaciente(id);
+    }
 }
