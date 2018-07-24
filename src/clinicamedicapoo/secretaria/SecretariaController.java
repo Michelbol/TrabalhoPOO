@@ -36,8 +36,7 @@ public class SecretariaController {
             public void actionPerformed(ActionEvent ae) {
                 paciente_table_model = tela_principal.getPaciente_consulta().getPaciente_table_model();
                 paciente_table_model.limpar();
-                List<Paciente> paciente = secretaria.getPaciente("");
-                System.out.println("Paciente: " + paciente);
+                List<Paciente> paciente = secretaria.consultarPacientes("");
                 paciente_table_model.addListaDePacientes(paciente);
                 tela_principal.getPaciente_consulta().setVisible(true);
                 tela_principal.getPaciente_consulta().setPaciente_table_model(paciente_table_model);
@@ -63,8 +62,8 @@ public class SecretariaController {
                     JOptionPane.showMessageDialog(null, "Selecione um registro");
                     return;
                 }
-                int pacienteId = Integer.parseInt(tela_principal.getPaciente_consulta().pacienteTable().getValueAt(linhaselecionada, 0).toString());
-                
+                int pacienteId = Integer.parseInt(jtable_consulta_paciente.getValueAt(linhaselecionada, 0).toString());
+                Paciente p = PacienteController.findPaciente();
 //                if(p != null){
 //                    paciente_registro.setVisible(true);
 //                    paciente_registro.preencherTela(p);

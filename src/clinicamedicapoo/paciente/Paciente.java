@@ -5,15 +5,18 @@
  */
 package clinicamedicapoo.paciente;
 
+import static clinicamedicapoo.secretaria.Secretaria.manager;
 import clinicamedicapoo.utilitarios.Pessoa;
 import clinicamedicapoo.utilitarios.Sexo;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -232,6 +235,12 @@ public class Paciente extends Pessoa implements Serializable {
             System.out.println("Erro: " + e.getMessage());
             return false;
         }
+    }
+    
+        public List<Paciente> getPaciente(String filtro_nome){
+        Query query = manager.createQuery("select p FROM Paciente p WHERE p.nome LIKE '%"+ filtro_nome+"%' and p.ativo = true");
+        List<Paciente> lista_paciente = query.getResultList();
+        return lista_paciente;
     }
     
     public static void povoarPaciente(){

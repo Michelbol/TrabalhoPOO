@@ -49,12 +49,10 @@ public class Secretaria extends Pessoa {
             System.out.println("Erro: " + e.getMessage());
             return null;
         }
-    }
+    }    
     
-    public List<Paciente> getPaciente(String filtro_nome){
-        Query query = manager.createQuery("select p FROM Paciente p WHERE p.nome LIKE '%"+ filtro_nome+"%' and p.ativo = true");
-        List<Paciente> lista_paciente = query.getResultList();
-        return lista_paciente;
+    public List<Paciente> consultarPacientes(String filtro_nome){
+        Paciente paciente = new Paciente();
+        return paciente.getPaciente(filtro_nome);
     }
-    
 }
