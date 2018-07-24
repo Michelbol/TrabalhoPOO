@@ -7,6 +7,7 @@ package clinicamedicapoo.paciente;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -49,6 +50,19 @@ public class PacienteConsultaView extends javax.swing.JFrame {
     public JTable pacienteTable(){
         return jtable_consulta_paciente;
     }
+    
+    public JButton filtrarButton(){
+        return jButton_filtrar;
+    }
+
+    public JTextField getJtext_filtro_nome() {
+        return jtext_filtro_nome;
+    }
+
+    public void setJtext_filtro_nome(JTextField jtext_filtro_nome) {
+        this.jtext_filtro_nome = jtext_filtro_nome;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

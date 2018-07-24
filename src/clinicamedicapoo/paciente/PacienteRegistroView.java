@@ -24,11 +24,6 @@ public class PacienteRegistroView extends javax.swing.JFrame {
      */
     public PacienteRegistroView() {
         initComponents();
-        /*if(UsuarioController.usuarioLogado != null && UsuarioController.usuarioLogado.getMedico() != null){
-            ativarDadosAdicionais();
-        }else{
-            desativarDadosAdicionais();
-        }*/
     }    
 
     public JTextField getJtext_Codigo() {
@@ -254,114 +249,6 @@ public class PacienteRegistroView extends javax.swing.JFrame {
     public void setjText_telefone_celular(JTextField jText_telefone_celular) {
         this.jText_telefone_celular = jText_telefone_celular;
     }
-    
-    
-    public void ativarDadosAdicionais(){
-        jPanel_dados_Adicionais.setEnabled(true);
-        jCheckBox_isFumante.setEnabled(true);
-        jCheckBox_isAlcolatra.setEnabled(true);
-        jCheckBox_isColesterol.setEnabled(true);
-        jCheckBox_isDiabetico.setEnabled(true);
-        jCheckBox_isDoencasCardiacas.setEnabled(true);
-        jText_cirurgias.setEnabled(true);
-        jText_alergias.setEnabled(true);
-    }
-    
-    public void desativarDadosAdicionais(){
-        jPanel_dados_Adicionais.setEnabled(false);
-        jCheckBox_isFumante.setEnabled(false);
-        jCheckBox_isAlcolatra.setEnabled(false);
-        jCheckBox_isColesterol.setEnabled(false);
-        jCheckBox_isDiabetico.setEnabled(false);
-        jCheckBox_isDoencasCardiacas.setEnabled(false);
-        jText_cirurgias.setEnabled(false);
-        jText_alergias.setEnabled(false);
-    }
-    
-    public void recuperarTela(){
-//        PacienteController.inserirPaciente(TipoConvenio.valueOf(jCombo_tipo_convenio.getSelectedItem().toString()),
-//                jCheckBox_isFumante.isSelected(),
-//                jCheckBox_isAlcolatra.isSelected(),
-//                jCheckBox_isColesterol.isSelected(),
-//                jCheckBox_isDiabetico.isSelected(),
-//                jCheckBox_isDoencasCardiacas.isSelected(),
-//                jText_cirurgias.getText(),
-//                jText_alergias.getText(),
-//                jCombo_ativo.getSelectedItem() == "Sim",
-//                jText_nome.getText(),
-//                jText_sobrenome.getText(),
-//                jText_cpf.getText(),
-//                jText_rg.getText(),
-//                Sexo.valueOf(jCombo_sexo.getSelectedItem().toString()),
-//                jText_dt_nascimento.getText(),
-//                Jtext_rua.getText(),
-//                jText_nro.getText(),
-//                jText_bairro.getText(),
-//                jText_cep.getText(),
-//                jText_telefone_Residencial.getText(),
-//                jText_telefone_celular.getText(),
-//                jText_email.getText(),
-//                jText_cidade.getText(),
-//                jCombo_estado.getSelectedItem().toString());
-        this.limparTela();
-        this.setVisible(false);
-    }
-    
-    public void limparTela(){
-        Jtext_Codigo.setText("");
-        jCombo_ativo.setSelectedItem(0);
-        jCombo_tipo_convenio.setSelectedIndex(0);
-        jCheckBox_isFumante.setSelected(false);
-        jCheckBox_isAlcolatra.setSelected(false);
-        jCheckBox_isColesterol.setSelected(false);
-        jCheckBox_isDiabetico.setSelected(false);
-        jCheckBox_isDoencasCardiacas.setSelected(false);
-        jText_cirurgias.setText("");
-        jText_alergias.setText("");
-        jText_nome.setText("");
-        jText_sobrenome.setText("");
-        jText_cpf.setText("");
-        jText_rg.setText("");
-        jCombo_sexo.setSelectedIndex(0);
-        jText_dt_nascimento.setText("");
-        Jtext_rua.setText("");
-        jText_nro.setText("");
-        jText_bairro.setText("");
-        jText_cep.setText("");
-        jText_telefone_Residencial.setText("");
-        jText_telefone_celular.setText("");
-        jText_email.setText("");
-        jText_cidade.setText("");
-        jCombo_estado.setSelectedIndex(0);
-    }
-    
-    public void preencherTela(Paciente p){
-        jCombo_ativo.setSelectedItem(p.isAtivo() ? "Sim" : "Não");
-        Jtext_Codigo.setText(p.getId_pessoa().toString());
-        jCombo_tipo_convenio.setSelectedIndex((p.getTipoconvenio() == TipoConvenio.Particular ? 0 : 1));
-        jCheckBox_isFumante.setSelected(p.isIsFumante());
-        jCheckBox_isAlcolatra.setSelected(p.isIsAlcolatra());
-        jCheckBox_isColesterol.setSelected(p.isIsColesterol());
-        jCheckBox_isDiabetico.setSelected(p.isIsDiabetico());
-        jCheckBox_isDoencasCardiacas.setSelected(p.getDoencasCardiacas());
-        jText_cirurgias.setText(p.getCirurgias());
-        jText_alergias.setText(p.getAlergias());
-        jText_nome.setText(p.getNome());
-        jText_sobrenome.setText(p.getSobrenome());
-        jText_cpf.setText(p.getCpf());
-        jText_rg.setText(p.getRg());
-        jCombo_sexo.setSelectedIndex(p.getSexo() == Sexo.Masculino ? 0 : 1);
-        jText_dt_nascimento.setText(p.getDataNascimento());
-        Jtext_rua.setText(p.getRua());
-        jText_nro.setText(p.getNumero());
-        jText_bairro.setText(p.getBairro());
-        jText_cep.setText(p.getCep());
-        jText_telefone_Residencial.setText(p.getTelefone_residencial());
-        jText_telefone_celular.setText(p.getTelefone_celular());
-        jText_email.setText(p.getEmail());
-        jText_cidade.setText(p.getCidade());
-        jCombo_estado.setSelectedItem(p.getEstado());
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -421,11 +308,6 @@ public class PacienteRegistroView extends javax.swing.JFrame {
         jCombo_estado = new javax.swing.JComboBox<>();
 
         setTitle("Registro Paciente");
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
 
         jLabel_Codigo.setText("Código");
 
@@ -533,19 +415,9 @@ public class PacienteRegistroView extends javax.swing.JFrame {
 
         jButton_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/tick.png"))); // NOI18N
         jButton_salvar.setText("Salvar");
-        jButton_salvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_salvarActionPerformed(evt);
-            }
-        });
 
         jButton_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/cancel.png"))); // NOI18N
         jButton_cancelar.setText("Cancelar");
-        jButton_cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_cancelarActionPerformed(evt);
-            }
-        });
 
         try {
             jText_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -734,58 +606,6 @@ public class PacienteRegistroView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        /*if(UsuarioController.usuarioLogado != null && UsuarioController.usuarioLogado.getMedico() != null){
-            ativarDadosAdicionais();
-        }else{
-            desativarDadosAdicionais();
-        }*/
-    }//GEN-LAST:event_formComponentShown
-
-    private void jButton_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_salvarActionPerformed
-        this.recuperarTela();
-        limparTela();
-    }//GEN-LAST:event_jButton_salvarActionPerformed
-
-    private void jButton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cancelarActionPerformed
-        this.setVisible(false);
-        limparTela();
-    }//GEN-LAST:event_jButton_cancelarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PacienteConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PacienteConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PacienteConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PacienteConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PacienteRegistroView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Jtext_Codigo;

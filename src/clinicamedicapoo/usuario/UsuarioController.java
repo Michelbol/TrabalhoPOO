@@ -20,6 +20,10 @@ public class UsuarioController {
     private Usuario usuarioLogado;
     private Login tela_login;
 
+    public Usuario getUsuarioLogado() {
+        return usuarioLogado;
+    }
+
     public UsuarioController(Usuario usuario, Login tela_login) {
         usuarioLogado = usuario;
         this.tela_login = tela_login;

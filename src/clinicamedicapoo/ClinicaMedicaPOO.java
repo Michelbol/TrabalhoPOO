@@ -40,7 +40,7 @@ public class ClinicaMedicaPOO {
         Login login = new Login(tela_principal, paciente_consulta_view);
         //Controllers
         UsuarioController usuario_controller = new UsuarioController(usuario, login);
-        SecretariaController secretaria_controller = new SecretariaController(secretaria, tela_principal);
+        SecretariaController secretaria_controller = new SecretariaController(secretaria, tela_principal, usuario_controller);
         //Função para inicializar componentes
         //login
         usuario_controller.login();        
@@ -49,6 +49,11 @@ public class ClinicaMedicaPOO {
         //tela Consulta Paciente
         secretaria_controller.adicionarPaciente();
         secretaria_controller.editarPaciente();
+        secretaria_controller.filtrarPacientes();
+        //tela registro paciente
+        secretaria_controller.salvarPaciente();
+        secretaria_controller.cancelarRegistroPaciente();
+        
     }
     
 }
