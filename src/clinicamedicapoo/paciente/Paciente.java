@@ -213,7 +213,7 @@ public class Paciente extends Pessoa implements Serializable {
         }
     }
     
-    public static Paciente findPaciente(int id){
+    public Paciente findPaciente(int id){
         Paciente paciente = null;
         try{
             paciente = manager.find(Paciente.class, id);
@@ -224,7 +224,7 @@ public class Paciente extends Pessoa implements Serializable {
         return paciente;
     }
     
-    public static boolean DeletarPaciente(int id){
+    public boolean DeletarPaciente(int id){
         try{
             manager.getTransaction().begin();
             Paciente p = manager.find(Paciente.class, id);

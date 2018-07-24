@@ -93,7 +93,8 @@ public class Secretaria extends Pessoa {
     }
     
     public boolean deletarPaciente(Integer id){
-        return Paciente.DeletarPaciente(id);
+        Paciente paciente = new Paciente();
+        return paciente.DeletarPaciente(id);
     }
 
 }
