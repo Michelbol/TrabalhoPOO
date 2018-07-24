@@ -6,20 +6,31 @@
 package clinicamedicapoo.view;
 
 import clinicamedicapoo.paciente.PacienteConsultaView;
+import javax.swing.JButton;
 
 /**
  *
  * @author miche
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-    PacienteConsultaView paciente_consulta = new PacienteConsultaView();
-    /**
-     * Creates new form TelaPrincipal
-     */
-    public TelaPrincipal() {
+    PacienteConsultaView paciente_consulta;
+
+    public TelaPrincipal(PacienteConsultaView paciente_consulta) {
         initComponents();
+        this.paciente_consulta = paciente_consulta;
     }
 
+    public JButton view_paciente(){
+        return jButton_paciente;
+    }
+
+    public PacienteConsultaView getPaciente_consulta() {
+        return paciente_consulta;
+    }
+
+    public void setPaciente_consulta(PacienteConsultaView paciente_consulta) {
+        this.paciente_consulta = paciente_consulta;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,16 +54,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jButton_paciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/user.png"))); // NOI18N
         jButton_paciente.setText("Pacientes");
-        jButton_paciente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_pacienteMouseClicked(evt);
-            }
-        });
-        jButton_paciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_pacienteActionPerformed(evt);
-            }
-        });
 
         jButton_medico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/user_suit.png"))); // NOI18N
         jButton_medico.setText("Medicos");
@@ -99,48 +100,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_pacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_pacienteMouseClicked
-        paciente_consulta.setVisible(true);
-    }//GEN-LAST:event_jButton_pacienteMouseClicked
 
-    private void jButton_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_pacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_pacienteActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaPrincipal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_consulta;

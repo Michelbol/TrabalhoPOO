@@ -5,9 +5,13 @@
  */
 package clinicamedicapoo.paciente;
 
-import clinicamedicapoo.secretaria.Secretaria;
-import clinicamedicapoo.usuario.UsuarioController;
 import clinicamedicapoo.utilitarios.Sexo;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -20,111 +24,230 @@ public class PacienteRegistroView extends javax.swing.JFrame {
      */
     public PacienteRegistroView() {
         initComponents();
-        if(UsuarioController.usuarioLogado != null && UsuarioController.usuarioLogado.getMedico() != null){
-            ativarDadosAdicionais();
-        }else{
-            desativarDadosAdicionais();
-        }
     }    
-    
-    public void ativarDadosAdicionais(){
-        jPanel_dados_Adicionais.setEnabled(true);
-        jCheckBox_isFumante.setEnabled(true);
-        jCheckBox_isAlcolatra.setEnabled(true);
-        jCheckBox_isColesterol.setEnabled(true);
-        jCheckBox_isDiabetico.setEnabled(true);
-        jCheckBox_isDoencasCardiacas.setEnabled(true);
-        jText_cirurgias.setEnabled(true);
-        jText_alergias.setEnabled(true);
+
+    public JTextField getJtext_Codigo() {
+        return Jtext_Codigo;
     }
-    
-    public void desativarDadosAdicionais(){
-        jPanel_dados_Adicionais.setEnabled(false);
-        jCheckBox_isFumante.setEnabled(false);
-        jCheckBox_isAlcolatra.setEnabled(false);
-        jCheckBox_isColesterol.setEnabled(false);
-        jCheckBox_isDiabetico.setEnabled(false);
-        jCheckBox_isDoencasCardiacas.setEnabled(false);
-        jText_cirurgias.setEnabled(false);
-        jText_alergias.setEnabled(false);
+
+    public void setJtext_Codigo(JTextField Jtext_Codigo) {
+        this.Jtext_Codigo = Jtext_Codigo;
     }
-    
-    public void recuperarTela(){
-        PacienteController.inserirPaciente(TipoConvenio.valueOf(jCombo_tipo_convenio.getSelectedItem().toString()),
-                jCheckBox_isFumante.isSelected(),
-                jCheckBox_isAlcolatra.isSelected(),
-                jCheckBox_isColesterol.isSelected(),
-                jCheckBox_isDiabetico.isSelected(),
-                jCheckBox_isDoencasCardiacas.isSelected(),
-                jText_cirurgias.getText(),
-                jText_alergias.getText(),
-                jCombo_ativo.getSelectedItem() == "Sim",
-                jText_nome.getText(),
-                jText_sobrenome.getText(),
-                jText_cpf.getText(),
-                jText_rg.getText(),
-                Sexo.valueOf(jCombo_sexo.getSelectedItem().toString()),
-                jText_dt_nascimento.getText(),
-                Jtext_rua.getText(),
-                jText_nro.getText(),
-                jText_bairro.getText(),
-                jText_cep.getText(),
-                jText_telefone_Residencial.getText(),
-                jText_telefone_celular.getText(),
-                jText_email.getText());
-        this.limparTela();
-        this.setVisible(false);
+
+    public JTextField getJtext_rua() {
+        return Jtext_rua;
     }
-    
-    public void limparTela(){
-        jCombo_ativo.setSelectedItem(0);
-        jCombo_tipo_convenio.setSelectedIndex(0);
-        jCheckBox_isFumante.setSelected(false);
-        jCheckBox_isAlcolatra.setSelected(false);
-        jCheckBox_isColesterol.setSelected(false);
-        jCheckBox_isDiabetico.setSelected(false);
-        jCheckBox_isDoencasCardiacas.setSelected(false);
-        jText_cirurgias.setText("");
-        jText_alergias.setText("");
-        jText_nome.setText("");
-        jText_sobrenome.setText("");
-        jText_cpf.setText("");
-        jText_rg.setText("");
-        jCombo_sexo.setSelectedIndex(0);
-        jText_dt_nascimento.setText("");
-        Jtext_rua.setText("");
-        jText_nro.setText("");
-        jText_bairro.setText("");
-        jText_cep.setText("");
-        jText_telefone_Residencial.setText("");
-        jText_telefone_celular.setText("");
-        jText_email.setText("");
+
+    public void setJtext_rua(JTextField Jtext_rua) {
+        this.Jtext_rua = Jtext_rua;
     }
-    
-    public void preencherTela(Paciente p){
-        jCombo_ativo.setSelectedItem(p.isAtivo() ? "Sim" : "Não");
-        Jtext_Codigo.setText(p.getId_pessoa().toString());
-        jCombo_tipo_convenio.setSelectedIndex((p.getTipoconvenio() == TipoConvenio.Particular ? 0 : 1));
-        jCheckBox_isFumante.setSelected(p.isIsFumante());
-        jCheckBox_isAlcolatra.setSelected(p.isIsAlcolatra());
-        jCheckBox_isColesterol.setSelected(p.isIsColesterol());
-        jCheckBox_isDiabetico.setSelected(p.isIsDiabetico());
-        jCheckBox_isDoencasCardiacas.setSelected(p.getDoencasCardiacas());
-        jText_cirurgias.setText(p.getCirurgias());
-        jText_alergias.setText(p.getAlergias());
-        jText_nome.setText(p.getNome());
-        jText_sobrenome.setText(p.getSobrenome());
-        jText_cpf.setText(p.getCpf());
-        jText_rg.setText(p.getRg());
-        jCombo_sexo.setSelectedIndex(p.getSexo() == Sexo.Masculino ? 0 : 1);
-        jText_dt_nascimento.setText(p.getDataNascimento());
-        Jtext_rua.setText(p.getRua());
-        jText_nro.setText(p.getNumero());
-        jText_bairro.setText(p.getBairro());
-        jText_cep.setText(p.getCep());
-        jText_telefone_Residencial.setText(p.getTelefone_residencial());
-        jText_telefone_celular.setText(p.getTelefone_celular());
-        jText_email.setText(p.getEmail());
+
+    public JButton getjButton_cancelar() {
+        return jButton_cancelar;
+    }
+
+    public void setjButton_cancelar(JButton jButton_cancelar) {
+        this.jButton_cancelar = jButton_cancelar;
+    }
+
+    public JButton getjButton_salvar() {
+        return jButton_salvar;
+    }
+
+    public void setjButton_salvar(JButton jButton_salvar) {
+        this.jButton_salvar = jButton_salvar;
+    }
+
+    public JCheckBox getjCheckBox_isAlcolatra() {
+        return jCheckBox_isAlcolatra;
+    }
+
+    public void setjCheckBox_isAlcolatra(JCheckBox jCheckBox_isAlcolatra) {
+        this.jCheckBox_isAlcolatra = jCheckBox_isAlcolatra;
+    }
+
+    public JCheckBox getjCheckBox_isColesterol() {
+        return jCheckBox_isColesterol;
+    }
+
+    public void setjCheckBox_isColesterol(JCheckBox jCheckBox_isColesterol) {
+        this.jCheckBox_isColesterol = jCheckBox_isColesterol;
+    }
+
+    public JCheckBox getjCheckBox_isDiabetico() {
+        return jCheckBox_isDiabetico;
+    }
+
+    public void setjCheckBox_isDiabetico(JCheckBox jCheckBox_isDiabetico) {
+        this.jCheckBox_isDiabetico = jCheckBox_isDiabetico;
+    }
+
+    public JCheckBox getjCheckBox_isDoencasCardiacas() {
+        return jCheckBox_isDoencasCardiacas;
+    }
+
+    public void setjCheckBox_isDoencasCardiacas(JCheckBox jCheckBox_isDoencasCardiacas) {
+        this.jCheckBox_isDoencasCardiacas = jCheckBox_isDoencasCardiacas;
+    }
+
+    public JCheckBox getjCheckBox_isFumante() {
+        return jCheckBox_isFumante;
+    }
+
+    public void setjCheckBox_isFumante(JCheckBox jCheckBox_isFumante) {
+        this.jCheckBox_isFumante = jCheckBox_isFumante;
+    }
+
+    public JComboBox<String> getjCombo_ativo() {
+        return jCombo_ativo;
+    }
+
+    public void setjCombo_ativo(JComboBox<String> jCombo_ativo) {
+        this.jCombo_ativo = jCombo_ativo;
+    }
+
+    public JComboBox<String> getjCombo_estado() {
+        return jCombo_estado;
+    }
+
+    public void setjCombo_estado(JComboBox<String> jCombo_estado) {
+        this.jCombo_estado = jCombo_estado;
+    }
+
+    public JComboBox<String> getjCombo_sexo() {
+        return jCombo_sexo;
+    }
+
+    public void setjCombo_sexo(JComboBox<String> jCombo_sexo) {
+        this.jCombo_sexo = jCombo_sexo;
+    }
+
+    public JComboBox<String> getjCombo_tipo_convenio() {
+        return jCombo_tipo_convenio;
+    }
+
+    public void setjCombo_tipo_convenio(JComboBox<String> jCombo_tipo_convenio) {
+        this.jCombo_tipo_convenio = jCombo_tipo_convenio;
+    }
+
+    public JPanel getjPanel_dados_Adicionais() {
+        return jPanel_dados_Adicionais;
+    }
+
+    public void setjPanel_dados_Adicionais(JPanel jPanel_dados_Adicionais) {
+        this.jPanel_dados_Adicionais = jPanel_dados_Adicionais;
+    }
+
+    public JTextField getjText_alergias() {
+        return jText_alergias;
+    }
+
+    public void setjText_alergias(JTextField jText_alergias) {
+        this.jText_alergias = jText_alergias;
+    }
+
+    public JTextField getjText_bairro() {
+        return jText_bairro;
+    }
+
+    public void setjText_bairro(JTextField jText_bairro) {
+        this.jText_bairro = jText_bairro;
+    }
+
+    public JFormattedTextField getjText_cep() {
+        return jText_cep;
+    }
+
+    public void setjText_cep(JFormattedTextField jText_cep) {
+        this.jText_cep = jText_cep;
+    }
+
+    public JTextField getjText_cidade() {
+        return jText_cidade;
+    }
+
+    public void setjText_cidade(JTextField jText_cidade) {
+        this.jText_cidade = jText_cidade;
+    }
+
+    public JTextField getjText_cirurgias() {
+        return jText_cirurgias;
+    }
+
+    public void setjText_cirurgias(JTextField jText_cirurgias) {
+        this.jText_cirurgias = jText_cirurgias;
+    }
+
+    public JFormattedTextField getjText_cpf() {
+        return jText_cpf;
+    }
+
+    public void setjText_cpf(JFormattedTextField jText_cpf) {
+        this.jText_cpf = jText_cpf;
+    }
+
+    public JFormattedTextField getjText_dt_nascimento() {
+        return jText_dt_nascimento;
+    }
+
+    public void setjText_dt_nascimento(JFormattedTextField jText_dt_nascimento) {
+        this.jText_dt_nascimento = jText_dt_nascimento;
+    }
+
+    public JTextField getjText_email() {
+        return jText_email;
+    }
+
+    public void setjText_email(JTextField jText_email) {
+        this.jText_email = jText_email;
+    }
+
+    public JTextField getjText_nome() {
+        return jText_nome;
+    }
+
+    public void setjText_nome(JTextField jText_nome) {
+        this.jText_nome = jText_nome;
+    }
+
+    public JTextField getjText_nro() {
+        return jText_nro;
+    }
+
+    public void setjText_nro(JTextField jText_nro) {
+        this.jText_nro = jText_nro;
+    }
+
+    public JTextField getjText_rg() {
+        return jText_rg;
+    }
+
+    public void setjText_rg(JTextField jText_rg) {
+        this.jText_rg = jText_rg;
+    }
+
+    public JTextField getjText_sobrenome() {
+        return jText_sobrenome;
+    }
+
+    public void setjText_sobrenome(JTextField jText_sobrenome) {
+        this.jText_sobrenome = jText_sobrenome;
+    }
+
+    public JTextField getjText_telefone_Residencial() {
+        return jText_telefone_Residencial;
+    }
+
+    public void setjText_telefone_Residencial(JTextField jText_telefone_Residencial) {
+        this.jText_telefone_Residencial = jText_telefone_Residencial;
+    }
+
+    public JTextField getjText_telefone_celular() {
+        return jText_telefone_celular;
+    }
+
+    public void setjText_telefone_celular(JTextField jText_telefone_celular) {
+        this.jText_telefone_celular = jText_telefone_celular;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -179,13 +302,12 @@ public class PacienteRegistroView extends javax.swing.JFrame {
         jText_cep = new javax.swing.JFormattedTextField();
         jCombo_ativo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jLabel_cidade = new javax.swing.JLabel();
+        jText_cidade = new javax.swing.JTextField();
+        jLabel_estado = new javax.swing.JLabel();
+        jCombo_estado = new javax.swing.JComboBox<>();
 
         setTitle("Registro Paciente");
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
 
         jLabel_Codigo.setText("Código");
 
@@ -233,11 +355,6 @@ public class PacienteRegistroView extends javax.swing.JFrame {
         jCheckBox_isColesterol.setText("Colesterol");
 
         jCheckBox_isAlcolatra.setText("Alcolatra");
-        jCheckBox_isAlcolatra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox_isAlcolatraActionPerformed(evt);
-            }
-        });
 
         jCheckBox_isDiabetico.setText("Diabético");
 
@@ -298,29 +415,9 @@ public class PacienteRegistroView extends javax.swing.JFrame {
 
         jButton_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/tick.png"))); // NOI18N
         jButton_salvar.setText("Salvar");
-        jButton_salvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_salvarMouseClicked(evt);
-            }
-        });
-        jButton_salvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_salvarActionPerformed(evt);
-            }
-        });
 
         jButton_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/cancel.png"))); // NOI18N
         jButton_cancelar.setText("Cancelar");
-        jButton_cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_cancelarMouseClicked(evt);
-            }
-        });
-        jButton_cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_cancelarActionPerformed(evt);
-            }
-        });
 
         try {
             jText_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -337,6 +434,13 @@ public class PacienteRegistroView extends javax.swing.JFrame {
         jCombo_ativo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sim", "Não" }));
 
         jLabel2.setText("Ativo:");
+
+        jLabel_cidade.setText("Cidade:");
+
+        jLabel_estado.setText("Estado:");
+
+        jCombo_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO" }));
+        jCombo_estado.setSelectedIndex(15);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -415,15 +519,23 @@ public class PacienteRegistroView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCombo_ativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jCombo_ativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel_cidade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jText_cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel_estado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCombo_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(268, 268, 268)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton_salvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_cancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(245, 245, 245))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,7 +568,13 @@ public class PacienteRegistroView extends javax.swing.JFrame {
                         .addComponent(jText_nro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel_Bairro)
                         .addComponent(jText_bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_cidade)
+                    .addComponent(jText_cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_estado)
+                    .addComponent(jCombo_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel_telefone_residencial)
@@ -476,9 +594,9 @@ public class PacienteRegistroView extends javax.swing.JFrame {
                     .addComponent(jText_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_tipo_convenio)
                     .addComponent(jCombo_tipo_convenio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel_dados_Adicionais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -488,68 +606,6 @@ public class PacienteRegistroView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox_isAlcolatraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_isAlcolatraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox_isAlcolatraActionPerformed
-
-    private void jButton_cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_cancelarMouseClicked
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton_cancelarMouseClicked
-
-    private void jButton_salvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_salvarMouseClicked
-        this.recuperarTela();
-    }//GEN-LAST:event_jButton_salvarMouseClicked
-
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        if(UsuarioController.usuarioLogado != null && UsuarioController.usuarioLogado.getMedico() != null){
-            ativarDadosAdicionais();
-        }else{
-            desativarDadosAdicionais();
-        }
-    }//GEN-LAST:event_formComponentShown
-
-    private void jButton_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_salvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_salvarActionPerformed
-
-    private void jButton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_cancelarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PacienteConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PacienteConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PacienteConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PacienteConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PacienteRegistroView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Jtext_Codigo;
@@ -562,6 +618,7 @@ public class PacienteRegistroView extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox_isDoencasCardiacas;
     private javax.swing.JCheckBox jCheckBox_isFumante;
     private javax.swing.JComboBox<String> jCombo_ativo;
+    private javax.swing.JComboBox<String> jCombo_estado;
     private javax.swing.JComboBox<String> jCombo_sexo;
     private javax.swing.JComboBox<String> jCombo_tipo_convenio;
     private javax.swing.JLabel jLabel1;
@@ -571,9 +628,11 @@ public class PacienteRegistroView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Codigo;
     private javax.swing.JLabel jLabel_alergias;
     private javax.swing.JLabel jLabel_cep;
+    private javax.swing.JLabel jLabel_cidade;
     private javax.swing.JLabel jLabel_cpf;
     private javax.swing.JLabel jLabel_dt_nascimento;
     private javax.swing.JLabel jLabel_email;
+    private javax.swing.JLabel jLabel_estado;
     private javax.swing.JLabel jLabel_nome;
     private javax.swing.JLabel jLabel_nro;
     private javax.swing.JLabel jLabel_rua;
@@ -586,6 +645,7 @@ public class PacienteRegistroView extends javax.swing.JFrame {
     private javax.swing.JTextField jText_alergias;
     private javax.swing.JTextField jText_bairro;
     private javax.swing.JFormattedTextField jText_cep;
+    private javax.swing.JTextField jText_cidade;
     private javax.swing.JTextField jText_cirurgias;
     private javax.swing.JFormattedTextField jText_cpf;
     private javax.swing.JFormattedTextField jText_dt_nascimento;

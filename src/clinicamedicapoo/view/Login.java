@@ -5,27 +5,55 @@
  */
 package clinicamedicapoo.view;
 
-import clinicamedicapoo.paciente.Paciente;
-import clinicamedicapoo.paciente.PacienteController;
-import clinicamedicapoo.usuario.UsuarioController;
-import javax.swing.JOptionPane;
+import clinicamedicapoo.paciente.PacienteConsultaView;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
  * @author joaov
  */
 public class Login extends javax.swing.JFrame {
-    TelaPrincipal tela_principal = new TelaPrincipal();
-    /**
-     * Creates new form Login
-     */
-    public Login() {
+    private TelaPrincipal tela_principal;
+    private PacienteConsultaView paciente_consulta_view;
+    
+    public Login(TelaPrincipal tela_principal, PacienteConsultaView paciente_consulta_view) {
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setVisible(true);
+        setVisible(true);
+        this.tela_principal = tela_principal;
+        this.paciente_consulta_view = paciente_consulta_view;
     }
 
+    public JButton entrar(){
+        return jButton_entrar;
+    }
+    
+    public JTextField login(){
+        return jText_login;
+    }
+    
+    public JPasswordField senha(){
+        return jPassword_senha;
+    }
+
+    public TelaPrincipal getTela_principal() {
+        return tela_principal;
+    }
+
+    public void setTela_principal(TelaPrincipal tela_principal) {
+        this.tela_principal = tela_principal;
+    }
+
+    public PacienteConsultaView getPaciente_consulta_view() {
+        return paciente_consulta_view;
+    }
+
+    public void setPaciente_consulta_view(PacienteConsultaView paciente_consulta_view) {
+        this.paciente_consulta_view = paciente_consulta_view;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,7 +74,9 @@ public class Login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
 
+        jPanel1.setToolTipText("Login");
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel_login.setText("Usuário: ");
@@ -54,32 +84,8 @@ public class Login extends javax.swing.JFrame {
         jLabel_senha.setText("Senha:");
 
         jButton_entrar.setText("Entrar");
-        jButton_entrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_entrarMouseClicked(evt);
-            }
-        });
-        jButton_entrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_entrarActionPerformed(evt);
-            }
-        });
 
         jButton_sair.setText("Sair");
-
-        jText_login.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jText_loginActionPerformed(evt);
-            }
-        });
-
-        jPassword_senha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPassword_senhaActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Seja bem vindo ao Clinica Médica!");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -140,83 +146,16 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPassword_senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPassword_senhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPassword_senhaActionPerformed
-
-    private void jText_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText_loginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jText_loginActionPerformed
-
-    private void jButton_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_entrarActionPerformed
-        if(UsuarioController.logar(new String(jPassword_senha.getPassword()), jText_login.getText())){
-            this.setVisible(false);
-            tela_principal.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(null, "Login ou Senha errado");
-        }
-    }//GEN-LAST:event_jButton_entrarActionPerformed
-
-    private void jButton_entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_entrarMouseClicked
-
-    }//GEN-LAST:event_jButton_entrarMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-                PacienteController.povoarPaciente();
-                UsuarioController.povoarUsuarios();
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_entrar;

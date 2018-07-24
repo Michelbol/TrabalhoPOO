@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clinicamedicapoo.paciente;
+package clinicamedicapoo.consulta;
 
+import clinicamedicapoo.medico.Medico;
+import clinicamedicapoo.paciente.*;
 import clinicamedicapoo.utilitarios.Sexo;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -14,24 +17,24 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author miche
  */
-public class PacienteTableModel extends AbstractTableModel {
-    private List<Paciente> pacientes;
+public class ConsultaTableModel extends AbstractTableModel {
+    private List<Consulta> consultas;
     private final String[] colunas = new String[]{
-        "Código","Nome", "Sexo", "Convênio", "Telefone Res."
+        "Código","Data/Hora", "Médico", "Paciente", "Tipo Consulta"
     };
     
-    public PacienteTableModel(List<Paciente> pacientes) {
-        this.pacientes = null;
-        this.pacientes = pacientes;
+    public ConsultaTableModel(List<Consulta> consultas) {
+        this.consultas = null;
+        this.consultas = consultas;
       }
-    public PacienteTableModel(){
-       this.pacientes = new ArrayList<>();
+    public ConsultaTableModel(){
+       this.consultas = new ArrayList<>();
       }
     
     
     @Override
     public int getRowCount() {
-        return pacientes.size();
+        return consultas.size();
     }
 
     @Override
@@ -49,14 +52,14 @@ public class PacienteTableModel extends AbstractTableModel {
         return String.class;  
     }
     
-    public void setValueAt(Paciente aValue, int rowIndex) {  
-        Paciente paciente = pacientes.get(rowIndex);
+    public void setValueAt(Consulta aValue, int rowIndex) {  
+        Consulta consulta = consultas.get(rowIndex);
 
-        paciente.setId_pessoa(aValue.getId_pessoa());
-        paciente.setNome(aValue.getNome());        
-        paciente.setSexo(aValue.getSexo());        
-        paciente.setTipoconvenio(aValue.getTipoconvenio());        
-        paciente.setTelefone_residencial(aValue.getTelefone_residencial());        
+        consulta.setId(aValue.getId());
+        consulta.setDataHora(aValue.getDataHora().toString());
+        consulta.setMedico(aValue.getMedico());        
+        consulta.setPaciente(aValue.getPaciente());        
+        consulta.setTipo(aValue.getTipo());                    
 
         fireTableCellUpdated(rowIndex, 0);  
         fireTableCellUpdated(rowIndex, 1);  
@@ -67,19 +70,19 @@ public class PacienteTableModel extends AbstractTableModel {
     
     @Override  
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {  
-      Paciente paciente = pacientes.get(rowIndex);
+      Consulta consulta = consultas.get(rowIndex);
 
      switch (columnIndex) {
          case 0: 
-             paciente.setId_pessoa((Integer) aValue);
+             consulta.setId((Integer) aValue);
          case 1:  
-             paciente.setNome(aValue.toString());
+//             consulta.setDataHora((Date) aValue);
          case 2:
-             paciente.setSexo((Sexo) aValue);
+             consulta.setMedico((Medico) aValue);
          case 3:
-             paciente.setTipoconvenio((TipoConvenio) aValue);
+             consulta.setPaciente((Paciente) aValue);
          case 4:
-             paciente.setTelefone_residencial(aValue.toString());
+             consulta.setTipo((TipoConsulta) aValue);
          default:  
              System.err.println("Índice da coluna inválido");
      }  
@@ -88,14 +91,14 @@ public class PacienteTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {          
-        Paciente pacienteSelecionado = pacientes.get(rowIndex);
+        Consulta consultaSelecionado = consultas.get(rowIndex);
           String valueObject = null;
           switch(columnIndex){
-              case 0: valueObject = pacienteSelecionado.getId_pessoa().toString(); break;
-              case 1: valueObject = pacienteSelecionado.getNome(); break;
-              case 2: valueObject = pacienteSelecionado.getSexo().toString(); break;
-              case 3: valueObject = pacienteSelecionado.getTipoconvenio().toString(); break;
-              case 4: valueObject = pacienteSelecionado.getTelefone_residencial(); break;
+              case 0: valueObject = consultaSelecionado.getId().toString(); break;
+              case 1: valueObject = consultaSelecionado.getDataHora().toString(); break;
+              case 2: valueObject = consultaSelecionado.getMedico().toString(); break;
+              case 3: valueObject = consultaSelecionado.getPaciente().toString(); break;
+              case 4: valueObject = consultaSelecionado.getTipo().toString(); break;
               default: System.err.println("Índice inválido para propriedade do bean Usuario.class");
           }
           
@@ -108,12 +111,12 @@ public class PacienteTableModel extends AbstractTableModel {
       }  
     
     
-      public Paciente getPaciente(int indiceLinha) {  
-          return pacientes.get(indiceLinha);  
+      public Consulta getConsulta(int indiceLinha) {  
+          return consultas.get(indiceLinha);  
       }  
       
-      public void addPaciente(Paciente p) {      
-          pacientes.add(p);  
+      public void addConsulta(Consulta c) {      
+          consultas.add(c);  
     
     
           int ultimoIndice = getRowCount() - 1;  
@@ -122,27 +125,27 @@ public class PacienteTableModel extends AbstractTableModel {
       }  
     
       
-      public void removePaciente(int indiceLinha) {  
-          pacientes.remove(indiceLinha);  
+      public void removeConsulta(int indiceLinha) {  
+          consultas.remove(indiceLinha);  
     
           fireTableRowsDeleted(indiceLinha, indiceLinha);  
       }  
       
       
-      public void addListaDePacientes(List<Paciente> novosPacientes) {  
+      public void addListaDeConsultas(List<Consulta> novasConsultas) {  
           
           int tamanhoAntigo = getRowCount();      
-          pacientes.addAll(novosPacientes);    
+          consultas.addAll(novasConsultas);    
           fireTableRowsInserted(tamanhoAntigo, getRowCount() - 1);  
       }  
       
       public void limpar() {  
-          pacientes.clear();    
+          consultas.clear();    
           fireTableDataChanged();  
       }  
     
       public boolean isEmpty() {  
-          return pacientes.isEmpty();  
+          return consultas.isEmpty();  
       }  
     
 }

@@ -5,50 +5,45 @@
  */
 package clinicamedicapoo.usuario;
 
-import clinicamedicapoo.medico.Medico;
-import clinicamedicapoo.secretaria.Secretaria;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import clinicamedicapoo.paciente.Paciente;
+import clinicamedicapoo.view.Login;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author miche
  */
 public class UsuarioController {
-    public static EntityManagerFactory factory = Persistence.createEntityManagerFactory("ClinicaMedicaPOO");
-    public static EntityManager manager = factory.createEntityManager();
-    public static EntityTransaction tx = null;
-    public static Usuario usuarioLogado;
-    
-    public static boolean logar(String senha, String login){        
-        Query query = manager.createQuery("select u FROM Usuario u WHERE u.login = '"+ login +"' and u.senha = '"+senha+"'");
-        List<Usuario> lista_usuario = query.getResultList();
-        if(lista_usuario.size() == 1){
-            usuarioLogado = lista_usuario.get(0);
-            return true;
-        }else{
-            usuarioLogado = null;
-            return false;
-        }
+    private ActionListener actionlistener;
+    private Usuario usuarioLogado;
+    private Login tela_login;
+
+    public Usuario getUsuarioLogado() {
+        return usuarioLogado;
+    }
+
+    public UsuarioController(Usuario usuario, Login tela_login) {
+        usuarioLogado = usuario;
+        this.tela_login = tela_login;
+        usuario.povoarUsuarios();
+        Paciente paciente = new Paciente();
+        paciente.povoarPaciente();
     }
     
-    public static void inserirUsuario(String login, String senha, Medico medico, Secretaria secretaria) {
-        Usuario u = new Usuario(login, senha, medico, secretaria);
-        try{
-           manager.getTransaction().begin();
-           manager.persist(u);
-           manager.getTransaction().commit();
-        }
-        catch(Exception e){
-            System.out.println("Erro: " + e.getMessage());
-        }
-    }
-    
-    public static void povoarUsuarios(){
-        inserirUsuario("master", "master", null, null);
+    public void login(){
+        actionlistener = new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                usuarioLogado = usuarioLogado.logar(new String(tela_login.senha().getPassword()), tela_login.login().getText());
+                if(usuarioLogado != null){
+                    tela_login.getTela_principal().setVisible(true);
+                    tela_login.setVisible(false);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Usuário ou Senha inválido");
+                }
+            }
+        };
+        tela_login.entrar().addActionListener(actionlistener);
     }
 }
