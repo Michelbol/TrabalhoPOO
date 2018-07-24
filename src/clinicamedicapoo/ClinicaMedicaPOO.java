@@ -5,9 +5,6 @@
  */
 package clinicamedicapoo;
 
-<<<<<<< HEAD
-import clinicamedicapoo.view.Login;
-=======
 import clinicamedicapoo.medico.Medico;
 import clinicamedicapoo.paciente.PacienteConsultaView;
 import clinicamedicapoo.paciente.PacienteController;
@@ -19,7 +16,6 @@ import clinicamedicapoo.usuario.Usuario;
 import clinicamedicapoo.usuario.UsuarioController;
 import clinicamedicapoo.view.Login;
 import clinicamedicapoo.view.TelaPrincipal;
->>>>>>> c8e8edff2564045495199f5b47fc20eb4cc452a0
 
 /**
  *
@@ -31,9 +27,6 @@ public class ClinicaMedicaPOO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-<<<<<<< HEAD
-        new Login();
-=======
         //Models
         Secretaria secretaria = new Secretaria();
         Medico medico = new Medico();
@@ -60,8 +53,7 @@ public class ClinicaMedicaPOO {
         //tela registro paciente
         secretaria_controller.salvarPaciente();
         secretaria_controller.cancelarRegistroPaciente();
-        
->>>>>>> c8e8edff2564045495199f5b47fc20eb4cc452a0
+      
     }
     
 }
