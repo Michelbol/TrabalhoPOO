@@ -5,22 +5,46 @@
  */
 package clinicamedicapoo.paciente;
 
-import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import javax.swing.JTable;
 
 /**
  *
  * @author miche
  */
 public class PacienteConsultaView extends javax.swing.JFrame {
-    PacienteRegistroView paciente_registro = new PacienteRegistroView();
-    public PacienteTableModel paciente = new PacienteTableModel(PacienteController.getPaciente("%%"));;
-    /**
-     * Creates new form PacienteView
-     */
-    public PacienteConsultaView() {
+    private PacienteRegistroView paciente_registro;
+    private PacienteTableModel paciente_table_model;
+    
+    public PacienteConsultaView(PacienteRegistroView paciente_registro, PacienteTableModel paciente_table_model) {
+        this.paciente_table_model = paciente_table_model;
         initComponents();
+        this.paciente_registro = paciente_registro;
+    }
+
+    public PacienteTableModel getPaciente_table_model() {
+        return paciente_table_model;
+    }
+
+    public void setPaciente_table_model(PacienteTableModel paciente_table_model) {
+        this.paciente_table_model = paciente_table_model;
+    }
+
+    public PacienteRegistroView getPaciente_registro() {
+        return paciente_registro;
+    }
+
+    public void setPaciente_registro(PacienteRegistroView paciente_registro) {
+        this.paciente_registro = paciente_registro;
     }
     
+    public JButton adicionarButton(){
+        return jbutton_adicionar;
+    }
+    
+    public JTable pacienteTable(){
+        return jtable_consulta_paciente;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,44 +61,39 @@ public class PacienteConsultaView extends javax.swing.JFrame {
         jbutton_excluir = new javax.swing.JButton();
         jlabel_filtro_nome = new javax.swing.JLabel();
         jtext_filtro_nome = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButton_filtrar = new javax.swing.JButton();
 
         setTitle("Consulta Pacientes");
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
 
-        jtable_consulta_paciente.setModel(paciente);
+        jtable_consulta_paciente.setModel(paciente_table_model);
         jScrollPane1.setViewportView(jtable_consulta_paciente);
 
         jbutton_adicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/add.png"))); // NOI18N
         jbutton_adicionar.setText("Adicionar");
-        jbutton_adicionar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbutton_adicionarMouseClicked(evt);
-            }
-        });
 
         jbutton_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/pencil.png"))); // NOI18N
         jbutton_editar.setText("Editar");
-        jbutton_editar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbutton_editarMouseClicked(evt);
+        jbutton_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbutton_editarActionPerformed(evt);
             }
         });
 
         jbutton_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/cross.png"))); // NOI18N
         jbutton_excluir.setText("Excluir");
+        jbutton_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbutton_excluirActionPerformed(evt);
+            }
+        });
 
         jlabel_filtro_nome.setText("Filtrar:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/magnifier.png"))); // NOI18N
-        jButton1.setText("Pesquisa");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+        jButton_filtrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/magnifier.png"))); // NOI18N
+        jButton_filtrar.setText("Pesquisa");
+        jButton_filtrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_filtrarActionPerformed(evt);
             }
         });
 
@@ -89,7 +108,7 @@ public class PacienteConsultaView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtext_filtro_nome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jButton_filtrar)
                 .addGap(70, 70, 70)
                 .addComponent(jbutton_adicionar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -107,7 +126,7 @@ public class PacienteConsultaView extends javax.swing.JFrame {
                     .addComponent(jbutton_excluir)
                     .addComponent(jlabel_filtro_nome)
                     .addComponent(jtext_filtro_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton_filtrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -115,73 +134,28 @@ public class PacienteConsultaView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        paciente = new PacienteTableModel(PacienteController.getPaciente(jtext_filtro_nome.getText()));
-        jtable_consulta_paciente.setModel(paciente);
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void jbutton_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutton_editarActionPerformed
+        
+    }//GEN-LAST:event_jbutton_editarActionPerformed
 
-    private void jbutton_adicionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_adicionarMouseClicked
-        if(!paciente_registro.isVisible()){
-            paciente_registro.setVisible(true);
-        }
-    }//GEN-LAST:event_jbutton_adicionarMouseClicked
+    private void jbutton_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutton_excluirActionPerformed
+//        int resposta = JOptionPane.showConfirmDialog(null, "Deseja Realmente excluir este registro?");
+//        if(resposta == 0){
+//            int linhaselecionada = jtable_consulta_paciente.getSelectedRow();
+//            PacienteController.DeletarPaciente(Integer.parseInt(jtable_consulta_paciente.getValueAt(linhaselecionada, 0).toString()));
+//        }
+//        paciente = new PacienteTableModel(PacienteController.getPaciente(jtext_filtro_nome.getText()));
+//        jtable_consulta_paciente.setModel(paciente);
+    }//GEN-LAST:event_jbutton_excluirActionPerformed
 
-    private void jbutton_editarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbutton_editarMouseClicked
-        int linhaselecionada = jtable_consulta_paciente.getSelectedRow();
-        if(linhaselecionada == -1){
-            JOptionPane.showMessageDialog(null, "Selecione um registro");
-            return;
-        }
-        Paciente p = PacienteController.findPaciente(Integer.parseInt(jtable_consulta_paciente.getValueAt(linhaselecionada, 0).toString()));
-        if(p != null){
-            paciente_registro.setVisible(true);
-            paciente_registro.preencherTela(p);
-        }
-    }//GEN-LAST:event_jbutton_editarMouseClicked
+    private void jButton_filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_filtrarActionPerformed
+//        paciente = new PacienteTableModel(PacienteController.getPaciente(jtext_filtro_nome.getText()));
+//        jtable_consulta_paciente.setModel(paciente);
+    }//GEN-LAST:event_jButton_filtrarActionPerformed
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-       paciente = new PacienteTableModel(PacienteController.getPaciente(jtext_filtro_nome.getText()));
-        jtable_consulta_paciente.setModel(paciente);
-    }//GEN-LAST:event_formComponentShown
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PacienteConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PacienteConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PacienteConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PacienteConsultaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PacienteConsultaView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton_filtrar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbutton_adicionar;
     private javax.swing.JButton jbutton_editar;

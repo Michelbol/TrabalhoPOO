@@ -5,8 +5,6 @@
  */
 package clinicamedicapoo.paciente;
 
-import clinicamedicapoo.secretaria.Secretaria;
-import clinicamedicapoo.usuario.UsuarioController;
 import clinicamedicapoo.utilitarios.Sexo;
 
 /**
@@ -20,11 +18,11 @@ public class PacienteRegistroView extends javax.swing.JFrame {
      */
     public PacienteRegistroView() {
         initComponents();
-        if(UsuarioController.usuarioLogado != null && UsuarioController.usuarioLogado.getMedico() != null){
+        /*if(UsuarioController.usuarioLogado != null && UsuarioController.usuarioLogado.getMedico() != null){
             ativarDadosAdicionais();
         }else{
             desativarDadosAdicionais();
-        }
+        }*/
     }    
     
     public void ativarDadosAdicionais(){
@@ -50,33 +48,36 @@ public class PacienteRegistroView extends javax.swing.JFrame {
     }
     
     public void recuperarTela(){
-        PacienteController.inserirPaciente(TipoConvenio.valueOf(jCombo_tipo_convenio.getSelectedItem().toString()),
-                jCheckBox_isFumante.isSelected(),
-                jCheckBox_isAlcolatra.isSelected(),
-                jCheckBox_isColesterol.isSelected(),
-                jCheckBox_isDiabetico.isSelected(),
-                jCheckBox_isDoencasCardiacas.isSelected(),
-                jText_cirurgias.getText(),
-                jText_alergias.getText(),
-                jCombo_ativo.getSelectedItem() == "Sim",
-                jText_nome.getText(),
-                jText_sobrenome.getText(),
-                jText_cpf.getText(),
-                jText_rg.getText(),
-                Sexo.valueOf(jCombo_sexo.getSelectedItem().toString()),
-                jText_dt_nascimento.getText(),
-                Jtext_rua.getText(),
-                jText_nro.getText(),
-                jText_bairro.getText(),
-                jText_cep.getText(),
-                jText_telefone_Residencial.getText(),
-                jText_telefone_celular.getText(),
-                jText_email.getText());
+//        PacienteController.inserirPaciente(TipoConvenio.valueOf(jCombo_tipo_convenio.getSelectedItem().toString()),
+//                jCheckBox_isFumante.isSelected(),
+//                jCheckBox_isAlcolatra.isSelected(),
+//                jCheckBox_isColesterol.isSelected(),
+//                jCheckBox_isDiabetico.isSelected(),
+//                jCheckBox_isDoencasCardiacas.isSelected(),
+//                jText_cirurgias.getText(),
+//                jText_alergias.getText(),
+//                jCombo_ativo.getSelectedItem() == "Sim",
+//                jText_nome.getText(),
+//                jText_sobrenome.getText(),
+//                jText_cpf.getText(),
+//                jText_rg.getText(),
+//                Sexo.valueOf(jCombo_sexo.getSelectedItem().toString()),
+//                jText_dt_nascimento.getText(),
+//                Jtext_rua.getText(),
+//                jText_nro.getText(),
+//                jText_bairro.getText(),
+//                jText_cep.getText(),
+//                jText_telefone_Residencial.getText(),
+//                jText_telefone_celular.getText(),
+//                jText_email.getText(),
+//                jText_cidade.getText(),
+//                jCombo_estado.getSelectedItem().toString());
         this.limparTela();
         this.setVisible(false);
     }
     
     public void limparTela(){
+        Jtext_Codigo.setText("");
         jCombo_ativo.setSelectedItem(0);
         jCombo_tipo_convenio.setSelectedIndex(0);
         jCheckBox_isFumante.setSelected(false);
@@ -99,6 +100,8 @@ public class PacienteRegistroView extends javax.swing.JFrame {
         jText_telefone_Residencial.setText("");
         jText_telefone_celular.setText("");
         jText_email.setText("");
+        jText_cidade.setText("");
+        jCombo_estado.setSelectedIndex(0);
     }
     
     public void preencherTela(Paciente p){
@@ -125,6 +128,8 @@ public class PacienteRegistroView extends javax.swing.JFrame {
         jText_telefone_Residencial.setText(p.getTelefone_residencial());
         jText_telefone_celular.setText(p.getTelefone_celular());
         jText_email.setText(p.getEmail());
+        jText_cidade.setText(p.getCidade());
+        jCombo_estado.setSelectedItem(p.getEstado());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -179,6 +184,10 @@ public class PacienteRegistroView extends javax.swing.JFrame {
         jText_cep = new javax.swing.JFormattedTextField();
         jCombo_ativo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jLabel_cidade = new javax.swing.JLabel();
+        jText_cidade = new javax.swing.JTextField();
+        jLabel_estado = new javax.swing.JLabel();
+        jCombo_estado = new javax.swing.JComboBox<>();
 
         setTitle("Registro Paciente");
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -233,11 +242,6 @@ public class PacienteRegistroView extends javax.swing.JFrame {
         jCheckBox_isColesterol.setText("Colesterol");
 
         jCheckBox_isAlcolatra.setText("Alcolatra");
-        jCheckBox_isAlcolatra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox_isAlcolatraActionPerformed(evt);
-            }
-        });
 
         jCheckBox_isDiabetico.setText("Diabético");
 
@@ -298,17 +302,17 @@ public class PacienteRegistroView extends javax.swing.JFrame {
 
         jButton_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/tick.png"))); // NOI18N
         jButton_salvar.setText("Salvar");
-        jButton_salvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_salvarMouseClicked(evt);
+        jButton_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_salvarActionPerformed(evt);
             }
         });
 
         jButton_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/cancel.png"))); // NOI18N
         jButton_cancelar.setText("Cancelar");
-        jButton_cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_cancelarMouseClicked(evt);
+        jButton_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_cancelarActionPerformed(evt);
             }
         });
 
@@ -327,6 +331,13 @@ public class PacienteRegistroView extends javax.swing.JFrame {
         jCombo_ativo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sim", "Não" }));
 
         jLabel2.setText("Ativo:");
+
+        jLabel_cidade.setText("Cidade:");
+
+        jLabel_estado.setText("Estado:");
+
+        jCombo_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO" }));
+        jCombo_estado.setSelectedIndex(15);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -405,15 +416,23 @@ public class PacienteRegistroView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCombo_ativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jCombo_ativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel_cidade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jText_cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel_estado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCombo_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(268, 268, 268)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton_salvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_cancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(245, 245, 245))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -446,7 +465,13 @@ public class PacienteRegistroView extends javax.swing.JFrame {
                         .addComponent(jText_nro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel_Bairro)
                         .addComponent(jText_bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_cidade)
+                    .addComponent(jText_cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_estado)
+                    .addComponent(jCombo_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel_telefone_residencial)
@@ -466,9 +491,9 @@ public class PacienteRegistroView extends javax.swing.JFrame {
                     .addComponent(jText_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_tipo_convenio)
                     .addComponent(jCombo_tipo_convenio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel_dados_Adicionais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -478,25 +503,23 @@ public class PacienteRegistroView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox_isAlcolatraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_isAlcolatraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox_isAlcolatraActionPerformed
-
-    private void jButton_cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_cancelarMouseClicked
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton_cancelarMouseClicked
-
-    private void jButton_salvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_salvarMouseClicked
-        this.recuperarTela();
-    }//GEN-LAST:event_jButton_salvarMouseClicked
-
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        if(UsuarioController.usuarioLogado != null && UsuarioController.usuarioLogado.getMedico() != null){
+        /*if(UsuarioController.usuarioLogado != null && UsuarioController.usuarioLogado.getMedico() != null){
             ativarDadosAdicionais();
         }else{
             desativarDadosAdicionais();
-        }
+        }*/
     }//GEN-LAST:event_formComponentShown
+
+    private void jButton_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_salvarActionPerformed
+        this.recuperarTela();
+        limparTela();
+    }//GEN-LAST:event_jButton_salvarActionPerformed
+
+    private void jButton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cancelarActionPerformed
+        this.setVisible(false);
+        limparTela();
+    }//GEN-LAST:event_jButton_cancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -544,6 +567,7 @@ public class PacienteRegistroView extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox_isDoencasCardiacas;
     private javax.swing.JCheckBox jCheckBox_isFumante;
     private javax.swing.JComboBox<String> jCombo_ativo;
+    private javax.swing.JComboBox<String> jCombo_estado;
     private javax.swing.JComboBox<String> jCombo_sexo;
     private javax.swing.JComboBox<String> jCombo_tipo_convenio;
     private javax.swing.JLabel jLabel1;
@@ -553,9 +577,11 @@ public class PacienteRegistroView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Codigo;
     private javax.swing.JLabel jLabel_alergias;
     private javax.swing.JLabel jLabel_cep;
+    private javax.swing.JLabel jLabel_cidade;
     private javax.swing.JLabel jLabel_cpf;
     private javax.swing.JLabel jLabel_dt_nascimento;
     private javax.swing.JLabel jLabel_email;
+    private javax.swing.JLabel jLabel_estado;
     private javax.swing.JLabel jLabel_nome;
     private javax.swing.JLabel jLabel_nro;
     private javax.swing.JLabel jLabel_rua;
@@ -568,6 +594,7 @@ public class PacienteRegistroView extends javax.swing.JFrame {
     private javax.swing.JTextField jText_alergias;
     private javax.swing.JTextField jText_bairro;
     private javax.swing.JFormattedTextField jText_cep;
+    private javax.swing.JTextField jText_cidade;
     private javax.swing.JTextField jText_cirurgias;
     private javax.swing.JFormattedTextField jText_cpf;
     private javax.swing.JFormattedTextField jText_dt_nascimento;

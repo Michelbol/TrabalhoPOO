@@ -12,8 +12,9 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -23,9 +24,10 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name="Pessoa")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Pessoa implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Integer id_pessoa; 
     
     @Column(nullable = false, length = 100)
@@ -40,7 +42,6 @@ public abstract class Pessoa implements Serializable {
     @Column(nullable = true, length = 20)
     protected String rg;
     
-    @Embedded
     @Column(nullable = false)
     protected Sexo sexo;
     
@@ -61,6 +62,12 @@ public abstract class Pessoa implements Serializable {
     protected String cep;
     
     @Column(nullable = true, length = 20)
+    protected String cidade;
+    
+    @Column(nullable = true, length = 10)
+    protected String estado;
+    
+    @Column(nullable = true, length = 20)
     protected String telefone_residencial;
     
     @Column(nullable = true, length = 20)
@@ -69,7 +76,7 @@ public abstract class Pessoa implements Serializable {
     @Column(nullable = true, length = 30)
     protected String email;
 
-    public Pessoa(String nome, String sobrenome, String cpf, String rg, Sexo sexo, String dataNascimento, String rua, String numero, String bairro, String cep, String telefone_residencial, String telefone_celular, String email) {
+    public Pessoa(String nome, String sobrenome, String cpf, String rg, Sexo sexo, String dataNascimento, String rua, String numero, String bairro, String cep, String cidade, String estado, String telefone_residencial, String telefone_celular, String email) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
@@ -80,9 +87,18 @@ public abstract class Pessoa implements Serializable {
         this.numero = numero;
         this.bairro = bairro;
         this.cep = cep;
+        this.cidade = cidade;
+        this.estado = estado;
         this.telefone_residencial = telefone_residencial;
         this.telefone_celular = telefone_celular;
         this.email = email;
+    }
+
+    public Pessoa() {
+    }
+
+    public Pessoa(String nome) {
+        this.nome = nome;
     }
 
     public Integer getId_pessoa() {
@@ -99,6 +115,22 @@ public abstract class Pessoa implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getSobrenome() {

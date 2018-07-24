@@ -47,6 +47,13 @@ public class Consulta implements Serializable {
     @Column(nullable = false)
     private TipoConsulta tipo;
 
+    public Consulta(String dataHora, Medico medico, Paciente paciente, TipoConsulta tipo) {
+        setDataHora(dataHora);
+        this.medico = medico;
+        this.paciente = paciente;
+        this.tipo = tipo;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -59,8 +66,22 @@ public class Consulta implements Serializable {
         return dataHora;
     }
 
-    public void setDataHora(Date dataHora) {
-        this.dataHora = dataHora;
+    public void setDataHora(String dataHora) {
+        if(!(dataHora.length() > 0)){
+            this.dataHora = null;
+        }
+        String[] g = dataHora.split("/");
+        int dia = Integer.parseInt(g[0]);
+        int mes = Integer.parseInt(g[1]) - 1;
+        int ano = Integer.parseInt(g[2]);
+        if (ano > 99) {
+            ano = ano - 1900;
+        }
+        if (ano < 50) {
+            ano = ano + 2000;
+        }
+        Date dt = new Date(ano, mes, dia);
+        this.dataHora = dt;
     }
 
     public Medico getMedico() {
