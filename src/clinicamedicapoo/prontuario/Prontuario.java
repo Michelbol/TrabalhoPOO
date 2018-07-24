@@ -7,7 +7,9 @@ package clinicamedicapoo.prontuario;
 
 import clinicamedicapoo.medico.Medico;
 import clinicamedicapoo.paciente.Paciente;
+import clinicamedicapoo.usuario.Usuario;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,6 +52,15 @@ public class Prontuario implements Serializable {
     @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataProntuario;
+
+    public Prontuario(Paciente paciente, Medico medico, String sintomas, String diagnostico, String prescricao, String dataProntuario) {
+        this.paciente = paciente;
+        this.medico = medico;
+        this.sintomas = sintomas;
+        this.diagnostico = diagnostico;
+        this.prescricao = prescricao;
+        this.setDataProntuario(dataProntuario);
+    }
 
     public Integer getId() {
         return id;
@@ -98,14 +109,42 @@ public class Prontuario implements Serializable {
     public void setPrescricao(String prescricao) {
         this.prescricao = prescricao;
     }
-
-    public Date getDataProntuario() {
-        return dataProntuario;
+    
+    public String getDataProntuario() {
+        String data = null;        
+        String[] datahora = null;
+        SimpleDateFormat formatDateTime = new SimpleDateFormat("dd/MM/yyyy");        
+        if(this.dataProntuario != null ){
+            data = formatDateTime.format(this.dataProntuario);
+            datahora = data.split(" ");
+        }
+        return datahora[0];
     }
 
-    public void setDataProntuario(Date dataProntuario) {
-        this.dataProntuario = dataProntuario;
+    public void setDataProntuario(String dataNascimento) {
+        if(!(dataNascimento.length() > 0)){
+            this.dataProntuario = null;
+        }
+        String[] g = dataNascimento.split("/");
+        int dia = Integer.parseInt(g[0]);
+        int mes = Integer.parseInt(g[1]) - 1;
+        int ano = Integer.parseInt(g[2]);
+        if (ano > 99) {
+            ano = ano - 1900;
+        }
+        if (ano < 50) {
+            ano = ano + 2000;
+        }
+        Date dt = new Date(ano, mes, dia);
+        this.dataProntuario = dt;
     }
     
+    public void povoarPaciente(Usuario usuario){
+        inserirProntuario(Paciente.findPaciente(1),usuario,"");
+    }
     
+    public void inserirPaciente(Paciente paciente, Medico medico, String sintomas, String diagnostico,String prescricao,String dataProntuario){
+        Prontuario prontuario = new Prontuario(paciente,medico,sintomas,diagnostico,prescricao,dataProntuario);
+        
+    }
 }

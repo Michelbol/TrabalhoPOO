@@ -17,6 +17,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaPrincipal(PacienteConsultaView paciente_consulta) {
         initComponents();
+        setLocationRelativeTo(null);
         this.paciente_consulta = paciente_consulta;
     }
 

@@ -46,4 +46,13 @@ public class UsuarioController {
         };
         tela_login.entrar().addActionListener(actionlistener);
     }
+    
+    public void sair(){
+        actionlistener = new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                System.exit(0);
+            }
+        };
+        tela_login.sair().addActionListener(actionlistener);
+    }
 }

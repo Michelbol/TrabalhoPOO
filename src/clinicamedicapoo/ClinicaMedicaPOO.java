@@ -42,7 +42,8 @@ public class ClinicaMedicaPOO {
         SecretariaController secretaria_controller = new SecretariaController(secretaria, tela_principal, usuario_controller);
         //Função para inicializar componentes
         //login
-        usuario_controller.login();        
+        usuario_controller.login(); 
+        usuario_controller.sair(); 
         //tela principal
         secretaria_controller.telaPacientes();
         //tela Consulta Paciente
