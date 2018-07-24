@@ -154,7 +154,7 @@ public class Paciente extends Pessoa implements Serializable {
 
     
     
-    public static void inserirPaciente(TipoConvenio tipoconvenio,
+    public Paciente inserirPaciente(TipoConvenio tipoconvenio,
             boolean isFumante,
             boolean isAlcolatra,
             boolean isColesterol,
@@ -207,9 +207,11 @@ public class Paciente extends Pessoa implements Serializable {
            manager.getTransaction().begin();
            manager.persist(p);
            manager.getTransaction().commit();
+           return p;
         }
         catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
+            return null;
         }
     }
     
@@ -243,7 +245,7 @@ public class Paciente extends Pessoa implements Serializable {
         return lista_paciente;
     }
     
-    public static void povoarPaciente(){
+    public void povoarPaciente(){
         inserirPaciente(TipoConvenio.Particular, false, false, false, false, true, "", "", true,"Michel", "Bolzon", "078.161.349-32", "97796033", Sexo.Masculino, "11/10/1995", "Rua ivinhema", "25", "Parque Avenida", "87025-490", "(44) 3028-2888", "(44) 99824-3108", "Michel.bolzon123@gmail.com", "Maringá", "PR");
         inserirPaciente(TipoConvenio.PlanoDeSaude, false, true, false, true,false, "", "", true, "Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/08/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com", "São Paulo", "SP");
 //        inserirMedico(new Medico("Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/03/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com"));
