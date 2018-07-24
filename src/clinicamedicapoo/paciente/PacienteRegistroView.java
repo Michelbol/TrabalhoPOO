@@ -303,12 +303,22 @@ public class PacienteRegistroView extends javax.swing.JFrame {
                 jButton_salvarMouseClicked(evt);
             }
         });
+        jButton_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_salvarActionPerformed(evt);
+            }
+        });
 
         jButton_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/cancel.png"))); // NOI18N
         jButton_cancelar.setText("Cancelar");
         jButton_cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton_cancelarMouseClicked(evt);
+            }
+        });
+        jButton_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_cancelarActionPerformed(evt);
             }
         });
 
@@ -497,6 +507,14 @@ public class PacienteRegistroView extends javax.swing.JFrame {
             desativarDadosAdicionais();
         }
     }//GEN-LAST:event_formComponentShown
+
+    private void jButton_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_salvarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_salvarActionPerformed
+
+    private void jButton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_cancelarActionPerformed
 
     /**
      * @param args the command line arguments

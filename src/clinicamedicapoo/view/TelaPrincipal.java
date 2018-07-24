@@ -48,6 +48,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButton_pacienteMouseClicked(evt);
             }
         });
+        jButton_paciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_pacienteActionPerformed(evt);
+            }
+        });
 
         jButton_medico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/user_suit.png"))); // NOI18N
         jButton_medico.setText("Medicos");
@@ -97,6 +102,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jButton_pacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_pacienteMouseClicked
         paciente_consulta.setVisible(true);
     }//GEN-LAST:event_jButton_pacienteMouseClicked
+
+    private void jButton_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_pacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_pacienteActionPerformed
 
     /**
      * @param args the command line arguments

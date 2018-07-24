@@ -455,6 +455,7 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton_salvarMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_salvarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton_cancelar">
@@ -466,6 +467,7 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton_cancelarMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_cancelarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jText_cpf">
