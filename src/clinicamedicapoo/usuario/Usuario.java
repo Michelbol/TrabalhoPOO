@@ -123,7 +123,7 @@ public class Usuario implements Serializable {
     
     public void povoarUsuarios(){
         inserirUsuario("secretaria", "123456", null, new Secretaria().inserirSecretaria("Maria", "", "", "", Sexo.Feminino, "11/10/1995", "", "", "", "", "", "", "", ""));
-        inserirUsuario("medico", "123456", new Medico().inserirMedico("José", "", "", "", Sexo.Masculino, "01/06/1976", "", "", "", "", "", "", "", ""), null);
+        inserirUsuario("medico", "123456", new Medico().inserirMedico("José", "", "", "", Sexo.Masculino, "01/06/1976", "", "", "", "", "", "", "", "",""), null);
     }
 
     @Override

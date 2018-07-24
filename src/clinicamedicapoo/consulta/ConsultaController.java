@@ -6,79 +6,50 @@
 package clinicamedicapoo.consulta;
 
 import clinicamedicapoo.medico.Medico;
-import clinicamedicapoo.paciente.Paciente;
-import clinicamedicapoo.paciente.PacienteController;
-import clinicamedicapoo.paciente.TipoConvenio;
-import clinicamedicapoo.utilitarios.Sexo;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import clinicamedicapoo.paciente.PacienteTableModel;
+import clinicamedicapoo.secretaria.Secretaria;
+import clinicamedicapoo.usuario.UsuarioController;
+import clinicamedicapoo.view.TelaPrincipal;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  *
  * @author miche
  */
 public class ConsultaController {
-    public static EntityManagerFactory factory = Persistence.createEntityManagerFactory("ClinicaMedicaPOO");
-    public static EntityManager manager = factory.createEntityManager();
+    private ActionListener actionlistener;
+    private UsuarioController usuarioController;
+    private Secretaria secretaria;
+    private Medico medico;
+    private ConsultaTableModel consulta_table_model;
+    private TelaPrincipal tela_principal;
 
-    public static void inserirMedico(
-            String nome,
-            String sobrenome,
-            String cpf,
-            String rg,
-            Sexo sexo,
-            String dataNascimento,
-            String rua,
-            String numero,
-            String bairro,
-            String cep,
-            String telefone_residencial,
-            String telefone_celular,
-            String email,
-            String cidade,
-            String estado) {
-        
-        Medico c = new Medico(
-            nome,
-            sobrenome,
-            cpf,
-            rg,
-            sexo,
-            dataNascimento,
-            rua,
-            numero,
-            bairro,
-            cep,
-            cidade,
-            estado,
-            telefone_residencial,
-            telefone_celular,
-            email);
-        try{
-           manager.getTransaction().begin();
-           manager.persist(c);
-           manager.getTransaction().commit();
-        }
-        catch(Exception e){
-            System.out.println("Erro: " + e.getMessage());
-        }
+    public ConsultaController(UsuarioController usuarioController, Secretaria secretaria, Medico medico, ConsultaTableModel consulta_table_model, TelaPrincipal tela_principal) {
+        this.usuarioController = usuarioController;
+        this.secretaria = secretaria;
+        this.medico = medico;
+        this.consulta_table_model = consulta_table_model;
+        this.tela_principal = tela_principal;
     }
     
-    public static void inserirConsulta(String data_hora, Medico medico, Paciente paciente, TipoConsulta tipo_consulta){
-        Consulta c = new Consulta(data_hora, medico, paciente, tipo_consulta);
-        try{
-           manager.getTransaction().begin();
-           manager.persist(c);
-           manager.getTransaction().commit();
-        }
-        catch(Exception e){
-            System.out.println("Erro: " + e.getMessage());
-        }
-    }
-
-    public static void povoarConsulta(){
-//        PacienteController.inserirPaciente(TipoConvenio.PlanoDeSaude, false, true, false, true,false, "", "", true, "Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/08/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com", "São Paulo", "SP");
-        inserirMedico("Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/03/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com", "Maringá", "PR");
+    public void telaConsultas(){
+        actionlistener = new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                List<Consulta> consulta = null;
+                consulta_table_model = tela_principal.getConsulta_view().getConsulta_table_model();
+                consulta_table_model.limpar();
+                if(usuarioController.getUsuarioLogado().getMedico() == null){
+                    consulta = secretaria.consultarConsultas("", "");
+                }else{
+//                    List<Paciente> paciente = medico.consultarPacientes("");
+                }
+                consulta_table_model.addListaDeConsultas(consulta);
+                tela_principal.getConsulta_view().setVisible(true);
+                tela_principal.getConsulta_view().setConsulta_table_model(consulta_table_model);
+            }
+        };
+        tela_principal.getjButton_consulta().addActionListener(actionlistener);
     }
 }

@@ -5,8 +5,8 @@
  */
 package clinicamedicapoo.secretaria;
 
+import clinicamedicapoo.consulta.Consulta;
 import clinicamedicapoo.paciente.Paciente;
-import static clinicamedicapoo.paciente.Paciente.manager;
 import clinicamedicapoo.paciente.TipoConvenio;
 import clinicamedicapoo.utilitarios.Pessoa;
 import clinicamedicapoo.utilitarios.Sexo;
@@ -14,10 +14,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Id;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.persistence.Table;
 
 /**
  *
@@ -57,6 +54,11 @@ public class Secretaria extends Pessoa {
         return paciente.getPaciente(filtro_nome);
     }
     
+    public List<Consulta> consultarConsultas(String data_inicial, String data_final){
+        Consulta consulta = new Consulta();
+        return consulta.getConsulta(data_inicial, data_final);
+    }
+    
     public Paciente buscarPaciente(Integer id){
         Paciente paciente = new Paciente();
         return paciente.findPaciente(id);
@@ -93,4 +95,5 @@ public class Secretaria extends Pessoa {
     public boolean deletarPaciente(Integer id){
         return Paciente.DeletarPaciente(id);
     }
+
 }

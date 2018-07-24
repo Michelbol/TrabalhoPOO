@@ -5,7 +5,6 @@
  */
 package clinicamedicapoo.paciente;
 
-import clinicamedicapoo.utilitarios.Sexo;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;

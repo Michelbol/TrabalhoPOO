@@ -5,13 +5,11 @@
  */
 package clinicamedicapoo.paciente;
 
-import static clinicamedicapoo.secretaria.Secretaria.manager;
 import clinicamedicapoo.utilitarios.Pessoa;
 import clinicamedicapoo.utilitarios.Sexo;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -215,7 +213,7 @@ public class Paciente extends Pessoa implements Serializable {
         }
     }
     
-        public static Paciente findPaciente(int id){
+    public static Paciente findPaciente(int id){
         Paciente paciente = null;
         try{
             paciente = manager.find(Paciente.class, id);
@@ -239,7 +237,7 @@ public class Paciente extends Pessoa implements Serializable {
         }
     }
     
-        public List<Paciente> getPaciente(String filtro_nome){
+    public List<Paciente> getPaciente(String filtro_nome){
         Query query = manager.createQuery("select p FROM Paciente p WHERE p.nome LIKE '%"+ filtro_nome+"%' and p.ativo = true");
         List<Paciente> lista_paciente = query.getResultList();
         return lista_paciente;

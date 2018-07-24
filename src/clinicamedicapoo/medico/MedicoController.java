@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clinicamedicapoo.secretaria;
+package clinicamedicapoo.medico;
 
+import clinicamedicapoo.utilitarios.Sexo;
 
 /**
  *
  * @author miche
  */
-public class SecretariaController {
-    
+public class MedicoController {
+        
 }

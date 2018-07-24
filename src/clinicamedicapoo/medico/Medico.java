@@ -33,7 +33,7 @@ public class Medico extends Pessoa {
         super(nome);
     }
     
-    public Medico inserirMedico(String nome, String sobrenome, String cpf, String rg, Sexo sexo, String dataNascimento, String rua, String numero, String bairro, String cep, String telefone_residencial, String email, String cidade, String estado){
+    public Medico inserirMedico(String nome, String sobrenome, String cpf, String rg, Sexo sexo, String dataNascimento, String rua, String numero, String bairro, String cep, String telefone_residencial, String telefone_celular, String email, String cidade, String estado){
         Medico medico = new Medico(nome,sobrenome,cpf,rg,sexo,dataNascimento,rua,numero,bairro,cep,cidade,estado,telefone_residencial,telefone_celular,email);
         try{
            manager.getTransaction().begin();
@@ -45,6 +45,17 @@ public class Medico extends Pessoa {
             System.out.println("Erro: " + e.getMessage());
             return null;
         }
+    }
+    
+    public static Medico findMedico(int id){
+        Medico medico = null;
+        try{
+            medico = manager.find(Medico.class, id);
+        }
+        catch(Exception e){
+            System.out.println("Erro: " + e.getMessage());
+        }
+        return medico;
     }
     
 }
