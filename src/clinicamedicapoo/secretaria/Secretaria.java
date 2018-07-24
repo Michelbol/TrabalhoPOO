@@ -89,4 +89,8 @@ public class Secretaria extends Pessoa {
        Paciente paciente = new Paciente();
        return paciente.inserirPaciente(tipoconvenio, isFumante, isAlcolatra, isColesterol, isDiabetico, doencasCardiacas, cirurgias, alergias, ativo, nome, sobrenome, cpf, rg, sexo, dataNascimento, rua, numero, bairro, cep, telefone_residencial, telefone_celular, email, cidade, estado);
     }
+    
+    public boolean deletarPaciente(Integer id){
+        return Paciente.DeletarPaciente(id);
+    }
 }

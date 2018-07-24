@@ -96,9 +96,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbutton_editarActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbutton_excluir">
       <Properties>
@@ -107,9 +104,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbutton_excluirActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlabel_filtro_nome">
       <Properties>
@@ -125,9 +119,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Pesquisa"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_filtrarActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

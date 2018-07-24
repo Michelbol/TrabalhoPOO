@@ -7,7 +7,6 @@ package clinicamedicapoo;
 
 import clinicamedicapoo.medico.Medico;
 import clinicamedicapoo.paciente.PacienteConsultaView;
-import clinicamedicapoo.paciente.PacienteController;
 import clinicamedicapoo.paciente.PacienteRegistroView;
 import clinicamedicapoo.paciente.PacienteTableModel;
 import clinicamedicapoo.secretaria.Secretaria;
@@ -50,6 +49,7 @@ public class ClinicaMedicaPOO {
         secretaria_controller.adicionarPaciente();
         secretaria_controller.editarPaciente();
         secretaria_controller.filtrarPacientes();
+        secretaria_controller.excluirPaciente();
         //tela registro paciente
         secretaria_controller.salvarPaciente();
         secretaria_controller.cancelarRegistroPaciente();

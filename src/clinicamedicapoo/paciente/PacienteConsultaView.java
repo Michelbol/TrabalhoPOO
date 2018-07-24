@@ -62,6 +62,14 @@ public class PacienteConsultaView extends javax.swing.JFrame {
     public void setJtext_filtro_nome(JTextField jtext_filtro_nome) {
         this.jtext_filtro_nome = jtext_filtro_nome;
     }
+
+    public JButton getJbutton_excluir() {
+        return jbutton_excluir;
+    }
+
+    public void setJbutton_excluir(JButton jbutton_excluir) {
+        this.jbutton_excluir = jbutton_excluir;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,29 +99,14 @@ public class PacienteConsultaView extends javax.swing.JFrame {
 
         jbutton_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/pencil.png"))); // NOI18N
         jbutton_editar.setText("Editar");
-        jbutton_editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbutton_editarActionPerformed(evt);
-            }
-        });
 
         jbutton_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/cross.png"))); // NOI18N
         jbutton_excluir.setText("Excluir");
-        jbutton_excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbutton_excluirActionPerformed(evt);
-            }
-        });
 
         jlabel_filtro_nome.setText("Filtrar:");
 
         jButton_filtrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/magnifier.png"))); // NOI18N
         jButton_filtrar.setText("Pesquisa");
-        jButton_filtrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_filtrarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,25 +144,6 @@ public class PacienteConsultaView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbutton_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutton_editarActionPerformed
-        
-    }//GEN-LAST:event_jbutton_editarActionPerformed
-
-    private void jbutton_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutton_excluirActionPerformed
-//        int resposta = JOptionPane.showConfirmDialog(null, "Deseja Realmente excluir este registro?");
-//        if(resposta == 0){
-//            int linhaselecionada = jtable_consulta_paciente.getSelectedRow();
-//            PacienteController.DeletarPaciente(Integer.parseInt(jtable_consulta_paciente.getValueAt(linhaselecionada, 0).toString()));
-//        }
-//        paciente = new PacienteTableModel(PacienteController.getPaciente(jtext_filtro_nome.getText()));
-//        jtable_consulta_paciente.setModel(paciente);
-    }//GEN-LAST:event_jbutton_excluirActionPerformed
-
-    private void jButton_filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_filtrarActionPerformed
-//        paciente = new PacienteTableModel(PacienteController.getPaciente(jtext_filtro_nome.getText()));
-//        jtable_consulta_paciente.setModel(paciente);
-    }//GEN-LAST:event_jButton_filtrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

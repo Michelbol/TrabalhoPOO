@@ -222,4 +222,23 @@ public class SecretariaController {
         };
         tela_principal.getPaciente_consulta().filtrarButton().addActionListener(actionlistener);
     }
+    
+    public void excluirPaciente(){
+        actionlistener = new ActionListener() {            
+            public void actionPerformed(ActionEvent ae) {
+                int resposta = JOptionPane.showConfirmDialog(null, "Deseja Realmente excluir este registro?");
+                if(resposta == 0){
+                    int linhaselecionada = tela_principal.getPaciente_consulta().pacienteTable().getSelectedRow();
+                    int paciente_id = Integer.parseInt(tela_principal.getPaciente_consulta().pacienteTable().getValueAt(linhaselecionada, 0).toString());
+                    secretaria.deletarPaciente(paciente_id);
+                }
+                String filtro = tela_principal.getPaciente_consulta().getJtext_filtro_nome().getText();
+                List<Paciente> paciente = secretaria.consultarPacientes(filtro);
+                paciente_table_model.limpar();
+                paciente_table_model.addListaDePacientes(paciente);
+                tela_principal.getPaciente_consulta().setPaciente_table_model(paciente_table_model);
+            }
+        };
+            tela_principal.getPaciente_consulta().getJbutton_excluir().addActionListener(actionlistener);
+    }
 }
