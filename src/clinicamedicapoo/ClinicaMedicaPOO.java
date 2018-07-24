@@ -45,7 +45,10 @@ public class ClinicaMedicaPOO {
         //login
         usuario_controller.login();        
         //tela principal
-        secretaria_controller.consultarPacientes();
+        secretaria_controller.telaPacientes();
+        //tela Consulta Paciente
+        secretaria_controller.adicionarPaciente();
+        secretaria_controller.editarPaciente();
     }
     
 }

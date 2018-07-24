@@ -42,6 +42,10 @@ public class PacienteConsultaView extends javax.swing.JFrame {
         return jbutton_adicionar;
     }
     
+    public JButton editarButton(){
+        return jbutton_editar;
+    }
+    
     public JTable pacienteTable(){
         return jtable_consulta_paciente;
     }

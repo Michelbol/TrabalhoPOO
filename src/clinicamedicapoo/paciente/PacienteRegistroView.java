@@ -6,6 +6,12 @@
 package clinicamedicapoo.paciente;
 
 import clinicamedicapoo.utilitarios.Sexo;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -24,6 +30,231 @@ public class PacienteRegistroView extends javax.swing.JFrame {
             desativarDadosAdicionais();
         }*/
     }    
+
+    public JTextField getJtext_Codigo() {
+        return Jtext_Codigo;
+    }
+
+    public void setJtext_Codigo(JTextField Jtext_Codigo) {
+        this.Jtext_Codigo = Jtext_Codigo;
+    }
+
+    public JTextField getJtext_rua() {
+        return Jtext_rua;
+    }
+
+    public void setJtext_rua(JTextField Jtext_rua) {
+        this.Jtext_rua = Jtext_rua;
+    }
+
+    public JButton getjButton_cancelar() {
+        return jButton_cancelar;
+    }
+
+    public void setjButton_cancelar(JButton jButton_cancelar) {
+        this.jButton_cancelar = jButton_cancelar;
+    }
+
+    public JButton getjButton_salvar() {
+        return jButton_salvar;
+    }
+
+    public void setjButton_salvar(JButton jButton_salvar) {
+        this.jButton_salvar = jButton_salvar;
+    }
+
+    public JCheckBox getjCheckBox_isAlcolatra() {
+        return jCheckBox_isAlcolatra;
+    }
+
+    public void setjCheckBox_isAlcolatra(JCheckBox jCheckBox_isAlcolatra) {
+        this.jCheckBox_isAlcolatra = jCheckBox_isAlcolatra;
+    }
+
+    public JCheckBox getjCheckBox_isColesterol() {
+        return jCheckBox_isColesterol;
+    }
+
+    public void setjCheckBox_isColesterol(JCheckBox jCheckBox_isColesterol) {
+        this.jCheckBox_isColesterol = jCheckBox_isColesterol;
+    }
+
+    public JCheckBox getjCheckBox_isDiabetico() {
+        return jCheckBox_isDiabetico;
+    }
+
+    public void setjCheckBox_isDiabetico(JCheckBox jCheckBox_isDiabetico) {
+        this.jCheckBox_isDiabetico = jCheckBox_isDiabetico;
+    }
+
+    public JCheckBox getjCheckBox_isDoencasCardiacas() {
+        return jCheckBox_isDoencasCardiacas;
+    }
+
+    public void setjCheckBox_isDoencasCardiacas(JCheckBox jCheckBox_isDoencasCardiacas) {
+        this.jCheckBox_isDoencasCardiacas = jCheckBox_isDoencasCardiacas;
+    }
+
+    public JCheckBox getjCheckBox_isFumante() {
+        return jCheckBox_isFumante;
+    }
+
+    public void setjCheckBox_isFumante(JCheckBox jCheckBox_isFumante) {
+        this.jCheckBox_isFumante = jCheckBox_isFumante;
+    }
+
+    public JComboBox<String> getjCombo_ativo() {
+        return jCombo_ativo;
+    }
+
+    public void setjCombo_ativo(JComboBox<String> jCombo_ativo) {
+        this.jCombo_ativo = jCombo_ativo;
+    }
+
+    public JComboBox<String> getjCombo_estado() {
+        return jCombo_estado;
+    }
+
+    public void setjCombo_estado(JComboBox<String> jCombo_estado) {
+        this.jCombo_estado = jCombo_estado;
+    }
+
+    public JComboBox<String> getjCombo_sexo() {
+        return jCombo_sexo;
+    }
+
+    public void setjCombo_sexo(JComboBox<String> jCombo_sexo) {
+        this.jCombo_sexo = jCombo_sexo;
+    }
+
+    public JComboBox<String> getjCombo_tipo_convenio() {
+        return jCombo_tipo_convenio;
+    }
+
+    public void setjCombo_tipo_convenio(JComboBox<String> jCombo_tipo_convenio) {
+        this.jCombo_tipo_convenio = jCombo_tipo_convenio;
+    }
+
+    public JPanel getjPanel_dados_Adicionais() {
+        return jPanel_dados_Adicionais;
+    }
+
+    public void setjPanel_dados_Adicionais(JPanel jPanel_dados_Adicionais) {
+        this.jPanel_dados_Adicionais = jPanel_dados_Adicionais;
+    }
+
+    public JTextField getjText_alergias() {
+        return jText_alergias;
+    }
+
+    public void setjText_alergias(JTextField jText_alergias) {
+        this.jText_alergias = jText_alergias;
+    }
+
+    public JTextField getjText_bairro() {
+        return jText_bairro;
+    }
+
+    public void setjText_bairro(JTextField jText_bairro) {
+        this.jText_bairro = jText_bairro;
+    }
+
+    public JFormattedTextField getjText_cep() {
+        return jText_cep;
+    }
+
+    public void setjText_cep(JFormattedTextField jText_cep) {
+        this.jText_cep = jText_cep;
+    }
+
+    public JTextField getjText_cidade() {
+        return jText_cidade;
+    }
+
+    public void setjText_cidade(JTextField jText_cidade) {
+        this.jText_cidade = jText_cidade;
+    }
+
+    public JTextField getjText_cirurgias() {
+        return jText_cirurgias;
+    }
+
+    public void setjText_cirurgias(JTextField jText_cirurgias) {
+        this.jText_cirurgias = jText_cirurgias;
+    }
+
+    public JFormattedTextField getjText_cpf() {
+        return jText_cpf;
+    }
+
+    public void setjText_cpf(JFormattedTextField jText_cpf) {
+        this.jText_cpf = jText_cpf;
+    }
+
+    public JFormattedTextField getjText_dt_nascimento() {
+        return jText_dt_nascimento;
+    }
+
+    public void setjText_dt_nascimento(JFormattedTextField jText_dt_nascimento) {
+        this.jText_dt_nascimento = jText_dt_nascimento;
+    }
+
+    public JTextField getjText_email() {
+        return jText_email;
+    }
+
+    public void setjText_email(JTextField jText_email) {
+        this.jText_email = jText_email;
+    }
+
+    public JTextField getjText_nome() {
+        return jText_nome;
+    }
+
+    public void setjText_nome(JTextField jText_nome) {
+        this.jText_nome = jText_nome;
+    }
+
+    public JTextField getjText_nro() {
+        return jText_nro;
+    }
+
+    public void setjText_nro(JTextField jText_nro) {
+        this.jText_nro = jText_nro;
+    }
+
+    public JTextField getjText_rg() {
+        return jText_rg;
+    }
+
+    public void setjText_rg(JTextField jText_rg) {
+        this.jText_rg = jText_rg;
+    }
+
+    public JTextField getjText_sobrenome() {
+        return jText_sobrenome;
+    }
+
+    public void setjText_sobrenome(JTextField jText_sobrenome) {
+        this.jText_sobrenome = jText_sobrenome;
+    }
+
+    public JTextField getjText_telefone_Residencial() {
+        return jText_telefone_Residencial;
+    }
+
+    public void setjText_telefone_Residencial(JTextField jText_telefone_Residencial) {
+        this.jText_telefone_Residencial = jText_telefone_Residencial;
+    }
+
+    public JTextField getjText_telefone_celular() {
+        return jText_telefone_celular;
+    }
+
+    public void setjText_telefone_celular(JTextField jText_telefone_celular) {
+        this.jText_telefone_celular = jText_telefone_celular;
+    }
+    
     
     public void ativarDadosAdicionais(){
         jPanel_dados_Adicionais.setEnabled(true);
