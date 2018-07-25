@@ -73,6 +73,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Clínica Medica");
 
         jButton_consulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/calendar_view_day.png"))); // NOI18N
         jButton_consulta.setText("Consultas");

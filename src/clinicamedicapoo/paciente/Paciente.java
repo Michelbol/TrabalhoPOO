@@ -223,6 +223,69 @@ public class Paciente extends Pessoa implements Serializable {
         }
         return paciente;
     }
+     public Paciente atualizarPaciente(Integer id, 
+             TipoConvenio tipoconvenio,
+            boolean isFumante,
+            boolean isAlcolatra,
+            boolean isColesterol,
+            boolean isDiabetico,
+            boolean doencasCardiacas,
+            String cirurgias,
+            String alergias,
+            boolean ativo,
+            String nome,
+            String sobrenome,
+            String cpf,
+            String rg,
+            Sexo sexo,
+            String dataNascimento,
+            String rua,
+            String numero,
+            String bairro,
+            String cep,
+            String telefone_residencial,
+            String telefone_celular,
+            String email,
+            String cidade,
+            String estado) {
+        
+        try{
+           manager.getTransaction().begin();
+           Paciente p = findPaciente(id);
+           p.setId_pessoa(id); 
+            p.setTipoconvenio(tipoconvenio);
+            p.setIsFumante(isFumante);
+            p.setIsAlcolatra(isAlcolatra);
+            p.setIsColesterol(isColesterol);
+            p.setIsDiabetico(isDiabetico);
+            p.setDoencasCardiacas(doencasCardiacas);
+            p.setCirurgias(cirurgias);
+            p.setAlergias(alergias);
+            p.setAtivo(ativo);
+            p.setNome(nome);
+            p.setSobrenome(sobrenome);
+            p.setCpf(cpf);
+            p.setRg(rg);
+            p.setSexo(sexo);
+            p.setDataNascimento(dataNascimento);
+            p.setRua(rua);
+            p.setNumero(numero);
+            p.setBairro(bairro);
+            p.setCep(cep);
+            p.setTelefone_residencial(telefone_residencial);
+            p.setTelefone_celular(telefone_celular);
+            p.setEmail(email);
+            p.setCidade(cidade);
+            p.setEstado(estado);
+           manager.merge(p);
+           manager.getTransaction().commit();
+           return p;
+        }
+        catch(Exception e){
+            System.out.println("Erro: " + e.getMessage());
+            return null;
+        }
+    }
     
     public boolean DeletarPaciente(int id){
         try{
