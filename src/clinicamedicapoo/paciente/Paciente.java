@@ -147,7 +147,7 @@ public class Paciente extends Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "Paciente{" + "tipoconvenio=" + tipoconvenio + ", isFumante=" + isFumante + ", isAlcolatra=" + isAlcolatra + ", isColesterol=" + isColesterol + ", isDiabetico=" + isDiabetico + ", doencasCardiacas=" + doencasCardiacas + ", cirurgias=" + cirurgias + ", alergias=" + alergias + ", ativo=" + ativo + '}';
+        return this.nome;
     }
 
     

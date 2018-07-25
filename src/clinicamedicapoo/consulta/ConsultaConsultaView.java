@@ -17,6 +17,7 @@ public class ConsultaConsultaView extends javax.swing.JFrame {
     public ConsultaConsultaView(ConsultaTableModel consulta_table_model) {
         this.consulta_table_model = consulta_table_model;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public ConsultaTableModel getConsulta_table_model() {

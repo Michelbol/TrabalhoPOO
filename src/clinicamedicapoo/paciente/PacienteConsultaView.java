@@ -20,6 +20,7 @@ public class PacienteConsultaView extends javax.swing.JFrame {
     public PacienteConsultaView(PacienteRegistroView paciente_registro, PacienteTableModel paciente_table_model) {
         this.paciente_table_model = paciente_table_model;
         initComponents();
+        setLocationRelativeTo(null);
         this.paciente_registro = paciente_registro;
     }
 
