@@ -149,19 +149,19 @@ public class Prontuario implements Serializable {
         this.dataProntuario = dt;
     }
     
-    public void povoarPaciente(){
+    public void povoarProntuario(){
         Paciente paciente = new Paciente();
         Medico medico = new Medico();
         
-        inserirProntuario(paciente.findPaciente(1),medico.findMedico(1),"Tosse, Febre, Espirros","Gripe","Resfenol","24/07/2018");
-        inserirProntuario(paciente.findPaciente(2),medico.findMedico(1),"Tosse cronica","Tuberculose","Xarope","24/07/2018");
+        inserirProntuario(paciente.findPaciente(3),medico.findMedico(2),"Tosse, Febre, Espirros","Gripe","Resfenol","24/07/2018");
+        inserirProntuario(paciente.findPaciente(4),medico.findMedico(2),"Tosse cronica","Tuberculose","Xarope","24/07/2018");
     }
     
     public Prontuario inserirProntuario(Paciente paciente, Medico medico, String sintomas, String diagnostico,String prescricao,String dataProntuario){
         Prontuario prontuario = new Prontuario(paciente,medico,sintomas,diagnostico,prescricao,dataProntuario);
         try{
            manager.getTransaction().begin();
-           manager.persist(medico);
+           manager.persist(prontuario);
            manager.getTransaction().commit();
            return prontuario;
         }
@@ -172,7 +172,10 @@ public class Prontuario implements Serializable {
     }
     
     public List<Prontuario> getProntuario(String hora_inicial, String hora_final){
-        Query query = manager.createQuery("select p FROM Consulta p WHERE p.dataHora BETWEEN '"+ hora_inicial+"' and '"+hora_final+"'");
+        if (hora_inicial=="") hora_inicial = "2000-01-01";
+        if (hora_final=="") hora_final = "2050-01-01";
+
+        Query query = manager.createQuery("select p FROM Prontuario p WHERE p.dataProntuario BETWEEN '"+ hora_inicial+"' and '"+hora_final+"'");
         List<Prontuario> lista_prontuario = query.getResultList();
         return lista_prontuario;
     }

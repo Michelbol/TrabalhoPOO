@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author miche
+ * @author joaov
  */
 public class ProntuarioTableModel extends AbstractTableModel {
     private List<Prontuario> prontuarios;

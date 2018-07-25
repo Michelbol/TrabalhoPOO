@@ -12,6 +12,7 @@ import clinicamedicapoo.usuario.UsuarioController;
 import clinicamedicapoo.view.TelaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,14 +42,10 @@ public class ProntuarioController {
     public void telaProntuario(){
         actionlistener = new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                List<Prontuario> prontuarios = null;
+                List<Prontuario> prontuarios = new ArrayList();
                 prontuario_table_model = tela_principal.getProntuario_Consulta_view().getProntuario_table_model();
                 prontuario_table_model.limpar();
-                if(usuarioController.getUsuarioLogado().getMedico() == null){
-                    prontuarios = medico.consultarProntuarios("", "");
-                }else{
-                    //List<Paciente> paciente = medico.consultarPacientes("");
-                }
+                prontuarios = medico.consultarProntuarios("", "");
                 prontuario_table_model.addListaDeProntuarios(prontuarios);
                 tela_principal.getProntuario_Consulta_view().setVisible(true);
                 tela_principal.getProntuario_Consulta_view().setProntuario_table_model(prontuario_table_model);

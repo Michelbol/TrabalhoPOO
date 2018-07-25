@@ -7,6 +7,7 @@ package clinicamedicapoo.usuario;
 
 import clinicamedicapoo.medico.Medico;
 import clinicamedicapoo.paciente.Paciente;
+import clinicamedicapoo.prontuario.Prontuario;
 import clinicamedicapoo.utilitarios.Sexo;
 import clinicamedicapoo.view.Login;
 import java.awt.event.ActionEvent;
@@ -34,6 +35,9 @@ public class UsuarioController {
         paciente.povoarPaciente();
         Medico medico = new Medico();
         medico.inserirMedico("Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/03/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com","Maringá", "PR");
+        Prontuario prontuario = new Prontuario();
+        prontuario.povoarProntuario();
+        
     }
     
     public void login(){
