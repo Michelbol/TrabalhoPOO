@@ -14,13 +14,14 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
  * @author miche
  */
 @Entity
-public class Medico extends Pessoa {    
+public class Medico extends Pessoa {  
     public static EntityManagerFactory factory = Persistence.createEntityManagerFactory("ClinicaMedicaPOO");
     public static EntityManager manager = factory.createEntityManager();
 
@@ -58,6 +59,11 @@ public class Medico extends Pessoa {
             System.out.println("Erro: " + e.getMessage());
         }
         return medico;
+    }
+    
+
+    public void povoarMedico(){
+        inserirMedico("Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/03/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com","Maringá", "PR");
     }
     
     public List<Prontuario> consultarProntuarios(String data_inicial, String data_final){

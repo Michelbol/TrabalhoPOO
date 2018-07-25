@@ -42,22 +42,23 @@ public class Consulta implements Serializable {
     
     @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dataHora;
+    private Date data;
+    @Column(nullable = false)
+    @Temporal(javax.persistence.TemporalType.TIME)
+    private Date hora;
     
     @OneToOne(fetch = FetchType.EAGER)
-//    @Column(nullable = false)
     private Medico medico;
     
     @OneToOne(fetch = FetchType.EAGER)
-//    @Column(nullable = false)
     private Paciente paciente;
 
-    @Embedded
     @Column(nullable = false)
     private TipoConsulta tipo;
 
-    public Consulta(String dataHora, Medico medico, Paciente paciente, TipoConsulta tipo) {
-        setDataHora(dataHora);
+    public Consulta(String data, Medico medico, Paciente paciente, TipoConsulta tipo, String hora) {
+        setData(data);
+        setHora(hora);
         this.medico = medico;
         this.paciente = paciente;
         this.tipo = tipo;
@@ -74,22 +75,22 @@ public class Consulta implements Serializable {
         this.id = id;
     }
 
-    public String getDataHora() {
+    public String getData() {
         String data = null;        
         String[] datahora = null;
-        SimpleDateFormat formatDateTime = new SimpleDateFormat("dd/MM/yyyy HH:mm");      
-        if(this.dataHora != null ){
-            data = formatDateTime.format(this.dataHora);
+        SimpleDateFormat formatDateTime = new SimpleDateFormat("dd/MM/yyyy");      
+        if(this.data != null ){
+            data = formatDateTime.format(this.data);
             datahora = data.split(" ");
         }
-        return datahora[0] + " " + datahora[1];
+        return datahora[0];
     }
-
-    public void setDataHora(String dataHora) {
-        if(!(dataHora.length() > 0)){
-            this.dataHora = null;
+    
+    public void setData(String data) {
+        if(!(data.length() > 0)){
+            this.data = null;
         }
-        String[] g = dataHora.split("/");
+        String[] g = data.split("/");
         int dia = Integer.parseInt(g[0]);
         int mes = Integer.parseInt(g[1]) - 1;
         int ano = Integer.parseInt(g[2]);
@@ -100,7 +101,29 @@ public class Consulta implements Serializable {
             ano = ano + 2000;
         }
         Date dt = new Date(ano, mes, dia);
-        this.dataHora = dt;
+        this.data = dt;
+    }
+
+    public String getHora() {
+        String data = null;        
+        String[] datahora = null;
+        SimpleDateFormat formatDateTime = new SimpleDateFormat("HH:mm");      
+        if(this.data != null ){
+            data = formatDateTime.format(this.data);
+        }
+        return data;
+    }
+
+    public void setHora(String hora) {
+        if(hora != null || hora.length() > 0){
+            String[] time = hora.split(":");
+            int horario = Integer.parseInt(time[0]);
+            int minuto = Integer.parseInt(time[1]);
+            Date dt = new Date(0, 0, 0, horario, minuto);
+            this.hora = dt;
+        }else{
+            this.hora = null;
+        }
     }
 
     public Medico getMedico() {
@@ -128,13 +151,16 @@ public class Consulta implements Serializable {
     }
     
     public List<Consulta> getConsulta(String hora_inicial, String hora_final){
-        Query query = manager.createQuery("select p FROM Consulta p WHERE p.dataHora BETWEEN '"+ hora_inicial+"' and '"+hora_final+"'");
+        System.out.println("Hora inicia: " + hora_inicial);
+        System.out.println("Hora Final: " + hora_final);
+        
+        Query query = manager.createQuery("select p FROM Consulta p WHERE p.data BETWEEN '2018-07-24' and '2018-07-24' and p.hora BETWEEN '10:00' and '23:00'");
         List<Consulta> lista_consulta = query.getResultList();
         return lista_consulta;
     }
     
-    public static void inserirConsulta(String data_hora, Medico medico, Paciente paciente, TipoConsulta tipo_consulta){
-        Consulta c = new Consulta(data_hora, medico, paciente, tipo_consulta);
+    public static void inserirConsulta(String data, Medico medico, Paciente paciente, TipoConsulta tipo_consulta, String hora){
+        Consulta c = new Consulta(data, medico, paciente, tipo_consulta, hora);
         try{
            manager.getTransaction().begin();
            manager.persist(c);
@@ -145,10 +171,14 @@ public class Consulta implements Serializable {
         }
     }
     
-    public static void povoarConsulta(){
-        Medico medico = new Medico();
-        Paciente paciente = new Paciente();
-        inserirConsulta("24/07/2018 20:00", medico.findMedico(1), paciente.findPaciente(1), TipoConsulta.Normal);
+    public void povoarConsulta(){
+        Medico medico_consulta = new Medico();
+        Medico medico_adicionar = medico_consulta.findMedico(2);
+        Paciente paciente_consulta = new Paciente();
+        Paciente paciente_adicionar = paciente_consulta.findPaciente(3);
+        System.out.println("Medico: " + medico_adicionar);
+        System.out.println("Paciente: " + paciente_adicionar);
+        inserirConsulta("24/07/2018", medico_adicionar, paciente_adicionar, TipoConsulta.Normal, "20:00");
     }
     
 }

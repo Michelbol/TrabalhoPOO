@@ -18,7 +18,7 @@ import javax.swing.table.AbstractTableModel;
 public class ConsultaTableModel extends AbstractTableModel {
     private List<Consulta> consultas;
     private final String[] colunas = new String[]{
-        "Código","Data/Hora", "Médico", "Paciente", "Tipo Consulta"
+        "Código","Data","Hora", "Médico", "Paciente", "Tipo Consulta"
     };
     
     public ConsultaTableModel(List<Consulta> consultas) {
@@ -55,7 +55,8 @@ public class ConsultaTableModel extends AbstractTableModel {
         Consulta consulta = consultas.get(rowIndex);
 
         consulta.setId(aValue.getId());
-        consulta.setDataHora(aValue.getDataHora().toString());
+        consulta.setData(aValue.getData());
+        consulta.setHora(aValue.getHora());
         consulta.setMedico(aValue.getMedico());        
         consulta.setPaciente(aValue.getPaciente());        
         consulta.setTipo(aValue.getTipo());                    
@@ -65,6 +66,7 @@ public class ConsultaTableModel extends AbstractTableModel {
         fireTableCellUpdated(rowIndex, 2);  
         fireTableCellUpdated(rowIndex, 3);  
         fireTableCellUpdated(rowIndex, 4);  
+        fireTableCellUpdated(rowIndex, 5);  
     }
     
     @Override  
@@ -75,12 +77,14 @@ public class ConsultaTableModel extends AbstractTableModel {
          case 0: 
              consulta.setId((Integer) aValue);
          case 1:  
-//             consulta.setDataHora((Date) aValue);
-         case 2:
-             consulta.setMedico((Medico) aValue);
+             consulta.setData((String) aValue);
+         case 2:  
+             consulta.setHora((String) aValue);
          case 3:
-             consulta.setPaciente((Paciente) aValue);
+             consulta.setMedico((Medico) aValue);
          case 4:
+             consulta.setPaciente((Paciente) aValue);
+         case 5:
              consulta.setTipo((TipoConsulta) aValue);
          default:  
              System.err.println("Índice da coluna inválido");
@@ -94,10 +98,11 @@ public class ConsultaTableModel extends AbstractTableModel {
           String valueObject = null;
           switch(columnIndex){
               case 0: valueObject = consultaSelecionado.getId().toString(); break;
-              case 1: valueObject = consultaSelecionado.getDataHora().toString(); break;
-              case 2: valueObject = consultaSelecionado.getMedico().toString(); break;
-              case 3: valueObject = consultaSelecionado.getPaciente().toString(); break;
-              case 4: valueObject = consultaSelecionado.getTipo().toString(); break;
+              case 1: valueObject = consultaSelecionado.getData(); break;
+              case 2: valueObject = consultaSelecionado.getHora(); break;
+              case 3: valueObject = consultaSelecionado.getMedico().toString(); break;
+              case 4: valueObject = consultaSelecionado.getPaciente().toString(); break;
+              case 5: valueObject = consultaSelecionado.getTipo().toString(); break;
               default: System.err.println("Índice inválido para propriedade do bean Usuario.class");
           }
           
