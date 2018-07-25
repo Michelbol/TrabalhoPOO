@@ -5,14 +5,26 @@
  */
 package clinicamedicapoo.prontuario;
 
+import clinicamedicapoo.paciente.PacienteTableModel;
+
 /**
  *
  * @author João Vitor Malvestio
  */
-public class ProntuarioView extends javax.swing.JPanel {
+public class ProntuarioConsultaView extends javax.swing.JPanel {
+    private ProntuarioTableModel prontuario_table_model;
     
-    public ProntuarioView() {
+    public ProntuarioConsultaView(ProntuarioTableModel prontuario_table_model) {
+        this.prontuario_table_model = prontuario_table_model;
         initComponents();
+    }
+
+    public ProntuarioTableModel getProntuario_table_model() {
+        return prontuario_table_model;
+    }
+
+    public void setProntuario_table_model(ProntuarioTableModel prontuario_table_model) {
+        this.prontuario_table_model = prontuario_table_model;
     }
 
     /**

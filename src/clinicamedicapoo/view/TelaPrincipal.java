@@ -7,6 +7,7 @@ package clinicamedicapoo.view;
 
 import clinicamedicapoo.consulta.ConsultaConsultaView;
 import clinicamedicapoo.paciente.PacienteConsultaView;
+import clinicamedicapoo.prontuario.ProntuarioConsultaView;
 import javax.swing.JButton;
 
 /**
@@ -16,12 +17,14 @@ import javax.swing.JButton;
 public class TelaPrincipal extends javax.swing.JFrame {
     PacienteConsultaView paciente_consulta;
     ConsultaConsultaView consulta_view;
+    ProntuarioConsultaView prontuario_view;
 
-    public TelaPrincipal(PacienteConsultaView paciente_consulta, ConsultaConsultaView consulta_view) {
+    public TelaPrincipal(PacienteConsultaView paciente_consulta, ConsultaConsultaView consulta_view,ProntuarioConsultaView prontuario_view) {
         initComponents();
         setLocationRelativeTo(null);
         this.paciente_consulta = paciente_consulta;
         this.consulta_view = consulta_view;
+        this.prontuario_view = prontuario_view;
     }
 
     public JButton view_paciente(){
@@ -35,6 +38,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public ConsultaConsultaView getConsulta_view() {
         return consulta_view;
     }
+    public ProntuarioConsultaView getProntuario_Consulta_view() {
+        return prontuario_view;
+    }
 
     public void setPaciente_consulta(PacienteConsultaView paciente_consulta) {
         this.paciente_consulta = paciente_consulta;
@@ -43,6 +49,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public JButton getjButton_consulta() {
         return jButton_consulta;
     }
+
+    public JButton getjButton_prontuario() {
+        return jButton_prontuario;
+    }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.

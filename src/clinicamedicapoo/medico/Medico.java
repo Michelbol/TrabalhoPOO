@@ -5,9 +5,11 @@
  */
 package clinicamedicapoo.medico;
 
+import clinicamedicapoo.prontuario.Prontuario;
 import clinicamedicapoo.utilitarios.Pessoa;
 import clinicamedicapoo.utilitarios.Sexo;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -56,6 +58,11 @@ public class Medico extends Pessoa {
             System.out.println("Erro: " + e.getMessage());
         }
         return medico;
+    }
+    
+    public List<Prontuario> consultarProntuarios(String data_inicial, String data_final){
+        Prontuario prontuario = new Prontuario();
+        return prontuario.getProntuario(data_inicial,data_final);
     }
     
 }
