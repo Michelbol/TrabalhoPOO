@@ -14,6 +14,7 @@ import clinicamedicapoo.paciente.PacienteConsultaView;
 import clinicamedicapoo.paciente.PacienteController;
 import clinicamedicapoo.paciente.PacienteRegistroView;
 import clinicamedicapoo.paciente.PacienteTableModel;
+import clinicamedicapoo.paciente.SelecionarPacienteView;
 import clinicamedicapoo.prontuario.Prontuario;
 import clinicamedicapoo.prontuario.ProntuarioConsultaView;
 import clinicamedicapoo.prontuario.ProntuarioController;
@@ -45,7 +46,8 @@ public class ClinicaMedicaPOO {
         ConsultaTableModel consulta_table_model = new ConsultaTableModel();
         ProntuarioTableModel prontuario_table_model = new ProntuarioTableModel();
         //views
-        ConsultaRegistroView consulta_registro_view = new ConsultaRegistroView();
+        SelecionarPacienteView selecionar_paciente_view = new SelecionarPacienteView(paciente_table_model);
+        ConsultaRegistroView consulta_registro_view = new ConsultaRegistroView(selecionar_paciente_view);
         ConsultaConsultaView consulta_view = new ConsultaConsultaView(consulta_table_model, consulta_registro_view);
         PacienteRegistroView paciente_register_view = new PacienteRegistroView();
         PacienteConsultaView paciente_consulta_view = new PacienteConsultaView(paciente_register_view, paciente_table_model);
@@ -85,6 +87,9 @@ public class ClinicaMedicaPOO {
         //tela registro consultas
         consulta_controller.cancelarRegistroConsulta();
         consulta_controller.salvarPaciente();
+        consulta_controller.abrirSelecaoPaciente();
+        consulta_controller.cancelarSelecaoPaciente();
+        
       
     }
     

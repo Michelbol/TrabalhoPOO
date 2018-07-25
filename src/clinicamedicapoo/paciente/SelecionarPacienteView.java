@@ -5,17 +5,51 @@
  */
 package clinicamedicapoo.paciente;
 
+import javax.swing.JButton;
+import javax.swing.JTable;
+
 /**
  *
  * @author miche
  */
 public class SelecionarPacienteView extends javax.swing.JFrame {
+    PacienteTableModel paciente_table_model;
 
-    /**
-     * Creates new form SelecionarPacienteView
-     */
-    public SelecionarPacienteView() {
+    public SelecionarPacienteView(PacienteTableModel paciente_table_model) {
+        this.paciente_table_model = paciente_table_model;
         initComponents();
+    }
+
+    public PacienteTableModel getPaciente_table_model() {
+        return paciente_table_model;
+    }
+
+    public void setPaciente_table_model(PacienteTableModel paciente_table_model) {
+        this.paciente_table_model = paciente_table_model;
+    }
+
+    public JButton getjButton_cancelar() {
+        return jButton_cancelar;
+    }
+
+    public void setjButton_cancelar(JButton jButton_cancelar) {
+        this.jButton_cancelar = jButton_cancelar;
+    }
+
+    public JButton getjButton_salvar() {
+        return jButton_salvar;
+    }
+
+    public void setjButton_salvar(JButton jButton_salvar) {
+        this.jButton_salvar = jButton_salvar;
+    }
+
+    public JTable getjTable_selecionar_paciente() {
+        return jTable_selecionar_paciente;
+    }
+
+    public void setjTable_selecionar_paciente(JTable jTable_selecionar_paciente) {
+        this.jTable_selecionar_paciente = jTable_selecionar_paciente;
     }
 
     /**
@@ -28,32 +62,17 @@ public class SelecionarPacienteView extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable_selecionar_paciente = new javax.swing.JTable();
         jButton_salvar = new javax.swing.JButton();
         jButton_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jTable_selecionar_paciente.setModel(paciente_table_model);
+        jScrollPane1.setViewportView(jTable_selecionar_paciente);
 
-        jButton_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/tick.png"))); // NOI18N
+        jButton_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/mouse_add.png"))); // NOI18N
         jButton_salvar.setText("Selecionar");
-        jButton_salvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_salvarActionPerformed(evt);
-            }
-        });
 
         jButton_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/cancel.png"))); // NOI18N
         jButton_cancelar.setText("Cancelar");
@@ -82,49 +101,11 @@ public class SelecionarPacienteView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_salvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_salvarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SelecionarPacienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SelecionarPacienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SelecionarPacienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SelecionarPacienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SelecionarPacienteView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_cancelar;
     private javax.swing.JButton jButton_salvar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable_selecionar_paciente;
     // End of variables declaration//GEN-END:variables
 }

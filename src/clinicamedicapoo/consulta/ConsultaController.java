@@ -6,6 +6,7 @@
 package clinicamedicapoo.consulta;
 
 import clinicamedicapoo.medico.Medico;
+import clinicamedicapoo.paciente.Paciente;
 import clinicamedicapoo.paciente.PacienteTableModel;
 import clinicamedicapoo.secretaria.Secretaria;
 import clinicamedicapoo.usuario.UsuarioController;
@@ -26,6 +27,7 @@ public class ConsultaController {
     private Medico medico;
     private ConsultaTableModel consulta_table_model;
     private TelaPrincipal tela_principal;
+    private PacienteTableModel paciente_table_model;
 
     public ConsultaController(UsuarioController usuarioController, Secretaria secretaria, Medico medico, ConsultaTableModel consulta_table_model, TelaPrincipal tela_principal) {
         this.usuarioController = usuarioController;
@@ -218,5 +220,52 @@ public class ConsultaController {
             }
         };
         tela_principal.getConsulta_view().getConsulta_registro_view().getjButton_cancelar().addActionListener(actionlistener);
+    }
+    
+    public void selecionarPaciente(){
+        actionlistener = new ActionListener() {            
+            public void actionPerformed(ActionEvent ae) {
+                    int linhaselecionada = tela_principal.getConsulta_view().getjTable_consulta().getSelectedRow();
+                    if(linhaselecionada == -1){
+                        JOptionPane.showMessageDialog(null, "Selecione um registro");
+                        return;
+                    }
+                    int paciente_id = Integer.parseInt(tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_paciente_view().getjTable_selecionar_paciente().getValueAt(linhaselecionada, 0).toString());
+                    if(usuarioController.getUsuarioLogado().getMedico() == null){
+                        tela_principal.getConsulta_view().getConsulta_registro_view().setPaciente_selecionado(secretaria.buscarPaciente(paciente_id));
+                    }else{
+//                        medico.deletarConsulta(consulta_id)
+                    }
+            }
+        };
+            tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_paciente_view().getjButton_salvar().addActionListener(actionlistener);
+    }
+    
+    public void cancelarSelecaoPaciente(){
+        actionlistener = new ActionListener() {            
+            public void actionPerformed(ActionEvent ae) {
+                tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_paciente_view().setVisible(false);
+            }
+        };
+        tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_paciente_view().getjButton_cancelar().addActionListener(actionlistener);
+    }
+    
+    public void abrirSelecaoPaciente(){
+        actionlistener = new ActionListener() {            
+            public void actionPerformed(ActionEvent ae) {
+                List<Paciente> paciente = null;
+                paciente_table_model = tela_principal.getPaciente_consulta().getPaciente_table_model();
+                paciente_table_model.limpar();
+                if(usuarioController.getUsuarioLogado().getMedico() == null){
+                    paciente = secretaria.consultarPacientes("");
+                }else{
+//                    List<Paciente> paciente = medico.consultarPacientes("");
+                }
+                paciente_table_model.addListaDePacientes(paciente);                
+                tela_principal.getPaciente_consulta().setPaciente_table_model(paciente_table_model);
+                tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_paciente_view().setVisible(true);
+            }
+        };
+        tela_principal.getConsulta_view().getConsulta_registro_view().getjButton_selecionar_paciente().addActionListener(actionlistener);
     }
 }

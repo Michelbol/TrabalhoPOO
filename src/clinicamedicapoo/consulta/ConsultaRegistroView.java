@@ -7,6 +7,7 @@ package clinicamedicapoo.consulta;
 
 import clinicamedicapoo.medico.Medico;
 import clinicamedicapoo.paciente.Paciente;
+import clinicamedicapoo.paciente.SelecionarPacienteView;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -19,11 +20,19 @@ import javax.swing.JTextField;
 public class ConsultaRegistroView extends javax.swing.JFrame {
     private Medico medico_selecionado;
     private Paciente paciente_selecionado;
-    /**
-     * Creates new form ConsultaRegistroView
-     */
-    public ConsultaRegistroView() {
+    private SelecionarPacienteView selecionar_paciente_view;
+
+    public ConsultaRegistroView(SelecionarPacienteView selecionar_paciente_view) {
+        this.selecionar_paciente_view = selecionar_paciente_view;
         initComponents();
+    }
+
+    public SelecionarPacienteView getSelecionar_paciente_view() {
+        return selecionar_paciente_view;
+    }
+
+    public void setSelecionar_paciente_view(SelecionarPacienteView selecionar_paciente_view) {
+        this.selecionar_paciente_view = selecionar_paciente_view;
     }
 
     public Medico getMedico_selecionado() {

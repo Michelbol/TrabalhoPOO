@@ -16,6 +16,7 @@ import javax.swing.JTable;
 public class ConsultaConsultaView extends javax.swing.JFrame {
     private ConsultaTableModel consulta_table_model;
     private ConsultaRegistroView consulta_registro_view;
+    
 
     public ConsultaConsultaView(ConsultaTableModel consulta_table_model, ConsultaRegistroView consulta_registro_view) {
         this.consulta_table_model = consulta_table_model;

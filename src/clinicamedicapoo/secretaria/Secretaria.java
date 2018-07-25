@@ -69,6 +69,10 @@ public class Secretaria extends Pessoa {
         Consulta consulta = new Consulta();
         return consulta.findConsulta(id);
     }
+    public Medico buscarMedico(Integer id){
+        Medico medico = new Medico();
+        return medico.findMedico(id);
+    }
     
     public Paciente salvarPaciente(TipoConvenio tipoconvenio,
             boolean isFumante,
