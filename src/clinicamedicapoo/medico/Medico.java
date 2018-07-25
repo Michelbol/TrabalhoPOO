@@ -102,4 +102,8 @@ public class Medico extends Pessoa {
         prontuario.atualizarProntuario(Integer.parseInt(id),paciente.findPaciente(Integer.parseInt(idPaciente)), medico.findMedico(Integer.parseInt(idMedico)), sintomas, diagnostico, prescricao, data);
     }
     
+    public boolean deletarProntuario(Integer id){
+        Prontuario prontuario = new Prontuario();
+        return prontuario.deletarProntuario(id);
+    }
 }

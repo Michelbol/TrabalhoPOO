@@ -148,6 +148,32 @@ public class ProntuarioController {
         tela_principal.getProntuario_Consulta_view().getProntuario_registro_view().getBtSalvar().addActionListener(actionlistener);
     }
     
+    public void excluirPaciente(){
+        actionlistener = new ActionListener() {            
+            public void actionPerformed(ActionEvent ae) {
+                List<Prontuario> prontuarios = null;
+                
+                int resposta = JOptionPane.showConfirmDialog(null, "Deseja Realmente excluir este registro?");
+                
+                if(resposta == 0){
+                    int linhaselecionada = tela_principal.getProntuario_Consulta_view().getjTable1().getSelectedRow();
+                    if(linhaselecionada==-1){
+                        JOptionPane.showConfirmDialog(null, "Selecione um registro na tabela de prontuario.");
+                        return;
+                    }
+                    int prontuario_id = Integer.parseInt(tela_principal.getProntuario_Consulta_view().getjTable1().getValueAt(linhaselecionada, 0).toString());
+                    medico.deletarProntuario(prontuario_id);
+                }
+                prontuario_table_model = tela_principal.getProntuario_Consulta_view().getProntuario_table_model();
+                prontuario_table_model.limpar();
+                prontuarios = medico.consultarProntuarios("", "");                
+                prontuario_table_model.addListaDeProntuarios(prontuarios);
+                tela_principal.getProntuario_Consulta_view().setVisible(true);
+                tela_principal.getProntuario_Consulta_view().setProntuario_table_model(prontuario_table_model);
+            }
+        };
+            tela_principal.getProntuario_Consulta_view().getBtExcluirProntuario().addActionListener(actionlistener);
+    }
     
     public void limparTelaRegistroProntuario(){
         ProntuarioRegistroView view = tela_principal.getProntuario_Consulta_view().getProntuario_registro_view();

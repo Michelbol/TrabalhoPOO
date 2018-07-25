@@ -210,4 +210,17 @@ public class Prontuario implements Serializable {
         }
         return prontuario;
     }
+    
+    public boolean deletarProntuario(int id){
+        try{
+            manager.getTransaction().begin();
+            Prontuario p = manager.find(Prontuario.class, id);
+            manager.remove(p);
+            manager.getTransaction().commit();
+            return true;
+        }catch(Exception e){
+            System.out.println("Erro: " + e.getMessage());
+            return false;
+        }
+    }
 }
