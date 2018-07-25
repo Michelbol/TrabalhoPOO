@@ -53,4 +53,13 @@ public class ProntuarioController {
         };
         tela_principal.getjButton_prontuario().addActionListener(actionlistener);
     }
+    
+    public void fecharConsulta(){
+        actionlistener = new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                tela_principal.getProntuario_Consulta_view().setVisible(false);
+            }
+        };
+        tela_principal.getProntuario_Consulta_view().getBtFechar().addActionListener(actionlistener);
+    }
 }

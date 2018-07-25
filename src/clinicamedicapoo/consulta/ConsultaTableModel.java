@@ -24,10 +24,11 @@ public class ConsultaTableModel extends AbstractTableModel {
     public ConsultaTableModel(List<Consulta> consultas) {
         this.consultas = null;
         this.consultas = consultas;
-      }
+    }
+    
     public ConsultaTableModel(){
        this.consultas = new ArrayList<>();
-      }
+    }
     
     
     @Override

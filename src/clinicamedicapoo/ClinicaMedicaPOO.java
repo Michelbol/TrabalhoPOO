@@ -71,6 +71,8 @@ public class ClinicaMedicaPOO {
         //tela registro paciente
         paciente_controler.salvarPaciente();
         paciente_controler.cancelarRegistroPaciente();
+        //tela consulta prontuario
+        prontuario_controller.fecharConsulta();
         
       
     }

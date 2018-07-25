@@ -25,10 +25,11 @@ public class ProntuarioTableModel extends AbstractTableModel {
     public ProntuarioTableModel(List<Prontuario> pacientes) {
         this.prontuarios = null;
         this.prontuarios = pacientes;
-      }
+    }
+    
     public ProntuarioTableModel(){
        this.prontuarios = new ArrayList<>();
-      }
+    }
     
     
     @Override
