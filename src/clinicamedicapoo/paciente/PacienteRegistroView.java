@@ -23,6 +23,7 @@ public class PacienteRegistroView extends javax.swing.JFrame {
      */
     public PacienteRegistroView() {
         initComponents();
+        setLocationRelativeTo(null);
     }    
 
     public JTextField getJtext_Codigo() {
