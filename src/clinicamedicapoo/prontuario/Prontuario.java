@@ -179,4 +179,15 @@ public class Prontuario implements Serializable {
         List<Prontuario> lista_prontuario = query.getResultList();
         return lista_prontuario;
     }
+    
+    public Prontuario findProntuario(int id){
+        Prontuario prontuario = null;
+        try{
+            prontuario = manager.find(Prontuario.class, id);
+        }
+        catch(Exception e){
+            System.out.println("Erro: " + e.getMessage());
+        }
+        return prontuario;
+    }
 }
