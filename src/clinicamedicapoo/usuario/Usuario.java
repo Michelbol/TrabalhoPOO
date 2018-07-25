@@ -101,7 +101,7 @@ public class Usuario implements Serializable {
     public Usuario logar(String senha, String login){
         Query query = manager.createQuery("select u FROM Usuario u WHERE u.login = '"+login+"' and u.senha = '"+senha+"'");        
         List<Usuario> lista_usuario = query.getResultList();
-        if(lista_usuario.size() == 1){     
+        if(lista_usuario.size() == 1){
             return lista_usuario.get(0);
         }else{
             return null;

@@ -5,16 +5,12 @@
  */
 package clinicamedicapoo.consulta;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author miche
  */
 public enum TipoConsulta {
-    Normal(60), Retorno(30);
-    
-    int tempo;
-
-    private TipoConsulta(int tempo) {
-        this.tempo = tempo;
-    }
+    Normal, Retorno;
 }

@@ -5,6 +5,7 @@
  */
 package clinicamedicapoo.usuario;
 
+import clinicamedicapoo.consulta.Consulta;
 import clinicamedicapoo.medico.Medico;
 import clinicamedicapoo.paciente.Paciente;
 import clinicamedicapoo.utilitarios.Sexo;
@@ -33,7 +34,9 @@ public class UsuarioController {
         Paciente paciente = new Paciente();
         paciente.povoarPaciente();
         Medico medico = new Medico();
-        medico.inserirMedico("Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/03/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com","Maringá", "PR");
+        medico.povoarMedico();
+        Consulta consulta = new Consulta();
+        consulta.povoarConsulta();
     }
     
     public void login(){
