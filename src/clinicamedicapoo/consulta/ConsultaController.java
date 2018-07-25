@@ -49,7 +49,8 @@ public class ConsultaController {
                 if(usuarioController.getUsuarioLogado().getMedico() == null){
                     consulta = secretaria.consultarConsultas("", "", "", "");
                 }else{
-//                    List<Paciente> paciente = medico.consultarPacientes("");
+                    JOptionPane.showMessageDialog(null, "O usúario deve ser secretária para acessar as consultas!");
+                    return;
                 }
                 consulta_table_model.addListaDeConsultas(consulta);
                 tela_principal.getConsulta_view().setVisible(true);

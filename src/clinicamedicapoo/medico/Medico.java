@@ -6,6 +6,7 @@
 package clinicamedicapoo.medico;
 
 import clinicamedicapoo.paciente.Paciente;
+import clinicamedicapoo.paciente.TipoConvenio;
 import clinicamedicapoo.prontuario.Prontuario;
 import clinicamedicapoo.utilitarios.Pessoa;
 import clinicamedicapoo.utilitarios.Sexo;
@@ -105,5 +106,77 @@ public class Medico extends Pessoa {
     public boolean deletarProntuario(Integer id){
         Prontuario prontuario = new Prontuario();
         return prontuario.deletarProntuario(id);
+    }
+    
+    public List<Paciente> consultarPacientes(String filtro_nome){
+        Paciente paciente = new Paciente();
+        return paciente.getPaciente(filtro_nome);
+    }
+    
+    public Paciente buscarPaciente(Integer id){
+        Paciente paciente = new Paciente();
+        return paciente.findPaciente(id);
+    }
+    
+    public Paciente salvarPaciente(TipoConvenio tipoconvenio,
+            boolean isFumante,
+            boolean isAlcolatra,
+            boolean isColesterol,
+            boolean isDiabetico,
+            boolean doencasCardiacas,
+            String cirurgias,
+            String alergias,
+            boolean ativo,
+            String nome,
+            String sobrenome,
+            String cpf,
+            String rg,
+            Sexo sexo,
+            String dataNascimento,
+            String rua,
+            String numero,
+            String bairro,
+            String cep,
+            String telefone_residencial,
+            String telefone_celular,
+            String email,
+            String cidade,
+            String estado){
+       Paciente paciente = new Paciente();
+       return paciente.inserirPaciente(tipoconvenio, isFumante, isAlcolatra, isColesterol, isDiabetico, doencasCardiacas, cirurgias, alergias, ativo, nome, sobrenome, cpf, rg, sexo, dataNascimento, rua, numero, bairro, cep, telefone_residencial, telefone_celular, email, cidade, estado);
+    }
+    
+    public Paciente atualizarPaciente(Integer id,
+            TipoConvenio tipoconvenio,
+            boolean isFumante,
+            boolean isAlcolatra,
+            boolean isColesterol,
+            boolean isDiabetico,
+            boolean doencasCardiacas,
+            String cirurgias,
+            String alergias,
+            boolean ativo,
+            String nome,
+            String sobrenome,
+            String cpf,
+            String rg,
+            Sexo sexo,
+            String dataNascimento,
+            String rua,
+            String numero,
+            String bairro,
+            String cep,
+            String telefone_residencial,
+            String telefone_celular,
+            String email,
+            String cidade,
+            String estado){
+       Paciente paciente = new Paciente();
+       return paciente.atualizarPaciente(id, tipoconvenio, isFumante, isAlcolatra, isColesterol, isDiabetico, doencasCardiacas, cirurgias, alergias, ativo, nome, sobrenome, cpf, rg, sexo, dataNascimento, rua, numero, bairro, cep, telefone_residencial, telefone_celular, email, cidade, estado);
+    }
+    
+    public boolean deletarPaciente(Integer id){
+        Paciente paciente = new Paciente();
+        return paciente.DeletarPaciente(id);
     }
 }

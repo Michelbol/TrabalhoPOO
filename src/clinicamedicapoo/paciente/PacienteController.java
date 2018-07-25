@@ -43,7 +43,7 @@ public class PacienteController {
                 if(usuarioController.getUsuarioLogado().getMedico() == null){
                     paciente = secretaria.consultarPacientes("");
                 }else{
-//                    List<Paciente> paciente = medico.consultarPacientes("");
+                    paciente = medico.consultarPacientes("");
                 }
                 paciente_table_model.addListaDePacientes(paciente);
                 tela_principal.getPaciente_consulta().setVisible(true);
@@ -78,16 +78,16 @@ public class PacienteController {
                     return;
                 }
                 int pacienteId = Integer.parseInt(tela_principal.getPaciente_consulta().pacienteTable().getValueAt(linhaselecionada, 0).toString());
-                if(usuarioController.getUsuarioLogado().getMedico() == null){
+                if(usuarioController.getUsuarioLogado().getMedico().equals(null)){
                     p = secretaria.buscarPaciente(pacienteId);
                 }else{
-//                    p = medico.buscarPaciente(pacienteId);
+                    p = medico.buscarPaciente(pacienteId);
                 }
                 if(p != null){
                     tela_principal.getPaciente_consulta().getPaciente_registro().setVisible(true);
                     preencherTelaRegistrarpaciente(p);
                 }
-                if(usuarioController.getUsuarioLogado().getMedico() == null){
+                if(usuarioController.getUsuarioLogado().getMedico().equals(null)){
                     desativarDadosAdicionaisRegistroPaciente();
                 }else{
                     ativarDadosAdicionaisRegistroPaciente();
@@ -158,31 +158,60 @@ public class PacienteController {
                         pc.getjCombo_estado().getSelectedItem().toString());
                     }
                 }else{
-    //                medico.salvarPaciente(
-//                TipoConvenio.valueOf(pc.getjCombo_tipo_convenio().getSelectedItem().toString()),
-//                pc.getjCheckBox_isFumante().isSelected(),
-//                pc.getjCheckBox_isAlcolatra().isSelected(),
-//                pc.getjCheckBox_isColesterol().isSelected(),
-//                pc.getjCheckBox_isDiabetico().isSelected(),
-//                pc.getjCheckBox_isDoencasCardiacas().isSelected(),
-//                pc.getjText_cirurgias().getText(),
-//                pc.getjText_alergias().getText(),
-//                pc.getjCombo_ativo().getSelectedItem() == "Sim",
-//                pc.getjText_nome().getText(),
-//                pc.getjText_sobrenome().getText(),
-//                pc.getjText_cpf().getText(),
-//                pc.getjText_rg().getText(),
-//                Sexo.valueOf(pc.getjCombo_sexo().getSelectedItem().toString()),
-//                pc.getjText_dt_nascimento().getText(),
-//                pc.getJtext_rua().getText(),
-//                pc.getjText_nro().getText(),
-//                pc.getjText_bairro().getText(),
-//                pc.getjText_cep().getText(),
-//                pc.getjText_telefone_Residencial().getText(),
-//                pc.getjText_telefone_celular().getText(),
-//                pc.getjText_email().getText(),
-//                pc.getjText_cidade().getText(),
-//                pc.getjCombo_estado().getSelectedItem().toString());
+                    if(pc.getJtext_Codigo().getText() == null && pc.getJtext_Codigo().getText().equals("")){
+                        medico.salvarPaciente(
+                        TipoConvenio.valueOf(pc.getjCombo_tipo_convenio().getSelectedItem().toString()),
+                        pc.getjCheckBox_isFumante().isSelected(),
+                        pc.getjCheckBox_isAlcolatra().isSelected(),
+                        pc.getjCheckBox_isColesterol().isSelected(),
+                        pc.getjCheckBox_isDiabetico().isSelected(),
+                        pc.getjCheckBox_isDoencasCardiacas().isSelected(),
+                        pc.getjText_cirurgias().getText(),
+                        pc.getjText_alergias().getText(),
+                        pc.getjCombo_ativo().getSelectedItem() == "Sim",
+                        pc.getjText_nome().getText(),
+                        pc.getjText_sobrenome().getText(),
+                        pc.getjText_cpf().getText(),
+                        pc.getjText_rg().getText(),
+                        Sexo.valueOf(pc.getjCombo_sexo().getSelectedItem().toString()),
+                        pc.getjText_dt_nascimento().getText(),
+                        pc.getJtext_rua().getText(),
+                        pc.getjText_nro().getText(),
+                        pc.getjText_bairro().getText(),
+                        pc.getjText_cep().getText(),
+                        pc.getjText_telefone_Residencial().getText(),
+                        pc.getjText_telefone_celular().getText(),
+                        pc.getjText_email().getText(),
+                        pc.getjText_cidade().getText(),
+                        pc.getjCombo_estado().getSelectedItem().toString());
+                    }else{
+                        medico.atualizarPaciente(
+                        Integer.parseInt(pc.getJtext_Codigo().getText()),
+                        TipoConvenio.valueOf(pc.getjCombo_tipo_convenio().getSelectedItem().toString()),
+                        pc.getjCheckBox_isFumante().isSelected(),
+                        pc.getjCheckBox_isAlcolatra().isSelected(),
+                        pc.getjCheckBox_isColesterol().isSelected(),
+                        pc.getjCheckBox_isDiabetico().isSelected(),
+                        pc.getjCheckBox_isDoencasCardiacas().isSelected(),
+                        pc.getjText_cirurgias().getText(),
+                        pc.getjText_alergias().getText(),
+                        pc.getjCombo_ativo().getSelectedItem() == "Sim",
+                        pc.getjText_nome().getText(),
+                        pc.getjText_sobrenome().getText(),
+                        pc.getjText_cpf().getText(),
+                        pc.getjText_rg().getText(),
+                        Sexo.valueOf(pc.getjCombo_sexo().getSelectedItem().toString()),
+                        pc.getjText_dt_nascimento().getText(),
+                        pc.getJtext_rua().getText(),
+                        pc.getjText_nro().getText(),
+                        pc.getjText_bairro().getText(),
+                        pc.getjText_cep().getText(),
+                        pc.getjText_telefone_Residencial().getText(),
+                        pc.getjText_telefone_celular().getText(),
+                        pc.getjText_email().getText(),
+                        pc.getjText_cidade().getText(),
+                        pc.getjCombo_estado().getSelectedItem().toString());
+                    }
                 }
                 limparTelaRegistroPaciente();
                 pc.setVisible(false);
@@ -190,7 +219,7 @@ public class PacienteController {
                 if(usuarioController.getUsuarioLogado().getMedico() == null){
                     paciente = secretaria.consultarPacientes(filtro);
                 }else{
-//                    paciente = medico.consultarPacientes(filtro);
+                    paciente = medico.consultarPacientes(filtro);
                 }
                 paciente_table_model.limpar();
                 paciente_table_model.addListaDePacientes(paciente);
@@ -302,7 +331,7 @@ public class PacienteController {
                 if(usuarioController.getUsuarioLogado().getMedico() == null){
                     paciente = secretaria.consultarPacientes(filtro);
                 }else{
-//                    List<Paciente> paciente = medico.consultarPacientes(filtro);
+                    paciente = medico.consultarPacientes(filtro);
                 }
                 paciente_table_model.addListaDePacientes(paciente);
                 tela_principal.getPaciente_consulta().setPaciente_table_model(paciente_table_model);
@@ -322,14 +351,14 @@ public class PacienteController {
                     if(usuarioController.getUsuarioLogado().getMedico() == null){
                         secretaria.deletarPaciente(paciente_id);
                     }else{
-//                        medico.deletarPaciente(paciente_id)
+                        medico.deletarPaciente(paciente_id);
                     }
                 }
                 String filtro = tela_principal.getPaciente_consulta().getJtext_filtro_nome().getText();
                 if(usuarioController.getUsuarioLogado().getMedico() == null){
                     paciente = secretaria.consultarPacientes(filtro);
                 }else{
-//                    paciente = medico.consultarPacientes(filtro);
+                    paciente = medico.consultarPacientes(filtro);
                 }
                 paciente_table_model.limpar();
                 paciente_table_model.addListaDePacientes(paciente);

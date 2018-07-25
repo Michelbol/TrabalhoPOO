@@ -118,8 +118,8 @@ public class ProntuarioController {
                 //Como o codigo se encontra vazio, a ação é de inclusão
                 if (view.getInputId().getText().equals("")){
                     medico.incluirProntuario(view.getInputData().getText(),
-                                             "",
-                                             "",
+                                             view.getInputIdPaciente().getText(),
+                                             view.getInputIdMedico().getText(),
                                              view.getTextAreaSintomas().getText(),
                                              view.getTextAreaDiagnostico().getText(),
                                              view.getTextAreaPrescricao().getText());
@@ -127,8 +127,8 @@ public class ProntuarioController {
                 else {
                     medico.atualizarProntuario(view.getInputId().getText(),
                                                view.getInputData().getText(),
-                                               "",
-                                               "",
+                                               view.getInputIdPaciente().getText(),
+                                               view.getInputIdMedico().getText(),
                                                view.getTextAreaSintomas().getText(),
                                                view.getTextAreaDiagnostico().getText(),
                                                view.getTextAreaPrescricao().getText());
@@ -179,6 +179,10 @@ public class ProntuarioController {
         ProntuarioRegistroView view = tela_principal.getProntuario_Consulta_view().getProntuario_registro_view();
         view.getInputId().setText("");
         view.getInputData().setText("");
+        view.getInputIdMedico().setText("0");
+        view.getInputNomeMedico().setText("");
+        view.getInputIdPaciente().setText("0");
+        view.getInputNomePaciente().setText("");
         view.getTextAreaSintomas().setText("");
         view.getTextAreaDiagnostico().setText("");
         view.getTextAreaPrescricao().setText("");        
@@ -188,6 +192,10 @@ public class ProntuarioController {
         ProntuarioRegistroView view = tela_principal.getProntuario_Consulta_view().getProntuario_registro_view();
         view.getInputId().setText(p.getId().toString());
         view.getInputData().setText(p.getDataProntuario());
+        view.getInputIdMedico().setText(p.getMedico().getId_pessoa().toString());
+        view.getInputNomeMedico().setText(p.getMedico().getNome());
+        view.getInputIdPaciente().setText(p.getPaciente().getId_pessoa().toString());
+        view.getInputNomePaciente().setText(p.getPaciente().getNome());
         view.getTextAreaSintomas().setText(p.getSintomas());
         view.getTextAreaDiagnostico().setText(p.getDiagnostico());
         view.getTextAreaPrescricao().setText(p.getPrescricao());
