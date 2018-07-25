@@ -5,6 +5,7 @@
  */
 package clinicamedicapoo.medico;
 
+import clinicamedicapoo.paciente.Paciente;
 import clinicamedicapoo.prontuario.Prontuario;
 import clinicamedicapoo.utilitarios.Pessoa;
 import clinicamedicapoo.utilitarios.Sexo;
@@ -50,7 +51,7 @@ public class Medico extends Pessoa {
         }
     }
     
-    public static Medico findMedico(int id){
+    public Medico findMedico(int id){
         Medico medico = null;
         try{
             medico = manager.find(Medico.class, id);
@@ -78,6 +79,22 @@ public class Medico extends Pessoa {
     @Override
     public String toString() {
         return this.nome;
+    }
+    
+    public void incluirProntuario(String data, String idPaciente, String idMedico, String sintomas, String diagnostico, String prescricao){
+        Prontuario prontuario = new Prontuario();
+        Medico medico         = new Medico();
+        Paciente paciente     = new Paciente();                
+        
+        prontuario.inserirProntuario(paciente.findPaciente(Integer.parseInt(idPaciente)), medico.findMedico(Integer.parseInt(idMedico)), sintomas, diagnostico, prescricao, data);
+    }
+    
+    public void atualizarProntuario(String id, String data, String idPaciente, String idMedico, String sintomas, String diagnostico, String prescricao){
+        Prontuario prontuario = new Prontuario();
+        Medico medico         = new Medico();
+        Paciente paciente     = new Paciente();                
+        
+        prontuario.atualizarProntuario(Integer.parseInt(id),paciente.findPaciente(Integer.parseInt(idPaciente)), medico.findMedico(Integer.parseInt(idMedico)), sintomas, diagnostico, prescricao, data);
     }
     
 }
