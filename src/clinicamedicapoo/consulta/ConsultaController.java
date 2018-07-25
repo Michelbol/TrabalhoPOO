@@ -6,6 +6,7 @@
 package clinicamedicapoo.consulta;
 
 import clinicamedicapoo.medico.Medico;
+import clinicamedicapoo.medico.MedicoTableModel;
 import clinicamedicapoo.paciente.Paciente;
 import clinicamedicapoo.paciente.PacienteTableModel;
 import clinicamedicapoo.secretaria.Secretaria;
@@ -28,13 +29,15 @@ public class ConsultaController {
     private ConsultaTableModel consulta_table_model;
     private TelaPrincipal tela_principal;
     private PacienteTableModel paciente_table_model;
+    private MedicoTableModel medico_table_model;
 
-    public ConsultaController(UsuarioController usuarioController, Secretaria secretaria, Medico medico, ConsultaTableModel consulta_table_model, TelaPrincipal tela_principal) {
+    public ConsultaController(UsuarioController usuarioController, Secretaria secretaria, Medico medico, ConsultaTableModel consulta_table_model, TelaPrincipal tela_principal, MedicoTableModel medico_table_model) {
         this.usuarioController = usuarioController;
         this.secretaria = secretaria;
         this.medico = medico;
         this.consulta_table_model = consulta_table_model;
         this.tela_principal = tela_principal;
+        this.medico_table_model = medico_table_model;
     }
     
     public void telaConsultas(){
@@ -225,14 +228,17 @@ public class ConsultaController {
     public void selecionarPaciente(){
         actionlistener = new ActionListener() {            
             public void actionPerformed(ActionEvent ae) {
-                    int linhaselecionada = tela_principal.getConsulta_view().getjTable_consulta().getSelectedRow();
+                    int linhaselecionada = tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_paciente_view().getjTable_selecionar_paciente().getSelectedRow();
                     if(linhaselecionada == -1){
                         JOptionPane.showMessageDialog(null, "Selecione um registro");
                         return;
                     }
                     int paciente_id = Integer.parseInt(tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_paciente_view().getjTable_selecionar_paciente().getValueAt(linhaselecionada, 0).toString());
                     if(usuarioController.getUsuarioLogado().getMedico() == null){
-                        tela_principal.getConsulta_view().getConsulta_registro_view().setPaciente_selecionado(secretaria.buscarPaciente(paciente_id));
+                        Paciente pacienteselecionado = secretaria.buscarPaciente(paciente_id);
+                        tela_principal.getConsulta_view().getConsulta_registro_view().setPaciente_selecionado(pacienteselecionado);
+                        tela_principal.getConsulta_view().getConsulta_registro_view().getjText_Paciente().setText(pacienteselecionado.toString());
+                        tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_paciente_view().setVisible(false);
                     }else{
 //                        medico.deletarConsulta(consulta_id)
                     }
@@ -254,7 +260,7 @@ public class ConsultaController {
         actionlistener = new ActionListener() {            
             public void actionPerformed(ActionEvent ae) {
                 List<Paciente> paciente = null;
-                paciente_table_model = tela_principal.getPaciente_consulta().getPaciente_table_model();
+                paciente_table_model = tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_paciente_view().getPaciente_table_model();
                 paciente_table_model.limpar();
                 if(usuarioController.getUsuarioLogado().getMedico() == null){
                     paciente = secretaria.consultarPacientes("");
@@ -267,5 +273,55 @@ public class ConsultaController {
             }
         };
         tela_principal.getConsulta_view().getConsulta_registro_view().getjButton_selecionar_paciente().addActionListener(actionlistener);
+    }
+    
+    public void abrirSelecaoMedico(){
+        actionlistener = new ActionListener() {            
+            public void actionPerformed(ActionEvent ae) {
+                List<Medico> medico = null;
+                medico_table_model = tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_medico_view().getMedico_table_model();
+                medico_table_model.limpar();
+                if(usuarioController.getUsuarioLogado().getMedico() == null){
+                    medico = secretaria.consultarMedicos("");
+                }else{
+//                    List<Paciente> paciente = medico.consultarPacientes("");
+                }
+                medico_table_model.addListaDeMedicos(medico);
+                tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_medico_view().setMedico_table_model(medico_table_model);
+                tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_paciente_view().setVisible(true);
+            }
+        };
+        tela_principal.getConsulta_view().getConsulta_registro_view().getjButton_selecionar_medico().addActionListener(actionlistener);
+    }
+    
+    public void cancelarSelecaoMedico(){
+        actionlistener = new ActionListener() {            
+            public void actionPerformed(ActionEvent ae) {
+                tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_medico_view().setVisible(false);
+            }
+        };
+        tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_medico_view().getjButton_cancelar().addActionListener(actionlistener);
+    }
+    
+    public void selecionarMedico(){
+        actionlistener = new ActionListener() {            
+            public void actionPerformed(ActionEvent ae) {
+                    int linhaselecionada = tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_medico_view().getjTable_selecionar_medico().getSelectedRow();
+                    if(linhaselecionada == -1){
+                        JOptionPane.showMessageDialog(null, "Selecione um registro");
+                        return;
+                    }
+                    int medico_id = Integer.parseInt(tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_medico_view().getjTable_selecionar_medico().getValueAt(linhaselecionada, 0).toString());
+                    if(usuarioController.getUsuarioLogado().getMedico() == null){
+                        Medico medicoselecionado = secretaria.buscarMedico(medico_id);
+                        tela_principal.getConsulta_view().getConsulta_registro_view().setMedico_selecionado(medicoselecionado);
+                        tela_principal.getConsulta_view().getConsulta_registro_view().getjText_medico().setText(medicoselecionado.toString());
+                        tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_medico_view().setVisible(false);
+                    }else{
+//                        medico.deletarConsulta(consulta_id)
+                    }
+            }
+        };
+            tela_principal.getConsulta_view().getConsulta_registro_view().getSelecionar_paciente_view().getjButton_salvar().addActionListener(actionlistener);
     }
 }

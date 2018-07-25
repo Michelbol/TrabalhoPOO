@@ -50,6 +50,11 @@ public class Medico extends Pessoa {
             return null;
         }
     }
+    public List<Medico> getMedico(String filtro_nome){
+        Query query = manager.createQuery("select m FROM Medico m");
+        List<Medico> lista_medico = query.getResultList();
+        return lista_medico;
+    }
     
     public Medico findMedico(int id){
         Medico medico = null;

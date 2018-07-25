@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clinicamedicapoo.paciente;
+package clinicamedicapoo.medico;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -12,21 +12,21 @@ import javax.swing.JTable;
  *
  * @author miche
  */
-public class SelecionarPacienteView extends javax.swing.JFrame {
-    PacienteTableModel paciente_table_model;
+public class SelecionarMedicoView extends javax.swing.JFrame {
+    MedicoTableModel medico_table_model;
 
-    public SelecionarPacienteView(PacienteTableModel paciente_table_model) {
-        this.paciente_table_model = paciente_table_model;
+    public SelecionarMedicoView(MedicoTableModel medico_table_model) {
+        this.medico_table_model = medico_table_model;
         initComponents();
         setLocationRelativeTo(null);
     }
 
-    public PacienteTableModel getPaciente_table_model() {
-        return paciente_table_model;
+    public MedicoTableModel getMedico_table_model() {
+        return medico_table_model;
     }
 
-    public void setPaciente_table_model(PacienteTableModel paciente_table_model) {
-        this.paciente_table_model = paciente_table_model;
+    public void setMedico_table_model(MedicoTableModel medico_table_model) {
+        this.medico_table_model = medico_table_model;
     }
 
     public JButton getjButton_cancelar() {
@@ -45,12 +45,12 @@ public class SelecionarPacienteView extends javax.swing.JFrame {
         this.jButton_salvar = jButton_salvar;
     }
 
-    public JTable getjTable_selecionar_paciente() {
-        return jTable_selecionar_paciente;
+    public JTable getjTable_selecionar_medico() {
+        return jTable_selecionar_medico;
     }
 
-    public void setjTable_selecionar_paciente(JTable jTable_selecionar_paciente) {
-        this.jTable_selecionar_paciente = jTable_selecionar_paciente;
+    public void setjTable_selecionar_medico(JTable jTable_selecionar_medico) {
+        this.jTable_selecionar_medico = jTable_selecionar_medico;
     }
 
     /**
@@ -63,12 +63,12 @@ public class SelecionarPacienteView extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_selecionar_paciente = new javax.swing.JTable();
+        jTable_selecionar_medico = new javax.swing.JTable();
         jButton_salvar = new javax.swing.JButton();
         jButton_cancelar = new javax.swing.JButton();
 
-        jTable_selecionar_paciente.setModel(paciente_table_model);
-        jScrollPane1.setViewportView(jTable_selecionar_paciente);
+        jTable_selecionar_medico.setModel(medico_table_model);
+        jScrollPane1.setViewportView(jTable_selecionar_medico);
 
         jButton_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/mouse_add.png"))); // NOI18N
         jButton_salvar.setText("Selecionar");
@@ -105,6 +105,6 @@ public class SelecionarPacienteView extends javax.swing.JFrame {
     private javax.swing.JButton jButton_cancelar;
     private javax.swing.JButton jButton_salvar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable_selecionar_paciente;
+    private javax.swing.JTable jTable_selecionar_medico;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,6 +10,8 @@ import clinicamedicapoo.consulta.ConsultaController;
 import clinicamedicapoo.consulta.ConsultaRegistroView;
 import clinicamedicapoo.consulta.ConsultaTableModel;
 import clinicamedicapoo.medico.Medico;
+import clinicamedicapoo.medico.MedicoTableModel;
+import clinicamedicapoo.medico.SelecionarMedicoView;
 import clinicamedicapoo.paciente.PacienteConsultaView;
 import clinicamedicapoo.paciente.PacienteController;
 import clinicamedicapoo.paciente.PacienteRegistroView;
@@ -45,9 +47,11 @@ public class ClinicaMedicaPOO {
         PacienteTableModel paciente_table_model = new PacienteTableModel();
         ConsultaTableModel consulta_table_model = new ConsultaTableModel();
         ProntuarioTableModel prontuario_table_model = new ProntuarioTableModel();
+        MedicoTableModel medico_table_model = new MedicoTableModel();
         //views
+        SelecionarMedicoView selecionar_medico_view = new SelecionarMedicoView(medico_table_model);
         SelecionarPacienteView selecionar_paciente_view = new SelecionarPacienteView(paciente_table_model);
-        ConsultaRegistroView consulta_registro_view = new ConsultaRegistroView(selecionar_paciente_view);
+        ConsultaRegistroView consulta_registro_view = new ConsultaRegistroView(selecionar_paciente_view, selecionar_medico_view);
         ConsultaConsultaView consulta_view = new ConsultaConsultaView(consulta_table_model, consulta_registro_view);
         PacienteRegistroView paciente_register_view = new PacienteRegistroView();
         PacienteConsultaView paciente_consulta_view = new PacienteConsultaView(paciente_register_view, paciente_table_model);
@@ -58,7 +62,7 @@ public class ClinicaMedicaPOO {
         //Controllers
         UsuarioController usuario_controller = new UsuarioController(usuario, login);
         PacienteController paciente_controler = new PacienteController(secretaria, tela_principal, usuario_controller, medico);
-        ConsultaController consulta_controller = new ConsultaController(usuario_controller, secretaria, medico, consulta_table_model, tela_principal);
+        ConsultaController consulta_controller = new ConsultaController(usuario_controller, secretaria, medico, consulta_table_model, tela_principal, medico_table_model);
         ProntuarioController prontuario_controller = new ProntuarioController(usuario_controller, secretaria, medico, prontuario_table_model, tela_principal);
         //Função para inicializar componentes
         //login
@@ -90,8 +94,14 @@ public class ClinicaMedicaPOO {
         //tela registro consultas
         consulta_controller.cancelarRegistroConsulta();
         consulta_controller.salvarPaciente();
+        //tela seleção paciente
         consulta_controller.abrirSelecaoPaciente();
         consulta_controller.cancelarSelecaoPaciente();
+        consulta_controller.selecionarPaciente();
+        //tela seleção medico
+        consulta_controller.abrirSelecaoMedico();
+        consulta_controller.cancelarSelecaoMedico();
+        consulta_controller.selecionarMedico();
     }
     
 }

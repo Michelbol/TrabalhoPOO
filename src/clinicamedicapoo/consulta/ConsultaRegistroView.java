@@ -6,6 +6,7 @@
 package clinicamedicapoo.consulta;
 
 import clinicamedicapoo.medico.Medico;
+import clinicamedicapoo.medico.SelecionarMedicoView;
 import clinicamedicapoo.paciente.Paciente;
 import clinicamedicapoo.paciente.SelecionarPacienteView;
 import javax.swing.JButton;
@@ -21,10 +22,21 @@ public class ConsultaRegistroView extends javax.swing.JFrame {
     private Medico medico_selecionado;
     private Paciente paciente_selecionado;
     private SelecionarPacienteView selecionar_paciente_view;
+    private SelecionarMedicoView selecionar_medico_view;
 
-    public ConsultaRegistroView(SelecionarPacienteView selecionar_paciente_view) {
+    public ConsultaRegistroView(SelecionarPacienteView selecionar_paciente_view, SelecionarMedicoView selecionar_medico_view) {
         this.selecionar_paciente_view = selecionar_paciente_view;
+        this.selecionar_medico_view = selecionar_medico_view;
         initComponents();
+        setLocationRelativeTo(null);
+    }
+
+    public SelecionarMedicoView getSelecionar_medico_view() {
+        return selecionar_medico_view;
+    }
+
+    public void setSelecionar_medico_view(SelecionarMedicoView selecionar_medico_view) {
+        this.selecionar_medico_view = selecionar_medico_view;
     }
 
     public SelecionarPacienteView getSelecionar_paciente_view() {

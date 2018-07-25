@@ -56,6 +56,11 @@ public class Secretaria extends Pessoa {
         return paciente.getPaciente(filtro_nome);
     }
     
+    public List<Medico> consultarMedicos(String filtro_nome){
+        Medico medico = new Medico();
+        return medico.getMedico(filtro_nome);
+    }
+    
     public List<Consulta> consultarConsultas(String data_inicial, String hora_inicial, String data_final, String hora_final){
         Consulta consulta = new Consulta();
         return consulta.getConsulta(data_inicial, hora_inicial, data_final, hora_final);
