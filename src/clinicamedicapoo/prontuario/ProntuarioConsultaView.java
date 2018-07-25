@@ -5,18 +5,20 @@
  */
 package clinicamedicapoo.prontuario;
 
-import clinicamedicapoo.paciente.PacienteTableModel;
+import javax.swing.JButton;
 
 /**
  *
  * @author João Vitor Malvestio
  */
-public class ProntuarioConsultaView extends javax.swing.JPanel {
+
+public class ProntuarioConsultaView extends javax.swing.JFrame {
     private ProntuarioTableModel prontuario_table_model;
     
     public ProntuarioConsultaView(ProntuarioTableModel prontuario_table_model) {
         this.prontuario_table_model = prontuario_table_model;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public ProntuarioTableModel getProntuario_table_model() {
@@ -27,6 +29,24 @@ public class ProntuarioConsultaView extends javax.swing.JPanel {
         this.prontuario_table_model = prontuario_table_model;
     }
 
+    public JButton getBtEditarProntuario() {
+        return btEditarProntuario;
+    }
+
+    public JButton getBtExcluirProntuario() {
+        return btExcluirProntuario;
+    }
+
+    public JButton getBtFechar() {
+        return btFechar;
+    }
+
+    public JButton getBtNovoProntuario() {
+        return btNovoProntuario;
+    }
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,72 +56,80 @@ public class ProntuarioConsultaView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        btAdicionar = new javax.swing.JButton();
-        btEditar = new javax.swing.JButton();
-        btExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        btNovoProntuario = new javax.swing.JButton();
+        btEditarProntuario = new javax.swing.JButton();
+        btExcluirProntuario = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btFechar = new javax.swing.JButton();
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        btAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/add.png"))); // NOI18N
-        btAdicionar.setText("Adicionar");
-
-        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/pencil.png"))); // NOI18N
-        btEditar.setText("Editar");
-
-        btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/cross.png"))); // NOI18N
-        btExcluir.setText("Excluir");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(prontuario_table_model);
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        btNovoProntuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/add.png"))); // NOI18N
+        btNovoProntuario.setText("Novo");
+
+        btEditarProntuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/pencil.png"))); // NOI18N
+        btEditarProntuario.setText("Editar");
+
+        btExcluirProntuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/cross.png"))); // NOI18N
+        btExcluirProntuario.setText("Excluir");
+
+        jLabel1.setText("Manuteção de Prontuarios");
+
+        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/cancel.png"))); // NOI18N
+        btFechar.setText("Fechar");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btAdicionar)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btNovoProntuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btEditar)
+                        .addComponent(btEditarProntuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btExcluir))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(btExcluirProntuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addComponent(btFechar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btExcluir)
-                    .addComponent(btEditar)
-                    .addComponent(btAdicionar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btNovoProntuario)
+                    .addComponent(btEditarProntuario)
+                    .addComponent(btExcluirProntuario)
+                    .addComponent(btFechar))
+                .addContainerGap())
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAdicionar;
-    private javax.swing.JButton btEditar;
-    private javax.swing.JButton btExcluir;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JButton btEditarProntuario;
+    private javax.swing.JButton btExcluirProntuario;
+    private javax.swing.JButton btFechar;
+    private javax.swing.JButton btNovoProntuario;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
