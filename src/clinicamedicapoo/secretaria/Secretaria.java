@@ -92,6 +92,35 @@ public class Secretaria extends Pessoa {
        return paciente.inserirPaciente(tipoconvenio, isFumante, isAlcolatra, isColesterol, isDiabetico, doencasCardiacas, cirurgias, alergias, ativo, nome, sobrenome, cpf, rg, sexo, dataNascimento, rua, numero, bairro, cep, telefone_residencial, telefone_celular, email, cidade, estado);
     }
     
+    public Paciente atualizarPaciente(Integer id,
+            TipoConvenio tipoconvenio,
+            boolean isFumante,
+            boolean isAlcolatra,
+            boolean isColesterol,
+            boolean isDiabetico,
+            boolean doencasCardiacas,
+            String cirurgias,
+            String alergias,
+            boolean ativo,
+            String nome,
+            String sobrenome,
+            String cpf,
+            String rg,
+            Sexo sexo,
+            String dataNascimento,
+            String rua,
+            String numero,
+            String bairro,
+            String cep,
+            String telefone_residencial,
+            String telefone_celular,
+            String email,
+            String cidade,
+            String estado){
+       Paciente paciente = new Paciente();
+       return paciente.atualizarPaciente(id, tipoconvenio, isFumante, isAlcolatra, isColesterol, isDiabetico, doencasCardiacas, cirurgias, alergias, ativo, nome, sobrenome, cpf, rg, sexo, dataNascimento, rua, numero, bairro, cep, telefone_residencial, telefone_celular, email, cidade, estado);
+    }
+    
     public boolean deletarPaciente(Integer id){
         Paciente paciente = new Paciente();
         return paciente.DeletarPaciente(id);
