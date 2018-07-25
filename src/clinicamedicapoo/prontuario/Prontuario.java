@@ -171,6 +171,26 @@ public class Prontuario implements Serializable {
         }
     }
     
+    public Prontuario atualizarProntuario(int id, Paciente paciente, Medico medico, String sintomas, String diagnostico,String prescricao,String dataProntuario){
+        try{
+           manager.getTransaction().begin();
+           Prontuario prontuario = findProntuario(id);
+           prontuario.setPaciente(paciente);
+           prontuario.setMedico(medico);
+           prontuario.setSintomas(sintomas);
+           prontuario.setDiagnostico(diagnostico);
+           prontuario.setPrescricao(prescricao);
+           prontuario.setDataProntuario(dataProntuario);
+           manager.merge(prontuario);
+           manager.getTransaction().commit();
+           return prontuario;
+        }
+        catch(Exception e){
+            System.out.println("Erro: " + e.getMessage());
+            return null;
+        }
+    }
+    
     public List<Prontuario> getProntuario(String hora_inicial, String hora_final){
         if (hora_inicial=="") hora_inicial = "2000-01-01";
         if (hora_final=="") hora_final = "2050-01-01";
@@ -178,5 +198,16 @@ public class Prontuario implements Serializable {
         Query query = manager.createQuery("select p FROM Prontuario p WHERE p.dataProntuario BETWEEN '"+ hora_inicial+"' and '"+hora_final+"'");
         List<Prontuario> lista_prontuario = query.getResultList();
         return lista_prontuario;
+    }
+    
+    public Prontuario findProntuario(int id){
+        Prontuario prontuario = null;
+        try{
+            prontuario = manager.find(Prontuario.class, id);
+        }
+        catch(Exception e){
+            System.out.println("Erro: " + e.getMessage());
+        }
+        return prontuario;
     }
 }

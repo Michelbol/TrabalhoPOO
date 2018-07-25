@@ -6,6 +6,7 @@
 package clinicamedicapoo.prontuario;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 /**
  *
@@ -21,6 +22,10 @@ public class ProntuarioConsultaView extends javax.swing.JFrame {
         this.prontuario_registro_view = prontuario_registro_view;
         initComponents();
         setLocationRelativeTo(null);
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
     }
 
     public ProntuarioRegistroView getProntuario_registro_view() {

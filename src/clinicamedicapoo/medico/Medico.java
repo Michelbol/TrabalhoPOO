@@ -5,6 +5,7 @@
  */
 package clinicamedicapoo.medico;
 
+import clinicamedicapoo.paciente.Paciente;
 import clinicamedicapoo.prontuario.Prontuario;
 import clinicamedicapoo.utilitarios.Pessoa;
 import clinicamedicapoo.utilitarios.Sexo;
@@ -50,7 +51,7 @@ public class Medico extends Pessoa {
         }
     }
     
-    public static Medico findMedico(int id){
+    public Medico findMedico(int id){
         Medico medico = null;
         try{
             medico = manager.find(Medico.class, id);
@@ -61,6 +62,10 @@ public class Medico extends Pessoa {
         return medico;
     }
     
+    public Prontuario buscarProntuario(int id){
+        Prontuario p = new Prontuario();
+        return p.findProntuario(id);
+    }
 
     public void povoarMedico(){
         inserirMedico("Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/03/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com","Maringá", "PR");
@@ -74,6 +79,22 @@ public class Medico extends Pessoa {
     @Override
     public String toString() {
         return this.nome;
+    }
+    
+    public void incluirProntuario(String data, String idPaciente, String idMedico, String sintomas, String diagnostico, String prescricao){
+        Prontuario prontuario = new Prontuario();
+        Medico medico         = new Medico();
+        Paciente paciente     = new Paciente();                
+        
+        prontuario.inserirProntuario(paciente.findPaciente(Integer.parseInt(idPaciente)), medico.findMedico(Integer.parseInt(idMedico)), sintomas, diagnostico, prescricao, data);
+    }
+    
+    public void atualizarProntuario(String id, String data, String idPaciente, String idMedico, String sintomas, String diagnostico, String prescricao){
+        Prontuario prontuario = new Prontuario();
+        Medico medico         = new Medico();
+        Paciente paciente     = new Paciente();                
+        
+        prontuario.atualizarProntuario(Integer.parseInt(id),paciente.findPaciente(Integer.parseInt(idPaciente)), medico.findMedico(Integer.parseInt(idMedico)), sintomas, diagnostico, prescricao, data);
     }
     
 }

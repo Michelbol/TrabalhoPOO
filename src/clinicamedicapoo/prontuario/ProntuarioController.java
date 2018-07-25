@@ -78,7 +78,7 @@ public class ProntuarioController {
         tela_principal.getProntuario_Consulta_view().getProntuario_registro_view().getBtCancelar().addActionListener(actionlistener);
     }
     
-    public void adicionarProntuarios(){
+    public void adicionarProntuario(){
         actionlistener = new ActionListener() {            
             public void actionPerformed(ActionEvent ae) {
                 tela_principal.getProntuario_Consulta_view().getProntuario_registro_view().setVisible(true);
@@ -88,7 +88,65 @@ public class ProntuarioController {
         tela_principal.getProntuario_Consulta_view().getBtNovoProntuario().addActionListener(actionlistener);
     }
     
+    public void editarProntuario(){
+        actionlistener = new ActionListener() {            
+            public void actionPerformed(ActionEvent ae) {
+                Prontuario p = null;
+                int linhaselecionada = tela_principal.getProntuario_Consulta_view().getjTable1().getSelectedRow();
+                if(linhaselecionada == -1){
+                    JOptionPane.showMessageDialog(null, "Selecione um registro");
+                    return;
+                }
+                int prontuarioId = Integer.parseInt(tela_principal.getProntuario_Consulta_view().getjTable1().getValueAt(linhaselecionada, 0).toString());                
+                p = medico.buscarProntuario(prontuarioId);                
+                if(p != null){
+                    tela_principal.getProntuario_Consulta_view().getProntuario_registro_view().setVisible(true);
+                    preencherTelaRegistrarProntuario(p);
+                }
+            }
+        };
+        tela_principal.getProntuario_Consulta_view().getBtEditarProntuario().addActionListener(actionlistener);
+    }
     
+    public void salvarProntuario(){
+        actionlistener = new ActionListener() {            
+            public void actionPerformed(ActionEvent ae) {
+                List<Prontuario> prontuarios = new ArrayList();
+                ProntuarioRegistroView view = tela_principal.getProntuario_Consulta_view().getProntuario_registro_view();
+                
+                //Incluindo Prontuario
+                //Como o codigo se encontra vazio, a ação é de inclusão
+                if (view.getInputId().getText().equals("")){
+                    medico.incluirProntuario(view.getInputData().getText(),
+                                             "",
+                                             "",
+                                             view.getTextAreaSintomas().getText(),
+                                             view.getTextAreaDiagnostico().getText(),
+                                             view.getTextAreaPrescricao().getText());
+                }
+                else {
+                    medico.atualizarProntuario(view.getInputId().getText(),
+                                               view.getInputData().getText(),
+                                               "",
+                                               "",
+                                               view.getTextAreaSintomas().getText(),
+                                               view.getTextAreaDiagnostico().getText(),
+                                               view.getTextAreaPrescricao().getText());
+                }                                    
+                                
+                limparTelaRegistroProntuario();
+                view.setVisible(false);
+                
+                prontuario_table_model = tela_principal.getProntuario_Consulta_view().getProntuario_table_model();
+                prontuario_table_model.limpar();
+                prontuarios = medico.consultarProntuarios("", "");                
+                prontuario_table_model.addListaDeProntuarios(prontuarios);
+                tela_principal.getProntuario_Consulta_view().setVisible(true);
+                tela_principal.getProntuario_Consulta_view().setProntuario_table_model(prontuario_table_model);
+            }
+        };
+        tela_principal.getProntuario_Consulta_view().getProntuario_registro_view().getBtSalvar().addActionListener(actionlistener);
+    }
     
     
     public void limparTelaRegistroProntuario(){
@@ -98,5 +156,14 @@ public class ProntuarioController {
         view.getTextAreaSintomas().setText("");
         view.getTextAreaDiagnostico().setText("");
         view.getTextAreaPrescricao().setText("");        
+    }
+    
+    public void preencherTelaRegistrarProntuario(Prontuario p){
+        ProntuarioRegistroView view = tela_principal.getProntuario_Consulta_view().getProntuario_registro_view();
+        view.getInputId().setText(p.getId().toString());
+        view.getInputData().setText(p.getDataProntuario());
+        view.getTextAreaSintomas().setText(p.getSintomas());
+        view.getTextAreaDiagnostico().setText(p.getDiagnostico());
+        view.getTextAreaPrescricao().setText(p.getPrescricao());
     }
 }
