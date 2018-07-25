@@ -8,6 +8,7 @@ package clinicamedicapoo.usuario;
 import clinicamedicapoo.consulta.Consulta;
 import clinicamedicapoo.medico.Medico;
 import clinicamedicapoo.paciente.Paciente;
+import clinicamedicapoo.prontuario.Prontuario;
 import clinicamedicapoo.utilitarios.Sexo;
 import clinicamedicapoo.view.Login;
 import java.awt.event.ActionEvent;
@@ -37,6 +38,8 @@ public class UsuarioController {
         medico.povoarMedico();
         Consulta consulta = new Consulta();
         consulta.povoarConsulta();
+        Prontuario prontuario = new Prontuario();
+        prontuario.povoarProntuario();
     }
     
     public void login(){
@@ -52,5 +55,14 @@ public class UsuarioController {
             }
         };
         tela_login.entrar().addActionListener(actionlistener);
+    }
+    
+    public void sair(){
+        actionlistener = new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                System.exit(0);
+            }
+        };
+        tela_login.sair().addActionListener(actionlistener);
     }
 }

@@ -5,6 +5,7 @@
  */
 package clinicamedicapoo.medico;
 
+import clinicamedicapoo.prontuario.Prontuario;
 import clinicamedicapoo.utilitarios.Pessoa;
 import clinicamedicapoo.utilitarios.Sexo;
 import java.util.Date;
@@ -60,8 +61,14 @@ public class Medico extends Pessoa {
         return medico;
     }
     
+
     public void povoarMedico(){
         inserirMedico("Maria Aparecida", "Malvestio", "123.456.789-10", "132465789", Sexo.Feminino, "11/03/1995", "Rua dos moscados", "4989", "Zona 07", "78949-254", "(44) 3228-9999", "(44) 88978-3108", "maria.aparecoda@gmail.com","Maringá", "PR");
+    }
+    
+    public List<Prontuario> consultarProntuarios(String data_inicial, String data_final){
+        Prontuario prontuario = new Prontuario();
+        return prontuario.getProntuario(data_inicial,data_final);
     }
     
 }
