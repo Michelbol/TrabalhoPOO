@@ -147,21 +147,43 @@ public class Consulta implements Serializable {
         this.tipo = tipo;
     }
     
-    public List<Consulta> getConsulta(String hora_inicial, String hora_final){        
-        Query query = manager.createQuery("select p FROM Consulta p WHERE p.data BETWEEN '2018-07-24' and '2018-07-24' and p.hora BETWEEN '10:00' and '23:00'");
+    public List<Consulta> getConsulta(String data_inicial, String hora_inicial, String data_final, String hora_final){
+        System.out.println("Data inicial: " + data_inicial);
+        System.out.println("hora_inicial: " + hora_inicial);
+        System.out.println("data_final: " + data_final);
+        System.out.println("hora_final: " + hora_final);
+        Query query;
+        if(data_inicial.equals("") && hora_inicial.equals("") && data_final.equals("") && hora_final.equals("")){
+            query = manager.createQuery("select p FROM Consulta p");
+        }else{
+            query = manager.createQuery("select p FROM Consulta p WHERE p.data BETWEEN '"+ data_inicial +"' and '" + data_final + "' and p.hora BETWEEN '" + hora_inicial + "' and '" + hora_final + "'");
+        }
         List<Consulta> lista_consulta = query.getResultList();
         return lista_consulta;
     }
     
-    public static void inserirConsulta(String data, Medico medico, Paciente paciente, TipoConsulta tipo_consulta, String hora){
+    public Consulta findConsulta(int id){
+        Consulta consulta = null;
+        try{
+            consulta = manager.find(Consulta.class, id);
+        }
+        catch(Exception e){
+            System.out.println("Erro: " + e.getMessage());
+        }
+        return consulta;
+    }
+    
+    public Consulta inserirConsulta(String data, Medico medico, Paciente paciente, TipoConsulta tipo_consulta, String hora){
         Consulta c = new Consulta(data, medico, paciente, tipo_consulta, hora);
         try{
            manager.getTransaction().begin();
            manager.persist(c);
            manager.getTransaction().commit();
+           return c;
         }
         catch(Exception e){
             System.out.println("Erro: " + e.getMessage());
+            return null;
         }
     }
     
@@ -175,4 +197,35 @@ public class Consulta implements Serializable {
         inserirConsulta("24/07/2018", medico_adicionar, paciente_adicionar, TipoConsulta.Normal, "20:00");
     }
     
+    public Consulta atualizarConsulta(Integer id,String data, Medico medico, Paciente paciente, TipoConsulta tipo, String hora) {
+        
+        try{
+           manager.getTransaction().begin();
+           Consulta c = findConsulta(id);
+           c.setData(data);
+           c.setHora(hora);
+           c.setMedico(medico);
+           c.setPaciente(paciente);
+           c.setTipo(tipo);
+           manager.merge(c);
+           manager.getTransaction().commit();
+           return c;
+        }
+        catch(Exception e){
+            System.out.println("Erro: " + e.getMessage());
+            return null;
+        }
+    }
+    public boolean deletarConsulta(int id){
+        try{
+            manager.getTransaction().begin();
+            Consulta c = manager.find(Consulta.class, id);
+            manager.remove(c);
+            manager.getTransaction().commit();
+            return true;
+        }catch(Exception e){
+            System.out.println("Erro: " + e.getMessage());
+            return false;
+        }
+    }
 }

@@ -6,6 +6,8 @@
 package clinicamedicapoo.secretaria;
 
 import clinicamedicapoo.consulta.Consulta;
+import clinicamedicapoo.consulta.TipoConsulta;
+import clinicamedicapoo.medico.Medico;
 import clinicamedicapoo.paciente.Paciente;
 import clinicamedicapoo.paciente.TipoConvenio;
 import clinicamedicapoo.utilitarios.Pessoa;
@@ -54,14 +56,18 @@ public class Secretaria extends Pessoa {
         return paciente.getPaciente(filtro_nome);
     }
     
-    public List<Consulta> consultarConsultas(String data_inicial, String data_final){
+    public List<Consulta> consultarConsultas(String data_inicial, String hora_inicial, String data_final, String hora_final){
         Consulta consulta = new Consulta();
-        return consulta.getConsulta(data_inicial, data_final);
+        return consulta.getConsulta(data_inicial, hora_inicial, data_final, hora_final);
     }
     
     public Paciente buscarPaciente(Integer id){
         Paciente paciente = new Paciente();
         return paciente.findPaciente(id);
+    }
+    public Consulta buscarConsulta(Integer id){
+        Consulta consulta = new Consulta();
+        return consulta.findConsulta(id);
     }
     
     public Paciente salvarPaciente(TipoConvenio tipoconvenio,
@@ -126,4 +132,18 @@ public class Secretaria extends Pessoa {
         return paciente.DeletarPaciente(id);
     }
 
+    public Consulta salvarConsulta(String data, Medico medico, Paciente paciente, TipoConsulta tipo, String hora){
+        Consulta consulta = new Consulta();
+        return consulta.inserirConsulta(data, medico, paciente, tipo, hora);
+    }
+    
+    public Consulta atualizarConsulta(Integer id,String data, Medico medico, Paciente paciente, TipoConsulta tipo, String hora){
+       Consulta consulta = new Consulta();
+       return consulta.atualizarConsulta(id, data, medico, paciente, tipo, hora);
+    }
+    
+    public boolean deletarConsulta(Integer id){
+        Consulta consulta = new Consulta();
+        return consulta.deletarConsulta(id);
+    }
 }
