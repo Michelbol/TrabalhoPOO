@@ -14,12 +14,18 @@ import javax.swing.JButton;
 
 public class ProntuarioConsultaView extends javax.swing.JFrame {
     private ProntuarioTableModel prontuario_table_model;
+    private ProntuarioRegistroView prontuario_registro_view;
     
-    public ProntuarioConsultaView(ProntuarioTableModel prontuario_table_model) {
+    public ProntuarioConsultaView(ProntuarioRegistroView prontuario_registro_view, ProntuarioTableModel prontuario_table_model) {
         this.prontuario_table_model = prontuario_table_model;
+        this.prontuario_registro_view = prontuario_registro_view;
         initComponents();
         setLocationRelativeTo(null);
     }
+
+    public ProntuarioRegistroView getProntuario_registro_view() {
+        return prontuario_registro_view;
+    }        
 
     public ProntuarioTableModel getProntuario_table_model() {
         return prontuario_table_model;

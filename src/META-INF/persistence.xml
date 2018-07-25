@@ -9,6 +9,7 @@
     <class>clinicamedicapoo.medico.Medico</class>
     <class>clinicamedicapoo.usuario.Usuario</class>
     <class>clinicamedicapoo.secretaria.Secretaria</class>
+    <class>clinicamedicapoo.prontuario.Paciente</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/ClinicaMedicaPOO"/>
       <property name="javax.persistence.jdbc.user" value="ClinicaMedicaPOO"/>
