@@ -7,13 +7,11 @@ package clinicamedicapoo.consulta;
 
 import clinicamedicapoo.medico.Medico;
 import clinicamedicapoo.paciente.Paciente;
-import clinicamedicapoo.utilitarios.Sexo;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

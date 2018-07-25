@@ -40,22 +40,27 @@ public class ConsultaConsultaView extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel_data_hora_inicial = new javax.swing.JLabel();
-        jText_data_hora_final = new javax.swing.JFormattedTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        jLabel_data_inicial = new javax.swing.JLabel();
+        jText_data_inicial = new javax.swing.JFormattedTextField();
+        jLabel_data_final = new javax.swing.JLabel();
+        jText_data_final = new javax.swing.JFormattedTextField();
         jbutton_adicionar = new javax.swing.JButton();
         jbutton_editar = new javax.swing.JButton();
         jbutton_excluir = new javax.swing.JButton();
+        jLabel_hora_inicial = new javax.swing.JLabel();
+        jText_hora_inicial = new javax.swing.JTextField();
+        jLabel_hora_final = new javax.swing.JLabel();
+        jText_hora_final = new javax.swing.JTextField();
+        jButton_pesquisar = new javax.swing.JButton();
 
         setTitle("Consultas");
 
         jTable1.setModel(consulta_table_model);
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel_data_hora_inicial.setText("Data/Hora Inicial:");
+        jLabel_data_inicial.setText("Data Inicial:");
 
-        jLabel3.setText("Data/Hora Final:");
+        jLabel_data_final.setText("Data Final:");
 
         jbutton_adicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/add.png"))); // NOI18N
         jbutton_adicionar.setText("Adicionar");
@@ -81,40 +86,79 @@ public class ConsultaConsultaView extends javax.swing.JFrame {
             }
         });
 
+        jLabel_hora_inicial.setText("Hora Inicial:");
+
+        jText_hora_inicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jText_hora_inicialActionPerformed(evt);
+            }
+        });
+
+        jLabel_hora_final.setText("Hora Final:");
+
+        jButton_pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vendor/icons/magnifier.png"))); // NOI18N
+        jButton_pesquisar.setText("Pesquisar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel_data_hora_inicial)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel_data_inicial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jText_data_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel_hora_inicial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jText_hora_inicial)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jText_data_hora_final, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel_data_final)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jText_data_final, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel_hora_final)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jText_hora_final)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_pesquisar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbutton_adicionar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbutton_editar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbutton_excluir)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_data_hora_inicial)
-                    .addComponent(jText_data_hora_final, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbutton_adicionar)
-                    .addComponent(jbutton_editar)
-                    .addComponent(jbutton_excluir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel_data_inicial)
+                            .addComponent(jText_data_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_data_final)
+                            .addComponent(jText_data_final, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel_hora_inicial)
+                            .addComponent(jText_hora_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_hora_final)
+                            .addComponent(jText_hora_final, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbutton_adicionar)
+                            .addComponent(jbutton_editar)
+                            .addComponent(jbutton_excluir)
+                            .addComponent(jButton_pesquisar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -150,14 +194,23 @@ public class ConsultaConsultaView extends javax.swing.JFrame {
 //        jtable_consulta_paciente.setModel(paciente);
     }//GEN-LAST:event_jbutton_excluirActionPerformed
 
+    private void jText_hora_inicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText_hora_inicialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jText_hora_inicialActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel_data_hora_inicial;
+    private javax.swing.JButton jButton_pesquisar;
+    private javax.swing.JLabel jLabel_data_final;
+    private javax.swing.JLabel jLabel_data_inicial;
+    private javax.swing.JLabel jLabel_hora_final;
+    private javax.swing.JLabel jLabel_hora_inicial;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JFormattedTextField jText_data_hora_final;
+    private javax.swing.JFormattedTextField jText_data_final;
+    private javax.swing.JFormattedTextField jText_data_inicial;
+    private javax.swing.JTextField jText_hora_final;
+    private javax.swing.JTextField jText_hora_inicial;
     private javax.swing.JButton jbutton_adicionar;
     private javax.swing.JButton jbutton_editar;
     private javax.swing.JButton jbutton_excluir;
