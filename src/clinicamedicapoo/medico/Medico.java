@@ -70,5 +70,10 @@ public class Medico extends Pessoa {
         Prontuario prontuario = new Prontuario();
         return prontuario.getProntuario(data_inicial,data_final);
     }
+
+    @Override
+    public String toString() {
+        return this.nome;
+    }
     
 }

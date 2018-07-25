@@ -31,15 +31,15 @@ public class UsuarioController {
     public UsuarioController(Usuario usuario, Login tela_login) {
         usuarioLogado = usuario;
         this.tela_login = tela_login;
-        usuario.povoarUsuarios();
-        Paciente paciente = new Paciente();
-        paciente.povoarPaciente();
-        Medico medico = new Medico();
-        medico.povoarMedico();
-        Consulta consulta = new Consulta();
-        consulta.povoarConsulta();
-        Prontuario prontuario = new Prontuario();
-        prontuario.povoarProntuario();
+//        usuario.povoarUsuarios();
+//        Paciente paciente = new Paciente();
+//        paciente.povoarPaciente();
+//        Medico medico = new Medico();
+//        medico.povoarMedico();
+//        Consulta consulta = new Consulta();
+//        consulta.povoarConsulta();
+//        Prontuario prontuario = new Prontuario();
+//        prontuario.povoarProntuario();
     }
     
     public void login(){

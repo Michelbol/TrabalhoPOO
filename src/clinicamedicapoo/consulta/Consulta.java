@@ -106,10 +106,9 @@ public class Consulta implements Serializable {
 
     public String getHora() {
         String data = null;        
-        String[] datahora = null;
         SimpleDateFormat formatDateTime = new SimpleDateFormat("HH:mm");      
-        if(this.data != null ){
-            data = formatDateTime.format(this.data);
+        if(this.hora != null ){
+            data = formatDateTime.format(this.hora);
         }
         return data;
     }
@@ -150,10 +149,7 @@ public class Consulta implements Serializable {
         this.tipo = tipo;
     }
     
-    public List<Consulta> getConsulta(String hora_inicial, String hora_final){
-        System.out.println("Hora inicia: " + hora_inicial);
-        System.out.println("Hora Final: " + hora_final);
-        
+    public List<Consulta> getConsulta(String hora_inicial, String hora_final){        
         Query query = manager.createQuery("select p FROM Consulta p WHERE p.data BETWEEN '2018-07-24' and '2018-07-24' and p.hora BETWEEN '10:00' and '23:00'");
         List<Consulta> lista_consulta = query.getResultList();
         return lista_consulta;
