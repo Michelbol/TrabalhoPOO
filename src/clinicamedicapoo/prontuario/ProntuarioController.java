@@ -145,7 +145,7 @@ public class ProntuarioController {
                 tela_principal.getProntuario_Consulta_view().setProntuario_table_model(prontuario_table_model);
             }
         };
-        tela_principal.getPaciente_consulta().getPaciente_registro().getjButton_salvar().addActionListener(actionlistener);
+        tela_principal.getProntuario_Consulta_view().getProntuario_registro_view().getBtSalvar().addActionListener(actionlistener);
     }
     
     

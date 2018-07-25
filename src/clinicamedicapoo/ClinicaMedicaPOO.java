@@ -79,6 +79,7 @@ public class ClinicaMedicaPOO {
         prontuario_controller.adicionarProntuario();
         prontuario_controller.editarProntuario();
         prontuario_controller.fecharRegistro();
+        prontuario_controller.salvarProntuario();        
         //tela consultar consultas
         consulta_controller.excluirPaciente();
         consulta_controller.filtrarConsultas();
