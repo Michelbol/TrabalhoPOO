@@ -7,6 +7,7 @@ package clinicamedicapoo;
 
 import clinicamedicapoo.consulta.ConsultaConsultaView;
 import clinicamedicapoo.consulta.ConsultaController;
+import clinicamedicapoo.consulta.ConsultaRegistroView;
 import clinicamedicapoo.consulta.ConsultaTableModel;
 import clinicamedicapoo.medico.Medico;
 import clinicamedicapoo.paciente.PacienteConsultaView;
@@ -19,7 +20,6 @@ import clinicamedicapoo.prontuario.ProntuarioController;
 import clinicamedicapoo.prontuario.ProntuarioRegistroView;
 import clinicamedicapoo.prontuario.ProntuarioTableModel;
 import clinicamedicapoo.secretaria.Secretaria;
-import clinicamedicapoo.secretaria.SecretariaController;
 import clinicamedicapoo.usuario.Usuario;
 import clinicamedicapoo.usuario.UsuarioController;
 import clinicamedicapoo.view.Login;
@@ -45,7 +45,8 @@ public class ClinicaMedicaPOO {
         ConsultaTableModel consulta_table_model = new ConsultaTableModel();
         ProntuarioTableModel prontuario_table_model = new ProntuarioTableModel();
         //views
-        ConsultaConsultaView consulta_view = new ConsultaConsultaView(consulta_table_model);
+        ConsultaRegistroView consulta_registro_view = new ConsultaRegistroView();
+        ConsultaConsultaView consulta_view = new ConsultaConsultaView(consulta_table_model, consulta_registro_view);
         PacienteRegistroView paciente_register_view = new PacienteRegistroView();
         PacienteConsultaView paciente_consulta_view = new PacienteConsultaView(paciente_register_view, paciente_table_model);
         ProntuarioRegistroView prontuario_registro_view = new ProntuarioRegistroView();
@@ -78,9 +79,14 @@ public class ClinicaMedicaPOO {
         prontuario_controller.adicionarProntuario();
         prontuario_controller.editarProntuario();
         prontuario_controller.fecharRegistro();
-        
-        
-      
+        //tela consultar consultas
+        consulta_controller.excluirPaciente();
+        consulta_controller.filtrarConsultas();
+        consulta_controller.adicionarConsulta();
+        consulta_controller.editarPaciente();
+        //tela registro consultas
+        consulta_controller.cancelarRegistroConsulta();
+        consulta_controller.salvarPaciente();    
     }
     
 }
